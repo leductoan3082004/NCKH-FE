@@ -32,7 +32,7 @@ export default function MobileSidebarSection({ title, children, openMainSection,
           <div className='relative w-full text-center py-2 text-sectionTitle'>
             <button
               onClick={closeSection}
-              className='absolute top-1/2 -translate-y-1/2 left-1 hover:text-black p-2 duration-300'
+              className='absolute top-1/2 -translate-y-1/2 left-1 hover:text-black p-2 duration-200'
             >
               <FontAwesomeIcon icon={faChevronLeft} className='h-5' />
             </button>

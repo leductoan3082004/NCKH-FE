@@ -9,21 +9,25 @@ module.exports = {
       colors: {
         headerBg: '#fdfefd',
         mainGreen: '#eef7e8',
+        lightGreenCyan: '#7bdcb5',
         primaryGreen: '#435a24',
         primaryHoverGreen: '#235a24',
         sectionGreen: '#b3d69c',
         darkText: '#101010',
         grayText: '#a9a9a9',
         sectionTitle: '#636363',
-        unhoverText: '#666'
+        unhoverText: '#666',
+        sidebarColor: '#f5f5f5'
       }
     },
     screens: {
-      mobileS: '320px',
-      mobileL: '425px',
-      tablet: '640px',
-      laptop: '1024px',
-      largeScreen: '1440px'
+      mobileSmall: '320px',
+      mobileLarge: '425px',
+      tabletSmall: '640px',
+      tablet: '768px',
+      tabletLarge: '962px',
+      desktop: '1024px',
+      desktopLarge: '1440px'
     }
   },
   plugins: [
