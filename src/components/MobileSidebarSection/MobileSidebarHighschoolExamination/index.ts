@@ -1,0 +1,3 @@
+import MobileSidebarHighschoolExamination from './MobileSidebarHighschoolExamination'
+
+export default MobileSidebarHighschoolExamination
