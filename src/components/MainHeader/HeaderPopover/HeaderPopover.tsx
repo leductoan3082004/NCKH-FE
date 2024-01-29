@@ -10,29 +10,36 @@ import {
   FloatingOverlay,
   FloatingArrow
 } from '@floating-ui/react'
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import classNames from 'classnames'
 import { motion } from 'framer-motion'
 import { ElementType, useRef, useState } from 'react'
+import { NavLink } from 'react-router-dom'
 
 interface Props {
   haveArrow?: boolean
   backgroundColor: string
-  children: React.ReactNode
   renderPopover: React.ReactNode
+  className?: string
   as?: ElementType
   initialOpen?: boolean
   placement?: Placement
   offsetValue?: number
+  children: React.ReactNode
+  path: string
 }
 
-export default function Popover({
+export default function HeaderPopover({
   haveArrow = false,
   backgroundColor,
-  children,
   renderPopover,
   as: Element = 'div',
   initialOpen,
   placement,
-  offsetValue = 14
+  offsetValue = 14,
+  children,
+  path
 }: Props) {
   const [isOpen, setIsOpen] = useState<boolean>(initialOpen || false)
 
@@ -55,7 +62,27 @@ export default function Popover({
   return (
     <div>
       <Element ref={refs.setReference} {...getReferenceProps()}>
-        {children}
+        <NavLink
+          to={path}
+          className={({ isActive }) =>
+            classNames(
+              'flex items-center hover:bg-primarayBlueHovering text-sm desktop:text-base duration-200 font-semibold px-3 desktop:px-4 py-2 rounded-md space-x-1.5 hover:text-white',
+              {
+                'bg-primarayBlueHovering text-white': isActive || isOpen
+              }
+            )
+          }
+        >
+          {children}
+          <motion.div
+            className=''
+            animate={{
+              rotate: isOpen ? 180 : 0
+            }}
+          >
+            <FontAwesomeIcon icon={faCaretDown} />
+          </motion.div>
+        </NavLink>
       </Element>
       {isOpen && (
         <FloatingOverlay lockScroll>
@@ -70,9 +97,9 @@ export default function Popover({
               transformOrigin: `${middlewareData.arrow?.x}px top`
             }}
             {...getFloatingProps()}
-            initial={{ opacity: 0, transform: 'scale(0)' }}
+            initial={{ opacity: 0, transform: 'scale(1)' }}
             animate={{ opacity: 1, transform: 'scale(1)' }}
-            exit={{ opacity: 0, transform: 'scale(0)' }}
+            exit={{ opacity: 0, transform: 'scale(1)' }}
             transition={{ duration: 0.2 }}
           >
             {haveArrow && (

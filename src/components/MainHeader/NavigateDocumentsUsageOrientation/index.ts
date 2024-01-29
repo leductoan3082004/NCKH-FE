@@ -1,0 +1,3 @@
+import NavigateDocumentsUsageOrientation from './NavigateDocumentsUsageOrientation'
+
+export default NavigateDocumentsUsageOrientation

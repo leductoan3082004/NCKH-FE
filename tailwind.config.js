@@ -8,16 +8,21 @@ module.exports = {
     extend: {
       colors: {
         headerBg: '#fdfefd',
-        mainGreen: '#eef7e8',
-        lightGreenCyan: '#7bdcb5',
-        primaryGreen: '#435a24',
-        primaryHoverGreen: '#235a24',
-        sectionGreen: '#b3d69c',
+        mainBg: '#d0ffff',
+        primarayBlue: '#05668D',
+        darkPrimarayBlue: '#151b54',
+        primarayBlueHovering: '#028090',
+        footerBg: '#afdcec',
+        sectionBlue: '#3FC1C0',
         darkText: '#101010',
         grayText: '#a9a9a9',
         sectionTitle: '#636363',
-        unhoverText: '#666',
-        sidebarColor: '#f5f5f5'
+        unhoverText: '#606060',
+        sidebarColor: '#f5f5f5',
+        blue1: '#3FC1C0',
+        blue2: '#028090',
+        blue3: '#05668D',
+        decoratingRed: '#ffa69e'
       }
     },
     screens: {

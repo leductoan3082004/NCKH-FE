@@ -1,3 +1,0 @@
-import NavigateHighschoolExamination from './NavigateHighschoolExamination'
-
-export default NavigateHighschoolExamination

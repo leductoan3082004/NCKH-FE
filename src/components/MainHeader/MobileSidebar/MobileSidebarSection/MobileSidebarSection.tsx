@@ -36,7 +36,7 @@ export default function MobileSidebarSection({ title, children, openMainSection,
             >
               <FontAwesomeIcon icon={faChevronLeft} className='h-5' />
             </button>
-            <p className='uppercase font-semibold text-center text-lg'>{title}</p>
+            <p className='uppercase font-semibold text-center text-lg px-6'>{title}</p>
           </div>
           {children}
         </motion.div>

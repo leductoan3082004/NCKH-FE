@@ -6,17 +6,17 @@ interface Props {
   wrapperClassNames?: string
 }
 
-export default function NavigateHighschoolExamination({ itemClassNames, wrapperClassNames }: Props) {
+export default function NavigateHome({ itemClassNames, wrapperClassNames }: Props) {
   return (
     <div className={wrapperClassNames}>
       <NavLink to={path.home} className={itemClassNames}>
-        nghị luận văn học
+        Giới thiệu về trang web
       </NavLink>
       <NavLink to={path.home} className={itemClassNames}>
-        nghị luận xã hội
+        Góp ý
       </NavLink>
       <NavLink to={path.home} className={itemClassNames}>
-        đề minh họa
+        Thông tin liên hệ
       </NavLink>
     </div>
   )

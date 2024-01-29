@@ -3,21 +3,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Fragment, useState } from 'react'
 import useClickOutside from 'src/hooks/useClickOutside'
-import SearchBar from '../../SearchBar'
-import { NavLink } from 'react-router-dom'
-import path from 'src/constants/path'
 import MobileSidebarSection from './MobileSidebarSection'
-import NavigateSampleEssays from '../NavigateSampleEssays'
-import NavigateContests from '../NavigateContests'
-import NavigateHighschoolExamination from '../NavigateHighschoolExamination'
 import NavigateDocuments from '../NavigateDocuments'
+import NavigateDocumentsUsageOrientation from '../NavigateDocumentsUsageOrientation'
+import NavigateHome from '../NavigateHome'
 
 export default function MobileSidebar() {
   //? Use state
   const [mainSection, setMainsection] = useState<boolean>(true)
-  const [essaysSection, setEssaysSection] = useState<boolean>(false)
-  const [contestsSection, setContestsSection] = useState<boolean>(false)
-  const [highSchoolExaminationSection, setHighSchoolExaminationSection] = useState<boolean>(false)
+  const [homeSection, setHomeSection] = useState<boolean>(false)
+  const [usageOrientationSection, setUsageOrientationSection] = useState<boolean>(false)
   const [documentsSection, setDocumentsSection] = useState<boolean>(false)
 
   //? Use hooks
@@ -31,19 +26,14 @@ export default function MobileSidebar() {
   }
 
   //? Handle open/close sections
-  const openContestsSection = () => {
+  const openUsageOrientationSection = () => {
     setMainsection(false)
-    setContestsSection(true)
+    setUsageOrientationSection(true)
   }
 
-  const openEssaysSection = () => {
+  const openHomeSection = () => {
     setMainsection(false)
-    setEssaysSection(true)
-  }
-
-  const openHighSchoolExaminationSection = () => {
-    setMainsection(false)
-    setHighSchoolExaminationSection(true)
+    setHomeSection(true)
   }
 
   const openDocumentsSection = () => {
@@ -53,14 +43,14 @@ export default function MobileSidebar() {
 
   //? Classnames
   const itemStyles =
-    'tabletLarge:hover:text-white hover:text-black px-7 tabletLarge:px-4 py-3 duration-200 tabletLarge:hover:bg-primaryGreen tabletLarge:rounded-md'
+    'tablet:hover:text-white hover:text-black px-7 tablet:px-4 py-3 duration-200 tablet:hover:bg-primarayBlue tablet:rounded-md'
   const wrapperStyles = 'text-unhoverText flex flex-col py-4'
 
   return (
     <Fragment>
       <button
         onClick={openSidebar}
-        className='bg-primaryGreen p-2 rounded-md text-white hover:bg-primaryHoverGreen duration-200 text-center flex items-center'
+        className='bg-primarayBlue p-2 rounded-md text-white hover:bg-primarayBlueHovering duration-200 text-center flex items-center'
       >
         <FontAwesomeIcon icon={faBars} className='h-4 w-5 sm:h-5 sm:w-6' />
       </button>
@@ -68,7 +58,7 @@ export default function MobileSidebar() {
         {visible && (
           <div className='relative'>
             <motion.div
-              className='fixed inset-0'
+              className='fixed inset-0 z-10'
               initial={{ opacity: 0, backgroundColor: 'black' }}
               animate={{
                 opacity: 0.4
@@ -77,7 +67,7 @@ export default function MobileSidebar() {
               transition={{ duration: 0.3 }}
             />
             <motion.div
-              className='fixed bottom-0 left-0 z-10 flex h-full mobileSmall:w-[70%] mobileLarge:w-[60%] sm:w-[50%] w-full flex-col justify-start self-center rounded-lg rounded-l-none shadow-sm overflow-hidden'
+              className='fixed bottom-0 left-0 z-10 flex h-full mobileSmall:w-[95%] mobileLarge:w-[75%] w-full flex-col justify-start self-center rounded-lg rounded-l-none shadow-sm overflow-hidden'
               initial={{ opacity: 0, x: '-100%' }}
               animate={{
                 opacity: 1,
@@ -108,97 +98,66 @@ export default function MobileSidebar() {
                       exit={{ opacity: 0, x: '-100%' }}
                       transition={{ duration: 0.3 }}
                     >
-                      <div className='w-full px-4 py-4'>
-                        <SearchBar />
-                      </div>
                       <div className='font-semibold flex flex-col uppercase'>
-                        <NavLink
-                          to={path.home}
-                          className='border-black/5 border-y w-full px-6 py-4 text-grayText hover:bg-black/10 hover:text-darkText duration-200'
-                        >
-                          <p>trang chủ</p>
-                        </NavLink>
                         <button
-                          onClick={openEssaysSection}
+                          onClick={openHomeSection}
                           className='border-black/5 border-y w-full px-6 py-4 text-grayText hover:bg-black/10 hover:text-darkText duration-200 flex items-center justify-between uppercase'
                         >
-                          <p className=''>văn mẫu</p>
+                          <p className=''>trang chủ</p>
                           <span>
                             <FontAwesomeIcon icon={faChevronRight} className='font-medium' />
                           </span>
                         </button>
-                        <button
-                          onClick={openContestsSection}
-                          className='border-black/5 border-y w-full px-6 py-4 text-grayText hover:bg-black/10 hover:text-darkText duration-200 flex items-center justify-between uppercase'
-                        >
-                          <p className=''>kỳ thi học sinh giỏi</p>
-                          <span>
-                            <FontAwesomeIcon icon={faChevronRight} className='font-medium' />
-                          </span>
-                        </button>
-                        <button
-                          onClick={openHighSchoolExaminationSection}
-                          className='border-black/5 border-y w-full px-6 py-4 text-grayText hover:bg-black/10 hover:text-darkText duration-200 flex items-center justify-between uppercase'
-                        >
-                          <p className=''>kỳ thi THPTQG</p>
-                          <span>
-                            <FontAwesomeIcon icon={faChevronRight} className='font-medium' />
-                          </span>
-                        </button>
+
                         <button
                           onClick={openDocumentsSection}
                           className='border-black/5 border-y w-full px-6 py-4 text-grayText hover:bg-black/10 hover:text-darkText duration-200 flex items-center justify-between uppercase'
                         >
-                          <p className=''>tài liệu</p>
+                          <p className=''>văn bản</p>
                           <span>
                             <FontAwesomeIcon icon={faChevronRight} className='font-medium' />
                           </span>
                         </button>
-                        <NavLink
-                          to={path.home}
-                          className='border-black/5 border-b w-full px-6 py-4 text-grayText hover:bg-black/10 hover:text-darkText duration-200'
+
+                        <button
+                          onClick={openUsageOrientationSection}
+                          className='border-black/5 border-y w-full px-6 py-4 text-grayText hover:bg-black/10 hover:text-darkText duration-200 flex items-center justify-between uppercase'
                         >
-                          <p>tản mạn</p>
-                        </NavLink>
+                          <p className=''>định hướng sử dụng văn bản</p>
+                          <span>
+                            <FontAwesomeIcon icon={faChevronRight} className='font-medium' />
+                          </span>
+                        </button>
                       </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
                 <div className='absolute top-0 left-0 w-full'>
                   <MobileSidebarSection
-                    title='văn mẫu'
-                    isOpen={essaysSection}
+                    title='trang chủ'
+                    isOpen={homeSection}
                     openMainSection={() => setMainsection(true)}
-                    setIsOpen={setEssaysSection}
+                    setIsOpen={setHomeSection}
                   >
-                    <NavigateSampleEssays itemClassNames={itemStyles} wrapperClassNames={wrapperStyles} />
+                    <NavigateHome itemClassNames={itemStyles} wrapperClassNames={wrapperStyles} />
                   </MobileSidebarSection>
 
                   <MobileSidebarSection
-                    title='kỳ thi học sinh giỏi'
-                    isOpen={contestsSection}
-                    openMainSection={() => setMainsection(true)}
-                    setIsOpen={setContestsSection}
-                  >
-                    <NavigateContests itemClassNames={itemStyles} wrapperClassNames={wrapperStyles} />
-                  </MobileSidebarSection>
-
-                  <MobileSidebarSection
-                    title='kỳ thi THPTQG'
-                    isOpen={highSchoolExaminationSection}
-                    openMainSection={() => setMainsection(true)}
-                    setIsOpen={setHighSchoolExaminationSection}
-                  >
-                    <NavigateHighschoolExamination itemClassNames={itemStyles} wrapperClassNames={wrapperStyles} />
-                  </MobileSidebarSection>
-
-                  <MobileSidebarSection
-                    title='tài liệu'
+                    title='văn bản'
                     isOpen={documentsSection}
                     openMainSection={() => setMainsection(true)}
                     setIsOpen={setDocumentsSection}
                   >
                     <NavigateDocuments itemClassNames={itemStyles} wrapperClassNames={wrapperStyles} />
+                  </MobileSidebarSection>
+
+                  <MobileSidebarSection
+                    title='định hướng sử dụng văn bản'
+                    isOpen={usageOrientationSection}
+                    openMainSection={() => setMainsection(true)}
+                    setIsOpen={setUsageOrientationSection}
+                  >
+                    <NavigateDocumentsUsageOrientation itemClassNames={itemStyles} wrapperClassNames={wrapperStyles} />
                   </MobileSidebarSection>
                 </div>
               </div>
