@@ -16,7 +16,7 @@ export default function NavigateDocuments({ itemClassNames, wrapperClassNames }:
   const { visible, setVisible, ref } = useClickOutside(false)
 
   const itemStyle =
-    'w-full tablet:hover:text-white hover:text-black px-7 tablet:px-4 py-3 duration-200 tablet:hover:bg-primarayBlueHovering/80 tablet:rounded-md'
+    'w-full tablet:hover:text-white hover:text-black px-4 tablet:px-2 py-1.5 duration-200 tablet:hover:bg-primarayBlueHovering/80 tablet:rounded-md text-sm'
 
   return (
     <div className={wrapperClassNames}>
@@ -44,7 +44,7 @@ export default function NavigateDocuments({ itemClassNames, wrapperClassNames }:
           <AnimatePresence>
             {visible && (
               <motion.div
-                className='flex w-full flex-col items-start space-y-1 rounded-b-md px-4'
+                className='flex w-full flex-col items-start space-y-1 rounded-b-md px-4 pt-1'
                 // initial={{ opacity: 0, y: '-20%' }}
                 // animate={{
                 //   opacity: 1,

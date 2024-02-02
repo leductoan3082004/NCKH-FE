@@ -13,10 +13,10 @@ export default function MainHeader() {
   const isSmall = viewport.width < 768
 
   //? Style
-  const wrapperStyle = 'text-unhoverText flex flex-col py-4'
-  const popoverStyle = 'border border-black/20 rounded-lg min-w-52 px-3 text-sm dekstop:text-base'
+  const popoverStyle = 'border border-black/20 rounded-lg min-w-52 py-3 px-2 text-sm dekstop:text-base'
+  const wrapperStyle = 'text-unhoverText flex flex-col '
   const itemStyle =
-    'tablet:hover:text-white hover:text-black px-7 tablet:px-4 py-3 duration-200 tablet:hover:bg-primarayBlueHovering tablet:rounded-md'
+    'tablet:hover:text-white hover:text-black px-4 tablet:px-3 py-1.5 duration-200 tablet:hover:bg-primarayBlueHovering tablet:rounded-md'
 
   return (
     <div className='bg-headerBg'>

@@ -20,3 +20,8 @@ export const documentSystemPath = {
   truyenKi: '/he-thong-van-ban/truyen-ki',
   tuyButTanVan: '/he-thong-van-ban/tuy-but-tan-van'
 } as const
+
+export const adminPath = {
+  mainPage: '/admin',
+  login: '/admin-login'
+}
