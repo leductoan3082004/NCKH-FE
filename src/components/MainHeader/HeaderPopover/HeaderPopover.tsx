@@ -7,7 +7,6 @@ import {
   useHover,
   useInteractions,
   type Placement,
-  FloatingOverlay,
   FloatingArrow
 } from '@floating-ui/react'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
@@ -85,37 +84,35 @@ export default function HeaderPopover({
         </NavLink>
       </Element>
       {isOpen && (
-        <FloatingOverlay lockScroll>
-          <motion.div
-            ref={refs.setFloating}
-            style={{
-              position: strategy,
-              top: y ?? 0,
-              left: x ?? 0,
-              zIndex: 10,
-              width: 'max-content',
-              transformOrigin: `${middlewareData.arrow?.x}px top`
-            }}
-            {...getFloatingProps()}
-            initial={{ opacity: 0, transform: 'scale(1)' }}
-            animate={{ opacity: 1, transform: 'scale(1)' }}
-            exit={{ opacity: 0, transform: 'scale(1)' }}
-            transition={{ duration: 0.2 }}
-          >
-            {haveArrow && (
-              <FloatingArrow ref={arrowRef} context={context} width={20} height={10} fill={backgroundColor} />
-            )}
+        <motion.div
+          ref={refs.setFloating}
+          style={{
+            position: strategy,
+            top: y ?? 0,
+            left: x ?? 0,
+            zIndex: 10,
+            width: 'max-content',
+            transformOrigin: `${middlewareData.arrow?.x}px top`
+          }}
+          {...getFloatingProps()}
+          initial={{ opacity: 0, transform: 'scale(1)' }}
+          animate={{ opacity: 1, transform: 'scale(1)' }}
+          exit={{ opacity: 0, transform: 'scale(1)' }}
+          transition={{ duration: 0.2 }}
+        >
+          {haveArrow && (
+            <FloatingArrow ref={arrowRef} context={context} width={20} height={10} fill={backgroundColor} />
+          )}
 
-            <div
-              className='shadow-md rounded-lg'
-              style={{
-                background: backgroundColor
-              }}
-            >
-              {renderPopover}
-            </div>
-          </motion.div>
-        </FloatingOverlay>
+          <div
+            className='shadow-md rounded-lg'
+            style={{
+              background: backgroundColor
+            }}
+          >
+            {renderPopover}
+          </div>
+        </motion.div>
       )}
     </div>
   )

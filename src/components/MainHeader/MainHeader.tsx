@@ -19,9 +19,9 @@ export default function MainHeader() {
     'tablet:hover:text-white hover:text-black px-4 tablet:px-3 py-1.5 duration-200 tablet:hover:bg-primarayBlueHovering tablet:rounded-md'
 
   return (
-    <div className='bg-headerBg'>
+    <div className='top-0 z-10 flex h-10 w-full items-center bg-headerBg shadow-md duration-200 tablet:h-12 desktop:h-14'>
       <div className='container'>
-        <div className='flex justify-between items-center py-4'>
+        <div className='flex justify-between items-center'>
           {isSmall && <MobileSidebar />}
           {!isSmall && (
             <Fragment>
