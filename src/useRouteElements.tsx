@@ -5,10 +5,11 @@ import { useContext } from 'react'
 import { AppContext } from './contexts/app.context'
 import AdminPage from './pages/AdminPage'
 import path, { adminPath } from './constants/path'
+import AdminLogin from './pages/AdminPage/components/AdminLogin'
 
 function ProtectedRoute() {
   const { isAuthenticated } = useContext(AppContext)
-  return isAuthenticated ? <Outlet /> : <Navigate to='/' />
+  return isAuthenticated ? <Outlet /> : <Navigate to={adminPath.login} />
 }
 
 export default function useRouteElements() {
@@ -19,6 +20,14 @@ export default function useRouteElements() {
       element: (
         <MainLayout>
           <HomePage />
+        </MainLayout>
+      )
+    },
+    {
+      path: adminPath.login,
+      element: (
+        <MainLayout>
+          <AdminLogin />
         </MainLayout>
       )
     },
