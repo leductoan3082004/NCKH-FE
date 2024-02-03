@@ -10,6 +10,8 @@ import { isAxiosBadRequestError } from 'src/utils/utils'
 import AccountInput from 'src/components/AccountInput'
 import { AdminLoginSchema, adminLoginSchema } from 'src/utils/rules'
 import adminApi from 'src/apis/auth.api'
+import { useNavigate } from 'react-router-dom'
+import { getAccessTokenFromLS } from 'src/utils/auth'
 
 type FormData = AdminLoginSchema
 
@@ -30,10 +32,15 @@ export default function AdminLogin() {
     mutationFn: (body: FormData) => adminApi.adminLogin(body)
   })
 
+  const navigate = useNavigate()
   const onSubmit = handleSubmit((data) => {
     loginAccountMutation.mutate(data, {
-      onSuccess: () => {
+      onSuccess: (succesData) => {
+        console.log(succesData)
         setIsAuthenticated(true)
+        const token = getAccessTokenFromLS()
+        console.log(token)
+        navigate(-1)
       },
       onError: (error) => {
         if (isAxiosBadRequestError<ErrorRespone>(error)) {
@@ -42,8 +49,7 @@ export default function AdminLogin() {
           if (formError) {
             const errorRespone = HttpStatusMessage.find(({ error_key }) => error_key === formError.error_key)
             if (errorRespone) {
-              console.log(errorRespone.error_message)
-              setError('account', {
+              setError('username', {
                 message: errorRespone.error_message,
                 type: 'Server'
               })
@@ -60,22 +66,24 @@ export default function AdminLogin() {
 
   return (
     <div className='container'>
-      <div className='grid grid-cols-1 py-12 md:grid-cols-6 md:px-6 md:py-24'>
-        <div className='md:col-start-2 md:col-end-6 lg:col-span-3 lg:col-end-7'>
+      <div className='flex justify-center mt-6 tablet:mt-8 desktop:mt-10'>
+        <div className='tablet:w-8/12 desktop:w-6/12'>
           <form
-            className='rounded-xl bg-lightWhite900 p-5 shadow-sm duration-200 dark:bg-darkGray900 md:p-10'
+            className='rounded-xl bg-mainBlue100 py-4 px-3 tablet:px-4 desktop:px-6 shadow-sm duration-200'
             onSubmit={onSubmit}
             noValidate
           >
-            <div className='text-center text-2xl font-semibold uppercase text-haretaColor'>đăng nhập</div>
+            <div className='text-center text-2xl font-semibold uppercase text-mainBlue900'>
+              đăng nhập dành cho quản trị viên
+            </div>
 
             <AccountInput
-              name='email'
+              name='username'
               register={register}
               type='text'
               className='mt-8 autofill:text-textDark autofill:dark:text-textLight'
-              errorMessage={errors.account?.message}
-              labelName='tài khoản'
+              errorMessage={errors.username?.message}
+              labelName='Tài khoản'
               required
               autoComplete='on'
               svgData={
@@ -92,7 +100,7 @@ export default function AdminLogin() {
               type='password'
               className='mt-3'
               errorMessage={errors.password?.message}
-              labelName='mật khẩu'
+              labelName='Mật khẩu'
               required
               isPasswordInput
               svgData={

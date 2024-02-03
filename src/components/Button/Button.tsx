@@ -11,10 +11,10 @@ export default function Button(props: ButtonProps) {
   return (
     <div
       className={classNames(
-        'w-full rounded-md bg-haretaColor text-center font-medium uppercase text-textDark duration-200',
+        'w-full rounded-md bg-mainBlue400 text-center font-medium uppercase text-black duration-200',
         {
           'bg-opacity-50 text-opacity-50': isLoading,
-          'hover:bg-primaryColor': !isLoading
+          'hover:bg-mainBlue500': !isLoading
         }
       )}
     >

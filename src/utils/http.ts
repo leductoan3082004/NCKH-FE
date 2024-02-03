@@ -1,6 +1,5 @@
 import axios, { AxiosError, AxiosInstance, HttpStatusCode } from 'axios'
 import { clearLS, getAccessTokenFromLS, setAccessTokenToLS } from './auth'
-import { adminPath } from 'src/constants/path'
 import { toast } from 'react-toastify'
 import { ErrorRespone } from 'src/types/utils.type'
 
@@ -34,7 +33,7 @@ class Http {
     this.instance.interceptors.response.use(
       (response) => {
         const { url } = response.config
-        if (url === adminPath.login) {
+        if (url === '/v1/login') {
           const accessToken = response.data.data.token
           if (accessToken !== undefined) {
             this.accessToken = accessToken

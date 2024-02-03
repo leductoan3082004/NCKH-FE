@@ -1,7 +1,7 @@
 import * as yup from 'yup'
 
 export const adminLoginSchema = yup.object({
-  account: yup.string().required('Tài khoản là bắt buộc'),
+  username: yup.string().required('Tài khoản là bắt buộc'),
   password: yup.string().required('Mật khẩu là bắt buộc')
 })
 

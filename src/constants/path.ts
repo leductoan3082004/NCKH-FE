@@ -22,6 +22,7 @@ export const documentSystemPath = {
 } as const
 
 export const adminPath = {
+  login: '/admin-login',
   mainPage: '/admin',
-  login: '/admin-login'
+  postManagement: '/admin/posts'
 }

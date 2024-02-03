@@ -8,10 +8,10 @@ module.exports = {
     extend: {
       colors: {
         headerBg: '#fdfefd',
-        mainBg: '#d0ffff',
-        primarayBlue: '#05668D',
-        darkPrimarayBlue: '#151b54',
-        primarayBlueHovering: '#028090',
+        mainBg: '#CAF0F8',
+        primarayBlue: '#023E8A',
+        darkPrimarayBlue: '#03045E',
+        primarayBlueHovering: '#0077B6',
         footerBg: '#afdcec',
         sectionBlue: '#3FC1C0',
         darkText: '#101010',
@@ -19,10 +19,16 @@ module.exports = {
         sectionTitle: '#636363',
         unhoverText: '#606060',
         sidebarColor: '#f5f5f5',
-        blue1: '#3FC1C0',
-        blue2: '#028090',
-        blue3: '#05668D',
-        decoratingRed: '#ffa69e'
+        decoratingRed: '#ffa69e',
+        mainBlue100: '#CAF0F8',
+        mainBlue200: '#ADE8F4',
+        mainBlue300: '#90E0EF',
+        mainBlue400: '#48CAE4',
+        mainBlue500: '#00B4D8',
+        mainBlue600: '#0096C7',
+        mainBlue700: '#0077B6',
+        mainBlue800: '#023E8A',
+        mainBlue900: '#03045E'
       }
     },
     screens: {
