@@ -7,7 +7,7 @@ export default function HomePage() {
     document.title = 'Trang chủ'
   })
   return (
-    <div className=' text-darkPrimarayBlue text-2xl justify-center items-center flex '>
+    <div className=' text-darkPrimaryBlue text-2xl justify-center items-center flex '>
       <FeaturedPosts />
     </div>
   )

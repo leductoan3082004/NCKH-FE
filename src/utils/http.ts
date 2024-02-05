@@ -3,7 +3,7 @@ import { clearLS, getAccessTokenFromLS, setAccessTokenToLS } from './auth'
 import { toast } from 'react-toastify'
 import { ErrorRespone } from 'src/types/utils.type'
 
-export const BASE_API_URL = 'https://nckh-be.hareta.me/'
+export const BASE_API_URL = 'https://nckh-be.hareta.me/v1/'
 
 class Http {
   instance: AxiosInstance
@@ -33,7 +33,7 @@ class Http {
     this.instance.interceptors.response.use(
       (response) => {
         const { url } = response.config
-        if (url === '/v1/login') {
+        if (url === '/login') {
           const accessToken = response.data.data.token
           if (accessToken !== undefined) {
             this.accessToken = accessToken

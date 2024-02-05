@@ -3,6 +3,7 @@ import useRouteElements from './useRouteElements'
 import { AppContext } from './contexts/app.context'
 import LoadingPage from './components/LoadingPage'
 import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
   const { loadingPage } = useContext(AppContext)

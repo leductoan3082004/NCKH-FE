@@ -4,7 +4,7 @@ import postApi from 'src/apis/post.api'
 import Post from 'src/components/Post'
 import UsePagination from 'src/components/UsePagination'
 import useQueryConfig, { POST_LIMIT } from 'src/hooks/useQueryConfig'
-import { PostListConfig } from 'src/types/post.type'
+import { Post as PostType, PostListConfig } from 'src/types/post.type'
 
 export default function FeaturedPosts() {
   const queryConfig = useQueryConfig()
@@ -33,7 +33,7 @@ export default function FeaturedPosts() {
                     </div>
                   ))} */}
               {!isFetching &&
-                postsData.data.data.map((post) => (
+                postsData.data.data.map((post: PostType) => (
                   <div className='col-span-1' key={post._id}>
                     <Post post={post} />
                   </div>

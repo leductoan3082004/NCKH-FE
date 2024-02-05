@@ -26,7 +26,7 @@ export default function HeaderSearch() {
             haveArrow
             placement='bottom-end'
           >
-            <div className='bg-primarayBlue text-white hover:bg-primarayBlueHovering p-2 rounded-md'>
+            <div className='bg-primaryBlue text-white hover:bg-primaryBlueHovering p-2 rounded-md'>
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </div>
           </Popover>

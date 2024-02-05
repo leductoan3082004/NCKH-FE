@@ -65,9 +65,9 @@ export default function HeaderPopover({
           to={path}
           className={({ isActive }) =>
             classNames(
-              'flex items-center hover:bg-primarayBlueHovering text-sm desktop:text-base duration-200 font-semibold px-3 desktop:px-4 py-1.5 rounded-md space-x-1.5 hover:text-white',
+              'flex items-center hover:bg-primaryBlueHovering text-sm desktop:text-base duration-200 font-semibold px-3 desktop:px-4 py-1.5 rounded-md space-x-1.5 hover:text-white',
               {
-                'bg-primarayBlueHovering text-white': isActive || isOpen
+                'bg-primaryBlueHovering text-white': isActive || isOpen
               }
             )
           }

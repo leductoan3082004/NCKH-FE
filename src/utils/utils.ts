@@ -19,3 +19,10 @@ export const removeSpecialCharacter = (str: string) =>
 export const generateNameId = ({ name, id }: { name: string; id: string }) => {
   return removeSpecialCharacter(name).replace(/\s/g, '-') + `-i:${id}`
 }
+
+export const showSuccessDialog = (setIsOpen: React.Dispatch<React.SetStateAction<boolean>>, time?: number) => {
+  setIsOpen(true)
+  setTimeout(() => {
+    setIsOpen(false)
+  }, time || 1500)
+}

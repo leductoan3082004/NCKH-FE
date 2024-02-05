@@ -43,14 +43,14 @@ export default function MobileSidebar() {
 
   //? Classnames
   const itemStyles =
-    'tablet:hover:text-white hover:text-black px-7 tablet:px-4 py-3 duration-200 tablet:hover:bg-primarayBlue tablet:rounded-md'
+    'tablet:hover:text-white hover:text-black px-7 tablet:px-4 py-3 duration-200 tablet:hover:bg-primaryBlue tablet:rounded-md'
   const wrapperStyles = 'text-unhoverText flex flex-col py-4'
 
   return (
     <Fragment>
       <button
         onClick={openSidebar}
-        className='bg-primarayBlue p-2 rounded-md text-white hover:bg-primarayBlueHovering duration-200 text-center flex items-center'
+        className='bg-primaryBlue p-2 rounded-md text-white hover:bg-primaryBlueHovering duration-200 text-center flex items-center'
       >
         <FontAwesomeIcon icon={faBars} className='h-4 w-5 sm:h-5 sm:w-6' />
       </button>

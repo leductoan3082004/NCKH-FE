@@ -9,9 +9,10 @@ module.exports = {
       colors: {
         headerBg: '#fdfefd',
         mainBg: '#CAF0F8',
-        primarayBlue: '#023E8A',
-        darkPrimarayBlue: '#03045E',
-        primarayBlueHovering: '#0077B6',
+        primaryBlue: '#023E8A',
+        primaryBackground: '#0096C7',
+        darkPrimaryBlue: '#03045E',
+        primaryBlueHovering: '#0077B6',
         footerBg: '#afdcec',
         sectionBlue: '#3FC1C0',
         darkText: '#101010',

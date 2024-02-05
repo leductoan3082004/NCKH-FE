@@ -45,7 +45,7 @@ function Post({ post, initialLoading, disableClick = false }: Props) {
 
   return (
     <button
-      className='relative w-full grid grid-cols-5 gap-2 tablet:gap-4 desktop:gap-6 overflow-hidden rounded-xl p-2 tablet:p-3 desktop:p-4 duration-200 bg-primarayBlue/10 hover:bg-primarayBlueHovering/20 border border-black/20'
+      className='relative w-full grid grid-cols-5 gap-2 tablet:gap-4 desktop:gap-6 overflow-hidden rounded-xl p-2 tablet:p-3 desktop:p-4 duration-200 bg-primaryBlue/10 hover:bg-primaryBlueHovering/20 border border-black/20'
       onClick={handleClickItem}
     >
       <div className='col-span-2'>
@@ -63,7 +63,7 @@ function Post({ post, initialLoading, disableClick = false }: Props) {
       </div>
       <div className='col-span-3 flex justify-center items-center min-h-full'>
         <div className='flex flex-col items-center justify-between space-x-1 space-y-1  px-2 pt-2 sm:px-3 lg:px-4 lg:pt-4'>
-          <p className='h-full justify-center truncate text-center text-sm mobileLarge:text-báe font-semibold uppercase text-darkPrimarayBlue duration-200 tablet:text-lg desktop:text-xl'>
+          <p className='h-full justify-center truncate text-center text-sm mobileLarge:text-báe font-semibold uppercase text-darkPrimaryBlue duration-200 tablet:text-lg desktop:text-xl'>
             {post.title}
           </p>
         </div>

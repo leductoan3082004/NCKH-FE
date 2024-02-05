@@ -8,6 +8,15 @@ import path, { adminPath } from './constants/path'
 import AdminLogin from './pages/AdminPage/components/AdminLogin'
 import AdminLayout from './layouts/AdminLayout'
 import LoadingPage from './components/LoadingPage'
+import AdminPosts from './pages/AdminPage/components/AdminPosts'
+import AdminCreatePost from './pages/AdminPage/components/AdminCreatePost'
+import AdminUpdatePost from './pages/AdminPage/components/AdminUpdatePost'
+import AdminDeletePost from './pages/AdminPage/components/AdminDeletePost'
+import AdminPostsLayout from './layouts/AdminPostsLayout'
+import AdminImagesLayout from './layouts/AdminImagesLayout'
+import AdminImages from './pages/AdminPage/components/AdminImages'
+import AdminUploadImage from './pages/AdminPage/components/AdminUploadImage'
+import AdminDeleteImage from './pages/AdminPage/components/AdminDeleteImage'
 
 function ProtectedRoute() {
   const { isAuthenticated } = useContext(AppContext)
@@ -59,7 +68,59 @@ export default function useRouteElements() {
         },
         {
           path: adminPath.postManagement,
-          element: <AdminPage />
+          element: (
+            <AdminPostsLayout>
+              <AdminPosts />
+            </AdminPostsLayout>
+          )
+        },
+        {
+          path: adminPath.createPost,
+          element: (
+            <AdminPostsLayout>
+              <AdminCreatePost />
+            </AdminPostsLayout>
+          )
+        },
+        {
+          path: adminPath.updatePost,
+          element: (
+            <AdminPostsLayout>
+              <AdminUpdatePost />
+            </AdminPostsLayout>
+          )
+        },
+        {
+          path: adminPath.deletePost,
+          element: (
+            <AdminPostsLayout>
+              <AdminDeletePost />
+            </AdminPostsLayout>
+          )
+        },
+        {
+          path: adminPath.imageManagement,
+          element: (
+            <AdminImagesLayout>
+              <AdminImages />
+            </AdminImagesLayout>
+          )
+        },
+        {
+          path: adminPath.uploadImage,
+          element: (
+            <AdminImagesLayout>
+              <AdminUploadImage />
+            </AdminImagesLayout>
+          )
+        },
+        {
+          path: adminPath.deleteImage,
+          element: (
+            <AdminImagesLayout>
+              <AdminDeleteImage />
+            </AdminImagesLayout>
+          )
         }
       ]
     }

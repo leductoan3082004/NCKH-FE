@@ -16,7 +16,7 @@ export default function NavigateDocuments({ itemClassNames, wrapperClassNames }:
   const { visible, setVisible, ref } = useClickOutside(false)
 
   const itemStyle =
-    'w-full tablet:hover:text-white hover:text-black px-4 tablet:px-2 py-1.5 duration-200 tablet:hover:bg-primarayBlueHovering/80 tablet:rounded-md text-sm'
+    'w-full tablet:hover:text-white hover:text-black px-4 tablet:px-2 py-1.5 duration-200 tablet:hover:bg-primaryBlueHovering/80 tablet:rounded-md text-sm'
 
   return (
     <div className={wrapperClassNames}>
