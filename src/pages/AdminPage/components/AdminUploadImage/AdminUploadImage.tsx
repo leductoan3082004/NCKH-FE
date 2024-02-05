@@ -27,7 +27,6 @@ export default function AdminUploadImage() {
         }
 
         uploadImageMutation.mutate(body)
-        console.log(file)
       }
     } catch (error) {
       console.warn(error)

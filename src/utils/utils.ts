@@ -1,4 +1,5 @@
 import { AxiosError, isAxiosError as checkAxiosError, HttpStatusCode } from 'axios'
+import moment from 'moment'
 
 export function isAxiosError<T>(error: unknown): error is AxiosError<T> {
   return checkAxiosError(error)
@@ -18,6 +19,10 @@ export const removeSpecialCharacter = (str: string) =>
 
 export const generateNameId = ({ name, id }: { name: string; id: string }) => {
   return removeSpecialCharacter(name).replace(/\s/g, '-') + `-i:${id}`
+}
+
+export const formatDate = (timeStamp: string) => {
+  return moment(timeStamp).utc().format('YYYY-MM-DD')
 }
 
 export const showSuccessDialog = (setIsOpen: React.Dispatch<React.SetStateAction<boolean>>, time?: number) => {

@@ -34,7 +34,7 @@ export default function AdminImagesLayout({ children }: Props) {
           Xóa ảnh
         </NavLink>
       </div>
-      <div className='mt-4 tablet:mt-6 desktop:mt-8 border border-black/20 rounded-lg py-2 tablet:py-4 desktop:py-6 px-2 tablet:px-4'>
+      <div className='mt-4 tablet:mt-6 desktop:mt-8 border border-black/40 rounded-lg py-2 tablet:py-4 desktop:py-6 px-2 tablet:px-4'>
         {children}
       </div>
     </div>

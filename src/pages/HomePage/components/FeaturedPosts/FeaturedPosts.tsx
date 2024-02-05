@@ -9,11 +9,11 @@ import { Post as PostType, PostListConfig } from 'src/types/post.type'
 export default function FeaturedPosts() {
   const queryConfig = useQueryConfig()
 
-  //? GET PRODUCT LIST
+  //? GET POST LIST
   const { data: postsData, isFetching } = useQuery({
-    queryKey: ['items', queryConfig],
+    queryKey: ['postList', queryConfig],
     queryFn: () => {
-      return postApi.getProductList(queryConfig as PostListConfig)
+      return postApi.getPostList(queryConfig as PostListConfig)
     },
     staleTime: 3 * 60 * 1000
   })
