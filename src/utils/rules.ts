@@ -6,3 +6,9 @@ export const adminLoginSchema = yup.object({
 })
 
 export type AdminLoginSchema = yup.InferType<typeof adminLoginSchema>
+
+export const findPostSchema = yup.object({
+  content: yup.string()
+})
+
+export type FindPostSchema = yup.InferType<typeof findPostSchema>

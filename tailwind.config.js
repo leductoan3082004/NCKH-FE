@@ -10,7 +10,7 @@ module.exports = {
         headerBg: '#fdfefd',
         mainBg: '#CAF0F8',
         primaryBlue: '#023E8A',
-        primaryBackground: '#0096C7',
+        primaryBackground: '#00B4D8',
         darkPrimaryBlue: '#03045E',
         primaryBlueHovering: '#0077B6',
         footerBg: '#afdcec',

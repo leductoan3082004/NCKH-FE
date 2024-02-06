@@ -1,4 +1,4 @@
-const path = {
+const mainPath = {
   home: '/',
   vanBan: '/van-ban',
   dinhHuongSuDung: '/dinh-huong-su-dung-van-ban',
@@ -10,7 +10,7 @@ const path = {
   thietKeCongCuDanhGia: '/thiet-ke-cong-cu-danh-gia',
   deMinhHoa: '/de-minh-hoa'
 } as const
-export default path
+export default mainPath
 
 export const documentSystemPath = {
   tho: '/he-thong-van-ban/tho',
@@ -24,7 +24,7 @@ export const documentSystemPath = {
 export const adminPath = {
   login: '/admin-login',
   mainPage: '/admin',
-  postManagement: '/admin/posts',
+  postManagement: '/admin/posts/manage',
   createPost: '/admin/posts/create',
   updatePost: '/admin/posts/update',
   deletePost: '/admin/posts/delete',

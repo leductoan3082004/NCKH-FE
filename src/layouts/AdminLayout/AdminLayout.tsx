@@ -35,7 +35,7 @@ export default function AdminLayout({ children }: Props) {
             Hình ảnh
           </NavLink>
         </div>
-        <div className='pt-4 tablet:pt-6 desktop:pt-8'>{children}</div>
+        <div className='pt-2 tablet:pt-3 desktop:pt-4'>{children}</div>
       </div>
     </div>
   )
