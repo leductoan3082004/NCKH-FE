@@ -126,10 +126,10 @@ export default function AdminCreatePost() {
           <AdminCreatePostForm />
           <div className='col-span-1 mt-2 flex items-center justify-end'>
             <button
-              className='rounded-lg bg-haretaColor/80 px-4 py-1 text-base hover:bg-haretaColor/60 lg:text-lg'
+              className='rounded-lg bg-haretaColor/80 px-4 py-1 text-base hover:bg-primaryBackground bg-primaryBackground/80 lg:text-lg'
               type='submit'
             >
-              Create
+              Tạo bài viết
             </button>
           </div>
         </form>
