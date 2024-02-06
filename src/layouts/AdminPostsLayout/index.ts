@@ -1,3 +1,3 @@
-import AdminPostsLayout from './AdminPostsLayout'
+import AdminPostManagementLayout from './AdminPostManagementLayout'
 
-export default AdminPostsLayout
+export default AdminPostManagementLayout

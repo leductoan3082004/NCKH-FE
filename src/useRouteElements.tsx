@@ -8,15 +8,15 @@ import path, { adminPath } from './constants/path'
 import AdminLogin from './pages/AdminPage/components/AdminLogin'
 import AdminLayout from './layouts/AdminLayout'
 import LoadingPage from './components/LoadingPage'
-import AdminPosts from './pages/AdminPage/components/AdminPosts'
 import AdminCreatePost from './pages/AdminPage/components/AdminCreatePost'
 import AdminUpdatePost from './pages/AdminPage/components/AdminUpdatePost'
 import AdminDeletePost from './pages/AdminPage/components/AdminDeletePost'
-import AdminPostsLayout from './layouts/AdminPostsLayout'
 import AdminImagesLayout from './layouts/AdminImagesLayout'
-import AdminImages from './pages/AdminPage/components/AdminImages'
 import AdminUploadImage from './pages/AdminPage/components/AdminUploadImage'
 import AdminDeleteImage from './pages/AdminPage/components/AdminDeleteImage'
+import AdminImageManagement from './pages/AdminPage/components/AdminImageManagement'
+import AdminPostManagementLayout from './layouts/AdminPostsLayout/AdminPostsLayout'
+import AdminPostManagement from './pages/AdminPage/components/AdminPostManagement'
 
 function ProtectedRoute() {
   const { isAuthenticated } = useContext(AppContext)
@@ -69,40 +69,40 @@ export default function useRouteElements() {
         {
           path: adminPath.postManagement,
           element: (
-            <AdminPostsLayout>
-              <AdminPosts />
-            </AdminPostsLayout>
+            <AdminPostManagementLayout>
+              <AdminPostManagement />
+            </AdminPostManagementLayout>
           )
         },
         {
           path: adminPath.createPost,
           element: (
-            <AdminPostsLayout>
+            <AdminPostManagementLayout>
               <AdminCreatePost />
-            </AdminPostsLayout>
+            </AdminPostManagementLayout>
           )
         },
         {
           path: adminPath.updatePost,
           element: (
-            <AdminPostsLayout>
+            <AdminPostManagementLayout>
               <AdminUpdatePost />
-            </AdminPostsLayout>
+            </AdminPostManagementLayout>
           )
         },
         {
           path: adminPath.deletePost,
           element: (
-            <AdminPostsLayout>
+            <AdminPostManagementLayout>
               <AdminDeletePost />
-            </AdminPostsLayout>
+            </AdminPostManagementLayout>
           )
         },
         {
           path: adminPath.imageManagement,
           element: (
             <AdminImagesLayout>
-              <AdminImages />
+              <AdminImageManagement />
             </AdminImagesLayout>
           )
         },

@@ -6,7 +6,7 @@ interface Props {
   children?: React.ReactNode
 }
 
-export default function AdminPostsLayout({ children }: Props) {
+export default function AdminPostManagementLayout({ children }: Props) {
   return (
     <div className=''>
       <div className='relative bg-white rounded-xl border border-primaryBlue grid grid-cols-3 font-semibold lg:text-xl text-xs mobileLarge:text-sm tablet:text-base overflow-hidden'>
@@ -46,7 +46,7 @@ export default function AdminPostsLayout({ children }: Props) {
           Xóa bài viết
         </NavLink>
       </div>
-      <div className='mt-4 tablet:mt-6 desktop:mt-8 border border-black/20 rounded-lg py-2 tablet:py-4 desktop:py-6 px-2 tablet:px-4'>
+      <div className='mt-4 tablet:mt-6 desktop:mt-8 border border-black/40 rounded-lg py-2 tablet:py-4 desktop:py-6 px-2 tablet:px-4'>
         {children}
       </div>
     </div>

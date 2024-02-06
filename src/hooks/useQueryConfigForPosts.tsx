@@ -9,7 +9,7 @@ export type QueryConfig = {
 
 export const POST_LIMIT = 12
 
-export default function useQueryConfig() {
+export default function useQueryConfigForPosts() {
   const queryParams: QueryConfig = useQueryParams()
   const queryConfig: QueryConfig = omitBy(
     {
