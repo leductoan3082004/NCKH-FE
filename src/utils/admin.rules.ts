@@ -13,3 +13,34 @@ export const createPostSchema = yup.object({
 })
 
 export type CreatePostSchema = yup.InferType<typeof createPostSchema>
+
+export const updatePostSchema = yup.object({
+  post_id: yup.string().required('Điền ID bài viết'),
+  author: yup.string(),
+  title: yup.string(),
+  content: yup.string(),
+  tag: yup.array().of(requiredTag),
+  category: yup.array().of(requiredCategory),
+  image_url: yup.string()
+})
+
+export type UpdatePostSchema = yup.InferType<typeof updatePostSchema>
+
+const currentDate = new Date()
+
+export const imageSchema = yup.object({
+  time_from: yup
+    .date()
+    .max(
+      new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1),
+      'Chọn thời điểm trong quá khứ'
+    ),
+  time_to: yup
+    .date()
+    .max(
+      new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()),
+      'Chọn thời điểm trong quá khứ'
+    )
+})
+
+export type ImageSchema = yup.InferType<typeof imageSchema>

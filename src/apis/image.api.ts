@@ -1,13 +1,12 @@
-import { Image, ImageList } from 'src/types/image.type'
+import { Image, ImageList, ImageListConfig } from 'src/types/image.type'
 import { SuccessRespone } from 'src/types/utils.type'
 import http from 'src/utils/http'
 
 const URL = '/image/'
-const LIMIT = 12
 
 export const imageApi = {
-  getImageList() {
-    return http.get<ImageList>(`${URL}?page=1&limit=${LIMIT}`)
+  getImageList(params: ImageListConfig) {
+    return http.get<ImageList>(`${URL}`, { params })
   },
   uploadImage(body: { file: File }) {
     return http.post<SuccessRespone<Image>>(URL, body, {

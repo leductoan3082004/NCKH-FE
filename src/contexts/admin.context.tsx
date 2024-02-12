@@ -8,6 +8,10 @@ interface AdminContextInterface {
   setCategories: React.Dispatch<React.SetStateAction<string[]>>
   tags: string[]
   setTags: React.Dispatch<React.SetStateAction<string[]>>
+  updateCategories: string[]
+  setUpdateCategories: React.Dispatch<React.SetStateAction<string[]>>
+  updateTags: string[]
+  setUpdateTags: React.Dispatch<React.SetStateAction<string[]>>
 }
 
 const initialAdminContext: AdminContextInterface = {
@@ -16,7 +20,11 @@ const initialAdminContext: AdminContextInterface = {
   categories: [],
   setCategories: () => null,
   tags: [],
-  setTags: () => null
+  setTags: () => null,
+  updateCategories: [],
+  setUpdateCategories: () => null,
+  updateTags: [],
+  setUpdateTags: () => null
 }
 
 export const AdminContext = createContext<AdminContextInterface>(initialAdminContext)
@@ -25,6 +33,8 @@ export const AdminProvider = ({ children }: { children: React.ReactNode }) => {
   const [currentPost, setCurrentPost] = useState<Post | null>(initialAdminContext.currentPost)
   const [categories, setCategories] = useState<string[]>(initialAdminContext.categories)
   const [tags, setTags] = useState<string[]>(initialAdminContext.tags)
+  const [updateCategories, setUpdateCategories] = useState<string[]>(initialAdminContext.categories)
+  const [updateTags, setUpdateTags] = useState<string[]>(initialAdminContext.tags)
 
   return (
     <AdminContext.Provider
@@ -34,7 +44,11 @@ export const AdminProvider = ({ children }: { children: React.ReactNode }) => {
         categories,
         setCategories,
         tags,
-        setTags
+        setTags,
+        updateCategories,
+        setUpdateCategories,
+        updateTags,
+        setUpdateTags
       }}
     >
       {children}

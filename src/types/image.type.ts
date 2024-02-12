@@ -16,3 +16,10 @@ export interface ImageList {
     next_cursor: string
   }
 }
+
+export interface ImageListConfig {
+  time_from?: number | string
+  time_to?: number | string
+  page?: number | string
+  limit?: number | string
+}

@@ -2,10 +2,10 @@ import classNames from 'classnames'
 import { Fragment } from 'react'
 import { useFormContext } from 'react-hook-form'
 import Input from 'src/components/Input'
-import QuillEditor from 'src/components/QuillEditor'
 import { CreatePostSchema } from 'src/utils/admin.rules'
 import AdminCategories from '../AdminCategories'
 import AdminTags from '../AdminTags'
+import CustomJoditEditor from 'src/components/CustomJoditEditor'
 
 type FormData = CreatePostSchema
 
@@ -22,7 +22,6 @@ export default function AdminCreatePostForm() {
   const onEditorStateChange = (editorState: any) => {
     setValue('content', editorState)
   }
-
   const editorContent = watch('content')
 
   //? Styles
@@ -37,7 +36,7 @@ export default function AdminCreatePostForm() {
         <div className='col-span-1'>
           <p className={titleStyle}>Tác giả</p>
         </div>
-        <div className='col-span-3'>
+        <div className='col-span-3 items-center'>
           <Input
             classNameInput={classNames(inputStyle, {
               'outline-red-600': Boolean(errors.author)
@@ -69,15 +68,6 @@ export default function AdminCreatePostForm() {
 
       <div className={wrapperStyle}>
         <div className='col-span-1'>
-          <p className={titleStyle}>Danh mục</p>
-        </div>
-        <div className='col-span-3'>
-          <AdminCategories />
-        </div>
-      </div>
-
-      <div className={wrapperStyle}>
-        <div className='col-span-1'>
           <p className={titleStyle}>Nhãn</p>
         </div>
         <div className='col-span-3'>
@@ -85,9 +75,19 @@ export default function AdminCreatePostForm() {
         </div>
       </div>
 
+      <div className={wrapperStyle}>
+        <div className='col-span-1'>
+          <p className={titleStyle}>Danh mục</p>
+        </div>
+        <div className='col-span-3'>
+          <AdminCategories />
+        </div>
+      </div>
+
       <div className='space-y-4'>
         <p className={titleStyle}>nội dung</p>
-        <QuillEditor value={editorContent} setValue={onEditorStateChange} />
+        {/* <QuillEditor value={editorContent} setValue={onEditorStateChange} /> */}
+        <CustomJoditEditor content={editorContent} setContent={onEditorStateChange} />
       </div>
     </Fragment>
   )

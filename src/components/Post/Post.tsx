@@ -8,8 +8,8 @@ import classNames from 'classnames'
 
 import { AppContext } from 'src/contexts/app.context'
 import { Post as PostType } from 'src/types/post.type'
-import { generateNameId } from 'src/utils/utils'
 import mainPath from 'src/constants/path'
+import { generatePostId } from 'src/utils/utils'
 
 const MAXLENGTH = 3
 
@@ -36,7 +36,7 @@ function Post({ post, initialLoading, disableClick = false }: Props) {
     if (disableClick) {
       event.preventDefault()
     } else {
-      navigate({ pathname: `${mainPath.home}${generateNameId({ name: post.title, id: post._id })}` })
+      navigate({ pathname: `${mainPath.home}${generatePostId({ title: post.title, id: post._id })}` })
     }
   }
 

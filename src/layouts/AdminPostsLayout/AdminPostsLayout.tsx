@@ -11,6 +11,7 @@ export default function AdminPostManagementLayout({ children }: Props) {
     <div className=''>
       <div className='relative bg-white rounded-xl border border-primaryBlue grid grid-cols-2 font-semibold lg:text-xl text-xs mobileLarge:text-sm tablet:text-base overflow-hidden'>
         <NavLink
+          end
           to={adminPath.postManagement}
           className={({ isActive }) =>
             classNames('text-center border-r border-black/40 py-1 uppercase col-span-1', {
@@ -23,6 +24,7 @@ export default function AdminPostManagementLayout({ children }: Props) {
         </NavLink>
 
         <NavLink
+          end
           to={adminPath.createPost}
           className={({ isActive }) =>
             classNames('text-center border-r border-black/40 py-1 uppercase col-span-1', {

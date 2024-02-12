@@ -8,6 +8,18 @@ export interface Post {
   tag: string[]
   category: string[]
 }
+export interface PostDetail {
+  _id: string
+  status: number
+  created_at: string
+  updated_at: string
+  title: string
+  image_url: string
+  tag: string[]
+  category: string[]
+  content: string
+  author: string
+}
 
 export interface PostList {
   data: Post[]

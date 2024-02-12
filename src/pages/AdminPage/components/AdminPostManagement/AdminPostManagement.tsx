@@ -1,20 +1,24 @@
 import { useQuery } from '@tanstack/react-query'
-import { useLocation } from 'react-router-dom'
 import postApi from 'src/apis/post.api'
 import LoadingRing from 'src/components/LoadingRing'
-import Post from 'src/components/Post'
 import SearchBar from 'src/components/SearchBar'
 import SortByCategory from 'src/components/SortByCategory'
 import SortByTags from 'src/components/SortByTags'
-import { adminPath } from 'src/constants/path'
 import useQueryConfigForPosts from 'src/hooks/useQueryConfigForPosts'
 import { PostListConfig } from 'src/types/post.type'
+import AdminPost from '../AdminPost'
+import { useEffect } from 'react'
 
 export default function AdminPostManagement() {
+  //? After navigated
+  useEffect(() => {
+    document.title = 'Quản lí bài viết'
+  })
+
   //? GET POST LIST
   const queryConfigForPosts = useQueryConfigForPosts()
   const { data: postsData, isFetching } = useQuery({
-    queryKey: ['adminPostList', queryConfigForPosts],
+    queryKey: ['admin-post-list', queryConfigForPosts],
     queryFn: () => {
       return postApi.getPostList(queryConfigForPosts as PostListConfig)
     },
@@ -43,7 +47,7 @@ export default function AdminPostManagement() {
           postsData &&
           postsData.data.data.map((post) => (
             <div className='col-span-1' key={post._id}>
-              <Post post={post} />
+              <AdminPost post={post} />
             </div>
           ))}
       </div>

@@ -23,6 +23,7 @@ export default function Input({
   const registerResult = register && name ? register(name, rules) : {}
   return (
     <Fragment>
+      <div className={classNameError} />
       <div className={className}>
         <input className={classNameInput} {...registerResult} {...rest} />
       </div>

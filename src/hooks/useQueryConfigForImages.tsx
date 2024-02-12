@@ -1,18 +1,20 @@
 import omitBy from 'lodash/omitBy'
 import isUndefined from 'lodash/isUndefined'
 import useQueryParams from './useQueryParams'
-import { PostListConfig } from 'src/types/post.type'
+import { ImageListConfig } from 'src/types/image.type'
 
-export type QueryConfig = {
-  [key in keyof PostListConfig]: string
+export type ImageListQueryConfig = {
+  [key in keyof ImageListConfig]: string
 }
 
-export const IMAGE_LIMIT = 12
+export const IMAGE_LIMIT = 20
 
 export default function useQueryConfigForImages() {
-  const queryParams: QueryConfig = useQueryParams()
-  const queryConfig: QueryConfig = omitBy(
+  const queryParams: ImageListQueryConfig = useQueryParams()
+  const queryConfig: ImageListQueryConfig = omitBy(
     {
+      time_from: queryParams.time_from,
+      time_to: queryParams.time_to,
       page: queryParams.page || 1,
       limit: queryParams.limit || IMAGE_LIMIT
     },

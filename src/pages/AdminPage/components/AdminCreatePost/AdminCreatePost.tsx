@@ -13,7 +13,6 @@ import { CreatePostSchema, createPostSchema } from 'src/utils/admin.rules'
 import { isAxiosBadRequestError } from 'src/utils/utils'
 import AdminCreatePostForm from './AdminCreatePostForm'
 import { AdminContext } from 'src/contexts/admin.context'
-import useQueryConfigForPosts from 'src/hooks/useQueryConfigForPosts'
 import InputFile from 'src/components/InputFile'
 
 type FormData = CreatePostSchema
@@ -21,14 +20,13 @@ type FormData = CreatePostSchema
 export default function AdminCreatePost() {
   const { tags, setTags, categories, setCategories } = useContext(AdminContext)
 
-  const [file, setFile] = useState<File>()
   const [excutingDialog, setExcutingDialog] = useState<boolean>(false)
 
   //? Handle avatar
+  const [file, setFile] = useState<File>()
   const previewImage = useMemo(() => {
     return file ? URL.createObjectURL(file) : ''
   }, [file])
-
   const handleChangeFile = (file?: File) => {
     setFile(file)
   }
@@ -38,7 +36,7 @@ export default function AdminCreatePost() {
     defaultValues: {
       author: '',
       title: '',
-      content: 'Chưa có nội dung',
+      content: '',
       tag: [],
       category: [],
       image_url: ''
@@ -50,7 +48,6 @@ export default function AdminCreatePost() {
   const onInvalid = (errors: any) => console.error(errors)
   const { handleSubmit, reset } = methods
   const queryClient = useQueryClient()
-  const queryConfigForPosts = useQueryConfigForPosts()
   const createPostMutation = useMutation({
     mutationFn: postApi.createPost
   })
@@ -77,12 +74,15 @@ export default function AdminCreatePost() {
         category: categories,
         image_url: newUploadedImageRespone ? newUploadedImageRespone.data.data.url : ''
       }
+      // console.log(data.content)
       createPostMutation.mutate(newPostBody, {
         onSuccess: () => {
           reset()
           setTags([])
           setCategories([])
-          queryClient.invalidateQueries({ queryKey: ['adminPostList', queryConfigForPosts] })
+          setFile(undefined)
+          queryClient.invalidateQueries({ queryKey: ['admin-post-list'] })
+          window.scrollTo({ top: 0, left: 0 })
         }
       })
     } catch (error) {

@@ -10,7 +10,7 @@ export default function AdminLayout({ children }: Props) {
   return (
     <div className='bg-mainBg py-2 tablet:py-4 desktop:py-6'>
       <div className='container'>
-        <div className='relative flex bg-white items-center justify-around rounded-xl border border-primaryBlue py-2 text-base font-semibold text-textLight/80 lg:text-xl'>
+        <div className='relative flex bg-white items-center justify-around rounded-xl border border-primaryBlue py-2 text-base font-bold text-textLight/80 lg:text-xl'>
           {/* <div className='absolute left-1/2 top-0 h-full border-l border-white/40'></div> */}
           <NavLink
             to={adminPath.postManagement}

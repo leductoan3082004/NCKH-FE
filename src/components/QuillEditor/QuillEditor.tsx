@@ -1,9 +1,12 @@
 import { useMutation } from '@tanstack/react-query'
 import { useCallback, useRef } from 'react'
-import ReactQuill from 'react-quill'
+import * as ReactQuill from 'react-quill'
+import { Quill } from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { imageApi } from 'src/apis/image.api'
+import ImageResize from 'quill-image-resize-module-react'
 
+Quill.register('modules/imageResize', ImageResize)
 interface Props {
   value: string
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -49,6 +52,18 @@ export default function QuillEditor({ value, setValue }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  //? Hanlde image on drop/paste
+  // function dropPasteHandler(imageData: ImageData) {
+  //   const file = imageData.toFile()
+
+  //   if (file) {
+  //     const url = uploadImage(file)
+  //     let index = (quill.getSelection() || {}).index
+  //     if (index === undefined || index < 0) index = quill.getLength()
+  //     quill.insertEmbed(index, 'image', url, 'user')
+  //   }
+  // }
+
   return (
     <ReactQuill
       theme='snow'
@@ -57,20 +72,15 @@ export default function QuillEditor({ value, setValue }: Props) {
         toolbar: {
           container: [
             ['bold', 'italic', 'underline', 'strike'], // toggled buttons
-            ['blockquote', 'code-block'],
 
             [{ header: 1 }, { header: 2 }], // custom button values
             [{ list: 'ordered' }, { list: 'bullet' }],
-            [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
             [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
             [{ direction: 'rtl' }], // text direction
 
-            [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
             [{ header: [1, 2, 3, 4, 5, 6, false] }],
             ['link', 'image', 'video'],
 
-            [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-            [{ font: [] }],
             [{ align: [] }],
 
             ['clean'] // remove formatting button
@@ -81,12 +91,14 @@ export default function QuillEditor({ value, setValue }: Props) {
         },
         clipboard: {
           matchVisual: false
+        },
+        imageResize: {
+          parchment: Quill.import('parchment'),
+          modules: ['Resize', 'DisplaySize']
         }
       }}
       formats={[
         'header',
-        'font',
-        'size',
         'bold',
         'italic',
         'underline',
@@ -97,8 +109,7 @@ export default function QuillEditor({ value, setValue }: Props) {
         'indent',
         'link',
         'image',
-        'video',
-        'code-block'
+        'align'
       ]}
       value={value}
       onChange={onChange}

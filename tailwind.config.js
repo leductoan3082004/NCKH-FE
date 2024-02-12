@@ -21,6 +21,8 @@ module.exports = {
         unhoverText: '#606060',
         sidebarColor: '#f5f5f5',
         decoratingRed: '#ffa69e',
+        alertRed: '#ff0f0f',
+        successGreen: '#4BB543',
         mainBlue100: '#CAF0F8',
         mainBlue200: '#ADE8F4',
         mainBlue300: '#90E0EF',

@@ -47,7 +47,7 @@ export default function DialogPopup({
               leaveFrom='opacity-100 scale-100'
               leaveTo='opacity-0 scale-95'
             >
-              <Dialog.Panel className={classNames('bg-white/90 text-darkText', classNameWrapper)}>
+              <Dialog.Panel className={classNames('bg-white/90 text-darkText relative', classNameWrapper)}>
                 {children}
                 <button
                   type='button'

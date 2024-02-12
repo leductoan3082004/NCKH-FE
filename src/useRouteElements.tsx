@@ -9,14 +9,13 @@ import AdminLogin from './pages/AdminPage/components/AdminLogin'
 import AdminLayout from './layouts/AdminLayout'
 import LoadingPage from './components/LoadingPage'
 import AdminCreatePost from './pages/AdminPage/components/AdminCreatePost'
-import AdminUpdatePost from './pages/AdminPage/components/AdminUpdatePost'
-import AdminDeletePost from './pages/AdminPage/components/AdminDeletePost'
 import AdminImagesLayout from './layouts/AdminImagesLayout'
 import AdminUploadImage from './pages/AdminPage/components/AdminUploadImage'
-import AdminDeleteImage from './pages/AdminPage/components/AdminDeleteImage'
 import AdminImageManagement from './pages/AdminPage/components/AdminImageManagement'
 import AdminPostManagementLayout from './layouts/AdminPostsLayout/AdminPostsLayout'
 import AdminPostManagement from './pages/AdminPage/components/AdminPostManagement'
+import AdminPostDetail from './pages/AdminPage/components/AdminPostDetail'
+import AdminDeleteImage from './pages/AdminPage/components/AdminDeleteImage'
 
 function ProtectedRoute() {
   const { isAuthenticated } = useContext(AppContext)
@@ -83,18 +82,10 @@ export default function useRouteElements() {
           )
         },
         {
-          path: adminPath.updatePost,
+          path: adminPath.postDetail,
           element: (
             <AdminPostManagementLayout>
-              <AdminUpdatePost />
-            </AdminPostManagementLayout>
-          )
-        },
-        {
-          path: adminPath.deletePost,
-          element: (
-            <AdminPostManagementLayout>
-              <AdminDeletePost />
+              <AdminPostDetail />
             </AdminPostManagementLayout>
           )
         },
