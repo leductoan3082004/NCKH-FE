@@ -38,4 +38,5 @@ export interface PostListConfig {
   content?: string
   page?: number | string
   limit?: number | string
+  cursor?: string
 }

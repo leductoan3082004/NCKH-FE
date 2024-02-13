@@ -1,13 +1,17 @@
-export interface Image {
+export interface Feedback {
   _id: string
   status: number
   created_at: string
   updated_at: string
-  url: string
+  topic: string
+  content: string
+  name: string
+  email: string
+  phone: string
 }
 
-export interface ImageList {
-  data: Image[]
+export interface FeedbackList {
+  data: Feedback[]
   paging: {
     page: number
     limit: number
@@ -17,9 +21,7 @@ export interface ImageList {
   }
 }
 
-export interface ImageListConfig {
-  time_from?: number | string
-  time_to?: number | string
+export interface FeedbackListConfig {
   page?: number | string
   limit?: number | string
   cursor?: string
