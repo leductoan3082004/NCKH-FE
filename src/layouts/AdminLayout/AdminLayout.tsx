@@ -34,6 +34,18 @@ export default function AdminLayout({ children }: Props) {
           >
             Hình ảnh
           </NavLink>
+
+          <NavLink
+            to={adminPath.imageManagement}
+            className={({ isActive }) =>
+              classNames('px-4 py-1 uppercase ', {
+                'text-primaryBlue': isActive,
+                'hover:text-primaryBlue': !isActive
+              })
+            }
+          >
+            Feedback
+          </NavLink>
         </div>
         <div className='pt-2 tablet:pt-3 desktop:pt-4'>{children}</div>
       </div>

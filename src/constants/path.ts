@@ -24,10 +24,17 @@ export const documentSystemPath = {
 export const adminPath = {
   login: '/admin-login',
   mainPage: '/admin',
+
+  //? Post
   postManagement: '/admin/posts',
   createPost: '/admin/posts/create',
   postDetail: '/admin/posts/:postId',
+
+  //? Image
   imageManagement: '/admin/images',
   uploadImage: '/admin/images/upload',
-  deleteImage: '/admin/images/delete'
+  deleteImage: '/admin/images/delete',
+
+  //? Feedback
+  feedbackManagement: '/admin/feedbacks'
 }
