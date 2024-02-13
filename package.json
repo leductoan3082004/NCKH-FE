@@ -31,6 +31,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
     "framer-motion": "^10.18.0",
+    "immer": "^10.0.3",
     "jodit-react": "^4.0.9",
     "lodash": "^4.17.21",
     "moment": "^2.30.1",
