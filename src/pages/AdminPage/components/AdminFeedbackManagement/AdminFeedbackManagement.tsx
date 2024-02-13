@@ -113,8 +113,6 @@ export default function AdminFeedbackManagement() {
     )
   }
 
-  //! HANDLE DELETE FEEDBACK
-
   return (
     <div className=''>
       {isFetching && (
