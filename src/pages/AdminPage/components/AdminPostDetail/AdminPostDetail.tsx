@@ -17,7 +17,7 @@ import { imageApi } from 'src/apis/image.api'
 import { ErrorRespone, SuccessRespone } from 'src/types/utils.type'
 import { AxiosResponse } from 'axios'
 import { Image, ImageListConfig } from 'src/types/image.type'
-import useQueryConfigForImages, { ImageListQueryConfig } from 'src/hooks/useQueryConfigForImages'
+import useImageListQueryConfig, { ImageListQueryConfig } from 'src/hooks/useImageListQueryConfig'
 
 type FormData = UpdatePostSchema
 
@@ -29,7 +29,7 @@ export default function AdminPostDetail() {
   const [deleteDialog, setDeleteDialog] = useState<boolean>(false)
   const [deleteExcutingDialog, setDeleteExcutingDialog] = useState<boolean>(false)
   const [imageFile, setImageFile] = useState<File>()
-  const [imageListConfig, setImageListConfig] = useState<ImageListQueryConfig>(useQueryConfigForImages())
+  const [imageListConfig, setImageListConfig] = useState<ImageListQueryConfig>(useImageListQueryConfig())
 
   //? Get post detail
   const { postId: paramPostId } = useParams()

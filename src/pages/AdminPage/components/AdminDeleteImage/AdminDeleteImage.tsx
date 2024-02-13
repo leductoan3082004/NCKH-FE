@@ -3,7 +3,7 @@ import { imageApi } from 'src/apis/image.api'
 import { ColorRing } from 'react-loader-spinner'
 import { useState } from 'react'
 import DialogPopup from 'src/components/DialogPopup'
-import useQueryConfigForImages from 'src/hooks/useQueryConfigForImages'
+import useImageListQueryConfig from 'src/hooks/useImageListQueryConfig'
 import { Image, ImageListConfig } from 'src/types/image.type'
 import { formatDate } from 'src/utils/utils'
 import AdminImageFilter from '../AdminImageFilter'
@@ -40,7 +40,7 @@ export default function AdminDeleteImage() {
   const [excutingDialog, setExcutingDialog] = useState<boolean>(false)
 
   //? GET IMAGE LIST
-  const imagesConfig = useQueryConfigForImages()
+  const imagesConfig = useImageListQueryConfig()
 
   const {
     data: imagesData,

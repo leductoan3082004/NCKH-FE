@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { ColorRing } from 'react-loader-spinner'
 import { imageApi } from 'src/apis/image.api'
-import useQueryConfigForImages from 'src/hooks/useQueryConfigForImages'
 import { Image, ImageListConfig } from 'src/types/image.type'
 import AdminImageFilter from '../AdminImageFilter'
+import useImageListQueryConfig from 'src/hooks/useImageListQueryConfig'
 
 const ImageItem = ({ image }: { image: Image }) => {
   const [hovering, setHovering] = useState<boolean>(false)
@@ -27,7 +27,7 @@ const ImageItem = ({ image }: { image: Image }) => {
 
 export default function AdminImageManagement() {
   //? GET IMAGE LIST
-  const imagesConfig = useQueryConfigForImages()
+  const imagesConfig = useImageListQueryConfig()
 
   const { data: imagesData, isFetching } = useQuery({
     queryKey: ['admin-image-list', imagesConfig],

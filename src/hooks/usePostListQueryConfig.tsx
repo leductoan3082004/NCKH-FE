@@ -3,15 +3,15 @@ import isUndefined from 'lodash/isUndefined'
 import useQueryParams from './useQueryParams'
 import { PostListConfig } from 'src/types/post.type'
 
-export type QueryConfig = {
+export type PostListQueryConfig = {
   [key in keyof PostListConfig]: string
 }
 
 export const POST_LIMIT = 12
 
-export default function useQueryConfigForPosts() {
-  const queryParams: QueryConfig = useQueryParams()
-  const queryConfig: QueryConfig = omitBy(
+export default function usePostListQueryConfig() {
+  const queryParams: PostListQueryConfig = useQueryParams()
+  const queryConfig: PostListQueryConfig = omitBy(
     {
       tag: queryParams.tag,
       content: queryParams.content,

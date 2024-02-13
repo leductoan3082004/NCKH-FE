@@ -4,14 +4,14 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { omit } from 'lodash'
 import { useForm } from 'react-hook-form'
 import { createSearchParams, useLocation, useNavigate } from 'react-router-dom'
-import useQueryConfigForPosts from 'src/hooks/useQueryConfigForPosts'
+import usePostListQueryConfig from 'src/hooks/usePostListQueryConfig'
 import { FindPostSchema, findPostSchema } from 'src/utils/rules'
 
 type FormData = FindPostSchema
 
 export default function SearchBar() {
   const path = useLocation().pathname
-  const queryConfig = useQueryConfigForPosts()
+  const queryConfig = usePostListQueryConfig()
   const navigate = useNavigate()
   const { register, handleSubmit } = useForm<FormData>({
     defaultValues: {

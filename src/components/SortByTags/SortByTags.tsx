@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { omit } from 'lodash'
 import React, { useState } from 'react'
 import { createSearchParams, useLocation, useNavigate } from 'react-router-dom'
-import useQueryConfigForPosts from 'src/hooks/useQueryConfigForPosts'
+import usePostListQueryConfig from 'src/hooks/usePostListQueryConfig'
 
 export default function SortByTags() {
   const [typedTag, setTypedTag] = useState<string>('')
@@ -14,7 +14,7 @@ export default function SortByTags() {
     setTypedTag(value)
   }
 
-  const queryConfig = useQueryConfigForPosts()
+  const queryConfig = usePostListQueryConfig()
   const navigate = useNavigate()
   const path = useLocation().pathname
   const currentTag = queryConfig.tag

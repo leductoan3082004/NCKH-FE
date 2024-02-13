@@ -3,7 +3,7 @@ import { omit } from 'lodash'
 import { Controller, useForm } from 'react-hook-form'
 import { createSearchParams, useLocation, useNavigate } from 'react-router-dom'
 import DateSelect from 'src/components/DateSelect'
-import useQueryConfigForImages from 'src/hooks/useQueryConfigForImages'
+import useImageListQueryConfig from 'src/hooks/useImageListQueryConfig'
 import { ImageSchema, imageSchema } from 'src/utils/admin.rules'
 import { formatTimeToSeconds } from 'src/utils/utils'
 
@@ -17,7 +17,7 @@ const defaultFormData = {
 
 export default function AdminImageFilter() {
   //! FETCH IMAGES BY DATE
-  const imagesConfig = useQueryConfigForImages()
+  const imagesConfig = useImageListQueryConfig()
 
   const {
     control,

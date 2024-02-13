@@ -3,11 +3,11 @@ import { ceil } from 'lodash'
 import postApi from 'src/apis/post.api'
 import Post from 'src/components/Post'
 import UsePagination from 'src/components/UsePagination'
-import useQueryConfigForPosts, { POST_LIMIT } from 'src/hooks/useQueryConfigForPosts'
+import usePostListQueryConfig, { POST_LIMIT } from 'src/hooks/usePostListQueryConfig'
 import { Post as PostType, PostListConfig } from 'src/types/post.type'
 
 export default function FeaturedPosts() {
-  const queryConfig = useQueryConfigForPosts()
+  const queryConfig = usePostListQueryConfig()
 
   //? GET POST LIST
   const { data: postsData, isFetching } = useQuery({

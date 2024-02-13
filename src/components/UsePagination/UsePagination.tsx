@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { Link, createSearchParams } from 'react-router-dom'
 import path from 'src/constants/path'
-import { QueryConfig } from 'src/hooks/useQueryConfigForPosts'
+import { QueryConfig } from 'src/hooks/usePostListQueryConfig'
 
 interface Props {
   queryConfig: QueryConfig

@@ -6,7 +6,7 @@ import useClickOutside from 'src/hooks/useClickOutside'
 import AnimateChangeInHeight from '../AnimateChangeInHeight'
 import { Categories } from 'src/pages/AdminPage/components/AdminCategories/AdminCategories'
 import { omit } from 'lodash'
-import useQueryConfigForPosts from 'src/hooks/useQueryConfigForPosts'
+import usePostListQueryConfig from 'src/hooks/usePostListQueryConfig'
 import classNames from 'classnames'
 
 export default function SortByCategory() {
@@ -18,7 +18,7 @@ export default function SortByCategory() {
 
   //? Handle sort by category
   const path = useLocation().pathname
-  const queryConfig = useQueryConfigForPosts()
+  const queryConfig = usePostListQueryConfig()
   const navigate = useNavigate()
   const handleSort = (index: number) => () => {
     setVisible(false)

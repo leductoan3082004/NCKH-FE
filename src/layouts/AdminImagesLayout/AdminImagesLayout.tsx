@@ -9,7 +9,7 @@ interface Props {
 export default function AdminImagesLayout({ children }: Props) {
   return (
     <div className=''>
-      <div className='relative bg-white rounded-xl border border-primaryBlue grid grid-cols-3 font-semibold lg:text-xl text-xs mobileLarge:text-sm tablet:text-base overflow-hidden'>
+      <div className='relative bg-white rounded-xl border border-primaryBlue grid grid-cols-3 desktopLarge:text-xl text-xs tablet:text-sm desktop:text-base overflow-hidden'>
         <NavLink
           end
           to={adminPath.imageManagement}

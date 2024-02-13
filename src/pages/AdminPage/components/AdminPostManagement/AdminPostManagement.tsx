@@ -4,7 +4,7 @@ import LoadingRing from 'src/components/LoadingRing'
 import SearchBar from 'src/components/SearchBar'
 import SortByCategory from 'src/components/SortByCategory'
 import SortByTags from 'src/components/SortByTags'
-import useQueryConfigForPosts from 'src/hooks/useQueryConfigForPosts'
+import usePostListQueryConfig from 'src/hooks/usePostListQueryConfig'
 import { PostListConfig } from 'src/types/post.type'
 import AdminPost from '../AdminPost'
 import { useEffect } from 'react'
@@ -16,7 +16,7 @@ export default function AdminPostManagement() {
   })
 
   //? GET POST LIST
-  const queryConfigForPosts = useQueryConfigForPosts()
+  const queryConfigForPosts = usePostListQueryConfig()
   const { data: postsData, isFetching } = useQuery({
     queryKey: ['admin-post-list', queryConfigForPosts],
     queryFn: () => {

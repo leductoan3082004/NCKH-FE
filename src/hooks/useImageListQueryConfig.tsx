@@ -9,7 +9,7 @@ export type ImageListQueryConfig = {
 
 export const IMAGE_LIMIT = 20
 
-export default function useQueryConfigForImages() {
+export default function useImageListQueryConfig() {
   const queryParams: ImageListQueryConfig = useQueryParams()
   const queryConfig: ImageListQueryConfig = omitBy(
     {
