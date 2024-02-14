@@ -16,7 +16,8 @@ export const Categories = [
   'Tùy bút, tản văn',
   'Đề minh họa',
   'Định hướng sử dụng văn bản',
-  'Quy trình thiết kế công cụ đánh giá'
+  'Quy trình thiết kế công cụ đánh giá',
+  'Giới thiệu trang web'
 ]
 
 export default function AdminCategories() {

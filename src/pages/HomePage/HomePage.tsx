@@ -8,7 +8,7 @@ export default function HomePage() {
     document.title = 'Trang chủ'
   })
   return (
-    <div className='container py-4 tablet:py-6 desktop:py-8'>
+    <div className='container py-4'>
       <HomePageIntroduction />
       <HomepageFeedback />
     </div>
