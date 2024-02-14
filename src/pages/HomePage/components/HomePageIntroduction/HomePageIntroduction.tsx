@@ -29,14 +29,14 @@ export default function HomePageIntroduction() {
   })
 
   return (
-    <div className=''>
+    <div className='container'>
       {(isFetchingIntroduction || isFetchingIntroductionPostList) && (
         <div className='min-h-96 flex items-center justify-center'>
           <LoadingRing />
         </div>
       )}
       {introductionData && (
-        <div className='py-4'>
+        <div className=''>
           <div
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(introductionData?.data.data.content)

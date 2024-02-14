@@ -2,14 +2,14 @@ import http from 'src/utils/http'
 import { Feedback, FeedbackList, FeedbackListConfig } from 'src/types/feedback.type'
 import { SuccessRespone } from 'src/types/utils.type'
 
-const URL = '/feedback/'
+const URL = '/feedback'
 
 interface FeedbackForm {
   topic: string
   content: string
   email: string
   name: string
-  phone?: number
+  phone?: string
 }
 
 export const feedbackApi = {

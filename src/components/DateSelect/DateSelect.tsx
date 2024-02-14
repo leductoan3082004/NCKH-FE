@@ -5,14 +5,14 @@ interface Props {
   errorMessage?: string
   onChange?: (date: Date) => void
   value?: Date
-  classNameError?: string
+  errorClassName?: string
 }
 
 export default function DateSelect({
   value,
   onChange,
   errorMessage,
-  classNameError = 'mt-0.5 text-alertRed min-h-[1rem] text-xs'
+  errorClassName = 'mt-0.5 text-alertRed min-h-[1rem] text-xs'
 }: Props) {
   const [date, setDate] = useState({
     date: value?.getDate() || 1,
@@ -34,7 +34,7 @@ export default function DateSelect({
 
   return (
     <div className=''>
-      <div className={classNameError} />
+      <div className={errorClassName} />
       <div className='flex justify-between w-full space-x-1 tablet:space-x-2'>
         <select
           onChange={handleChange}
@@ -76,7 +76,7 @@ export default function DateSelect({
           ))}
         </select>
       </div>
-      <div className={classNameError}>{errorMessage}</div>
+      <div className={errorClassName}>{errorMessage}</div>
     </div>
   )
 }

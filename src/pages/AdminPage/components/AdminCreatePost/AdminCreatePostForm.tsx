@@ -38,7 +38,7 @@ export default function AdminCreatePostForm() {
         </div>
         <div className='col-span-3 items-center'>
           <Input
-            classNameInput={classNames(inputStyle, {
+            inputClassName={classNames(inputStyle, {
               'outline-red-600': Boolean(errors.author)
             })}
             register={register}
@@ -55,7 +55,7 @@ export default function AdminCreatePostForm() {
         </div>
         <div className='col-span-3'>
           <Input
-            classNameInput={classNames(inputStyle, {
+            inputClassName={classNames(inputStyle, {
               'outline-red-600': Boolean(errors.title)
             })}
             register={register}

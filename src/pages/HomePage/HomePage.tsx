@@ -8,9 +8,14 @@ export default function HomePage() {
     document.title = 'Trang chủ'
   })
   return (
-    <div className='container py-4'>
-      <HomePageIntroduction />
-      <HomepageFeedback />
+    <div className='space-y-2'>
+      <div className='py-4 desktop:py-8'>
+        <HomePageIntroduction />
+      </div>
+
+      <div className='bg-sectionBlue py-4 desktop:py-8'>
+        <HomepageFeedback />
+      </div>
     </div>
   )
 }

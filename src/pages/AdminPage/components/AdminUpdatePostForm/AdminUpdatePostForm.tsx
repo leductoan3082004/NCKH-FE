@@ -115,10 +115,10 @@ export default function AdminUpdatePostForm({ postDetail, imageFile, setImageFil
         </div>
         <div className='col-span-3'>
           <Input
-            classNameInput={classNames(inputStyle, {
+            inputClassName={classNames(inputStyle, {
               'outline-red-600': Boolean(errors.title)
             })}
-            classNameError='hidden'
+            errorClassName='hidden'
             register={register}
             name='title'
             errorMessage={errors?.title?.message}
@@ -151,10 +151,10 @@ export default function AdminUpdatePostForm({ postDetail, imageFile, setImageFil
         </div>
         <div className='col-span-3'>
           <Input
-            classNameInput={classNames(inputStyle, {
+            inputClassName={classNames(inputStyle, {
               'outline-red-600': Boolean(errors.author)
             })}
-            classNameError='hidden'
+            errorClassName='hidden'
             register={register}
             name='author'
             errorMessage={errors?.author?.message}
