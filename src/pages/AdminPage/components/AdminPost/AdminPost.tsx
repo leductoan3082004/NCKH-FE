@@ -55,8 +55,8 @@ function AdminPost({ post, disableClick = false }: Props) {
         </div>
       </div>
       <div className='col-span-3 flex items-center min-h-full'>
-        <div className='flex flex-col items-center justify-between space-x-1 space-y-1  px-2 pt-2 sm:px-3 lg:px-4 lg:pt-4'>
-          <p className='h-full justify-center overflow-hidden text-center text-sm font-semibold uppercase text-darkPrimaryBlue duration-200 tablet:text-lg desktop:text-lg'>
+        <div className='flex flex-col items-center justify-start overflow-hidden space-x-1 space-y-1 px-2 pt-2 sm:px-3 lg:px-4 lg:pt-4'>
+          <p className='w-full text-left h-full justify-start overflow-hidden over text-sm font-semibold uppercase text-darkPrimaryBlue duration-200 truncate tablet:text-lg desktop:text-lg'>
             {post.title}
           </p>
           <div className='grid grid-cols-3 gap-2 w-full text-xs desktop:text-sm'>

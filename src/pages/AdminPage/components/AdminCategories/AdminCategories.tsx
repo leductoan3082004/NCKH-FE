@@ -1,8 +1,12 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { AdminContext } from 'src/contexts/admin.context'
 import classNames from 'classnames'
 import { useLocation } from 'react-router-dom'
 import { adminPath } from 'src/constants/path'
+
+interface Props {
+  errorMessage?: string
+}
 
 export const Categories = [
   'Tất cả',
@@ -20,12 +24,8 @@ export const Categories = [
   'Giới thiệu trang web'
 ]
 
-export default function AdminCategories() {
+export default function AdminCategories({ errorMessage }: Props) {
   const { categories, setCategories, updateCategories, setUpdateCategories } = useContext(AdminContext)
-  const [render, setRender] = useState<boolean>(false)
-  const reRender = () => {
-    setRender(!render)
-  }
 
   //? Check if is CREATING or UPDATING
   const pathName = useLocation().pathname
@@ -33,27 +33,21 @@ export default function AdminCategories() {
 
   //? HANDLE CHOOSE CATEGORY
   const handleChooseCategory = (category: string) => {
-    const index = categories.indexOf(category)
-    if (index > -1) {
-      categories.splice(index, 1)
-      setCategories(categories)
+    const categoryIndex = categories.indexOf(category)
+    if (categoryIndex > -1) {
+      setCategories((prev) => prev.filter((_, index) => index != categoryIndex))
     } else {
-      categories.push(category)
-      setCategories(categories)
+      setCategories((prev) => [...prev, category])
     }
-    reRender()
   }
 
   const handleChooseUpdateCategory = (category: string) => {
-    const index = updateCategories.indexOf(category)
-    if (index > -1) {
-      updateCategories.splice(index, 1)
-      setUpdateCategories(updateCategories)
+    const categoryIndex = updateCategories.indexOf(category)
+    if (categoryIndex > -1) {
+      setUpdateCategories((prev) => prev.filter((_, index) => index != categoryIndex))
     } else {
-      updateCategories.push(category)
-      setUpdateCategories(updateCategories)
+      setUpdateCategories((prev) => [...prev, category])
     }
-    reRender()
   }
 
   const handleCategory = (category: string) => () => {
@@ -65,10 +59,16 @@ export default function AdminCategories() {
 
   return (
     <div>
-      <div className='grid border border-black/40 p-1 rounded-md gap-1 grid-cols-2 tablet:grid-cols-3 desktop:grid-cols-4'>
+      <div
+        className={classNames(
+          'grid border min-h-10 border-black/40 p-1 rounded-md gap-1 grid-cols-2 tablet:grid-cols-3 desktop:grid-cols-4 items-center',
+          { 'border-alertRed border-2': errorMessage }
+        )}
+      >
+        {errorMessage && <div className='text-sm text-alertRed'>{errorMessage}</div>}
         {activeCategories.map((cate, index) => (
           <span
-            className=' h-10 px-1 bg-primaryBackground flex items-center justify-center p-0.5 text-xs rounded-md'
+            className='h-10 px-1 bg-primaryBackground flex items-center justify-center p-0.5 text-xs rounded-md'
             key={index}
           >
             {cate}

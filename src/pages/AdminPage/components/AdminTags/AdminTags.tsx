@@ -1,17 +1,18 @@
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import classNames from 'classnames'
 import { useContext, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { adminPath } from 'src/constants/path'
 import { AdminContext } from 'src/contexts/admin.context'
 
-export default function AdminTags() {
+interface Props {
+  errorMessage?: string
+}
+
+export default function AdminTags({ errorMessage }: Props) {
   const { tags, setTags, updateTags, setUpdateTags } = useContext(AdminContext)
   const [typedTag, setTypedTag] = useState<string>('')
-  const [render, setRender] = useState<boolean>(false)
-  const reRender = () => {
-    setRender(!render)
-  }
 
   //? Check if is CREATING or UPDATING
   const pathName = useLocation().pathname
@@ -23,17 +24,20 @@ export default function AdminTags() {
     setTypedTag(value)
   }
 
+  function containsOnlyWhitespace(str: string) {
+    return / /.test(str)
+  }
+
   const addTag = (tag: string) => {
+    if (tag == '' || containsOnlyWhitespace(tag)) return
     if (isCreating) {
       if (!tags.includes(tag)) {
-        tags.push(tag)
-        setTags(tags)
+        setTags([...tags, tag])
       }
       setTypedTag('')
     } else {
       if (!tags.includes(tag)) {
-        updateTags.push(tag)
-        setUpdateTags(tags)
+        setUpdateTags([...updateTags, tag])
       }
       setTypedTag('')
     }
@@ -52,13 +56,9 @@ export default function AdminTags() {
 
   const removeTag = (tagIndex: number) => () => {
     if (isCreating) {
-      tags.splice(tagIndex, 1)
-      setTags(tags)
-      reRender()
+      setTags(tags.filter((_, index) => index != tagIndex))
     } else {
-      updateTags.splice(tagIndex, 1)
-      setUpdateTags(tags)
-      reRender()
+      setUpdateTags(updateTags.filter((_, index) => index != tagIndex))
     }
   }
 
@@ -71,12 +71,20 @@ export default function AdminTags() {
           type='text'
           value={typedTag}
           onChange={handleTypedTag}
-          className='text-darkText bg-white py-1 px-2 text-base lg:text-lg rounded-lg outline-none focus:outline-primaryBlue'
+          className={classNames(
+            'text-darkText bg-white py-1 px-2 text-base lg:text-lg rounded-lg outline-none focus:outline-primaryBlue',
+            { 'outline-alertRed': errorMessage }
+          )}
           onKeyDown={handlePressEnter}
         />
-        <button type='button' onClick={handleMouseClick} className='p-1 rounded-md bg-white hover:bg-primaryBackground'>
+        <button
+          type='button'
+          onClick={handleMouseClick}
+          className='p-1 rounded-md bg-white hover:bg-primaryBackground border  border-black/20'
+        >
           Thêm nhãn
         </button>
+        <div className='text-sm flex items-center text-alertRed'>{errorMessage}</div>
       </div>
       <div className='h-20 bg-white mt-2 rounded-lg overflow-auto grid gap-2 grid-cols-1 tablet:grid-cols-2 tabletLarge:grid-cols-3 desktop:grid-cols-4 desktopLarge:grid-cols-5 p-1 text-sm'>
         {activeTags.map((tag, index) => (

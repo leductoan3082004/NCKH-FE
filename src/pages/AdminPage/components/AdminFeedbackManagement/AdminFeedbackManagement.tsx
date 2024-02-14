@@ -26,8 +26,14 @@ const LargeFeedbackItem = ({ feedback, handleChecking, index }: ItemProps) => {
           <div className='w-full h-20 desktopLarge:h-40 overflow-hidden'>{feedback.content}</div>
         </div>
         <div className='col-span-4 space-y-4 border-l text-sm md border-black/20 pl-4'>
-          <div className='italic'>{feedback.name}</div>
-          <div className='italic'>{feedback.email}</div>
+          <div className='tablet:flex space-x-1'>
+            <p className=''>Tên:</p>
+            <p className='italic'>{feedback.name}</p>
+          </div>
+          <div className='tablet:flex space-x-1'>
+            <p className=''>Email:</p>
+            <p className='italic'>{feedback.email}</p>
+          </div>
         </div>
       </div>
       {deletingMode && (
@@ -54,8 +60,14 @@ const SmallFeedbackItem = ({ feedback, index, handleChecking }: ItemProps) => {
         <div className='space-y-2'>
           <p className='font-bold text-base tabletSmall:text-lg'>{feedback.topic}</p>
           <p className='h-20 text-sm tabletSmall:h-32 overflow-hidden truncate'>{feedback.content}</p>
-          <p className='font-thin text-sm italic'>{feedback.name}</p>
-          <p className='font-thin text-sm italic'>{feedback.email}</p>
+          <div className='flex space-x-1'>
+            <p className=''>Tên:</p>
+            <p className='italic'>{feedback.name}</p>
+          </div>
+          <div className='flex space-x-1'>
+            <p className=''>Email:</p>
+            <p className='italic'>{feedback.email}</p>
+          </div>
         </div>
       </div>
       {deletingMode && (
@@ -104,7 +116,6 @@ export default function AdminFeedbackManagement() {
   }, [feedbackList, setExtendedFeedbacks])
 
   //! HANDLE SELECT FEEDBACK
-
   const handleChecking = (feedbackIndex: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
     setExtendedFeedbacks(
       produce((draft) => {

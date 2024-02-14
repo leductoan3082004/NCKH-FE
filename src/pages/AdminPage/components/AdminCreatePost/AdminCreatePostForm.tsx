@@ -9,6 +9,14 @@ import CustomJoditEditor from 'src/components/CustomJoditEditor'
 
 type FormData = CreatePostSchema
 
+function ErrorSection({ errorMessage }: { errorMessage?: string }) {
+  return (
+    <div className='grid grid-cols-4 gap-1 col-span-4'>
+      <div className='col-start-2 col-end-5 mt-0.5 min-h-[1.25rem] text-sm text-alertRed'>{errorMessage}</div>
+    </div>
+  )
+}
+
 export default function AdminCreatePostForm() {
   const {
     register,
@@ -25,67 +33,81 @@ export default function AdminCreatePostForm() {
   const editorContent = watch('content')
 
   //? Styles
-  const wrapperStyle = 'grid grid-cols-4 items-center gap-2 border border-black/20 py-1 px-2 rounded-md'
+  const inputFieldStyle = 'grid grid-cols-4 items-center gap-2 py-1 px-2'
   const inputStyle =
-    'text-darkText bg-white py-1 px-2 text-base lg:text-lg rounded-lg outline-none focus:outline-primaryBlue'
-  const titleStyle = 'text-xs tablet:text-sm font-semibold uppercase text-primaryBlue lg:text-base'
+    'text-darkText bg-white py-1 px-2 col-span-3 text-base lg:text-lg rounded-lg outline-none focus:outline-primaryBlue'
+  const titleStyle = 'text-xs col-span-1 tablet:text-sm font-semibold uppercase text-primaryBlue lg:text-base'
 
   return (
     <Fragment>
-      <div className={wrapperStyle}>
-        <div className='col-span-1'>
-          <p className={titleStyle}>Tác giả</p>
+      <Input
+        className={inputFieldStyle}
+        inputClassName={classNames(inputStyle, {
+          'outline-red-600': Boolean(errors.author)
+        })}
+        errorClassName='hidden'
+        register={register}
+        name='author'
+        errorMessage={errors?.author?.message}
+        autoComplete='false'
+        errorSection={<ErrorSection errorMessage={errors.author?.message} />}
+      >
+        <div className={titleStyle}>
+          <span className=''>Tác giả</span>
+          <span className='text-alertRed'>*</span>
         </div>
-        <div className='col-span-3 items-center'>
-          <Input
-            inputClassName={classNames(inputStyle, {
-              'outline-red-600': Boolean(errors.author)
-            })}
-            register={register}
-            name='author'
-            errorMessage={errors?.author?.message}
-            autoComplete='false'
-          />
-        </div>
-      </div>
+      </Input>
 
-      <div className={wrapperStyle}>
+      <Input
+        className={inputFieldStyle}
+        inputClassName={classNames(inputStyle, {
+          'outline-red-600': Boolean(errors.title)
+        })}
+        errorClassName='hidden'
+        register={register}
+        name='title'
+        errorMessage={errors?.title?.message}
+        autoComplete='false'
+        errorSection={<ErrorSection errorMessage={errors.title?.message} />}
+      >
+        <div className={titleStyle}>
+          <span className=''>Tiêu đề</span>
+          <span className='text-alertRed'>*</span>
+        </div>
+      </Input>
+
+      <div className={inputFieldStyle}>
         <div className='col-span-1'>
-          <p className={titleStyle}>Tiêu đề</p>
+          <div className={titleStyle}>
+            <span className=''>Tag</span>
+            <span className='text-alertRed'>*</span>
+          </div>
         </div>
         <div className='col-span-3'>
-          <Input
-            inputClassName={classNames(inputStyle, {
-              'outline-red-600': Boolean(errors.title)
-            })}
-            register={register}
-            name='title'
-            errorMessage={errors?.title?.message}
-            autoComplete='false'
-          />
+          <AdminTags errorMessage={errors.tag?.message} />
         </div>
       </div>
 
-      <div className={wrapperStyle}>
+      <div className={inputFieldStyle}>
         <div className='col-span-1'>
-          <p className={titleStyle}>Nhãn</p>
+          <div className={titleStyle}>
+            <span className=''>Category</span>
+            <span className='text-alertRed'>*</span>
+          </div>
         </div>
         <div className='col-span-3'>
-          <AdminTags />
+          <AdminCategories errorMessage={errors.category?.message} />
         </div>
       </div>
 
-      <div className={wrapperStyle}>
-        <div className='col-span-1'>
-          <p className={titleStyle}>Danh mục</p>
+      <div className='space-y-4 px-2'>
+        <div className='flex space-x-2'>
+          <div className={titleStyle}>
+            <span className=''>Nội dung</span>
+            <span className='text-alertRed'>*</span>
+          </div>
+          <span className='text-sm text-alertRed'>{errors.content?.message}</span>
         </div>
-        <div className='col-span-3'>
-          <AdminCategories />
-        </div>
-      </div>
-
-      <div className='space-y-4'>
-        <p className={titleStyle}>nội dung</p>
         {/* <QuillEditor value={editorContent} setValue={onEditorStateChange} /> */}
         <CustomJoditEditor content={editorContent} setContent={onEditorStateChange} />
       </div>

@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import { NavLink } from 'react-router-dom'
 import { adminPath } from 'src/constants/path'
+import { AdminProvider } from 'src/contexts/admin.context'
 
 interface Props {
   children?: React.ReactNode
@@ -47,7 +48,9 @@ export default function AdminLayout({ children }: Props) {
             Feedback
           </NavLink>
         </div>
-        <div className='pt-2 tablet:pt-3 desktop:pt-4'>{children}</div>
+        <AdminProvider>
+          <div className='pt-2 tablet:pt-3 desktop:pt-4'>{children}</div>
+        </AdminProvider>
       </div>
     </div>
   )

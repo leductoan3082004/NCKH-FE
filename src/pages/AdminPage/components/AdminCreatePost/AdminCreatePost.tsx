@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { AxiosResponse } from 'axios'
-import { useContext, useMemo, useState } from 'react'
+import { useContext, useEffect, useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { imageApi } from 'src/apis/image.api'
 import postApi from 'src/apis/post.api'
@@ -37,16 +37,30 @@ export default function AdminCreatePost() {
       author: '',
       title: '',
       content: '',
+      image_url: '',
       tag: [],
-      category: [],
-      image_url: ''
+      category: []
     },
     resolver: yupResolver(createPostSchema)
   })
+  const { handleSubmit, setError, setValue, reset, clearErrors } = methods
+
+  useEffect(() => {
+    if (tags.length > 0) {
+      clearErrors('tag')
+    }
+    setValue('tag', tags)
+  }, [clearErrors, setValue, tags])
+
+  useEffect(() => {
+    if (categories.length > 0) {
+      clearErrors('category')
+    }
+    setValue('category', categories)
+  }, [setValue, categories, clearErrors])
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onInvalid = (errors: any) => console.error(errors)
-  const { handleSubmit, reset } = methods
   const queryClient = useQueryClient()
   const createPostMutation = useMutation({
     mutationFn: postApi.createPost
@@ -57,6 +71,14 @@ export default function AdminCreatePost() {
 
   const onSubmit = async (data: FormData) => {
     setExcutingDialog(true)
+    if (tags.length == 0) {
+      setError('tag', { message: 'Cần điền ít nhất 1 tag' })
+      return
+    }
+    if (categories.length == 0) {
+      setError('category', { message: 'Cần điền ít nhất 1 category' })
+      return
+    }
     try {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       let newUploadedImageRespone: AxiosResponse<SuccessRespone<Image>, any> | null = null

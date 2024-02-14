@@ -1,26 +1,23 @@
 import * as yup from 'yup'
 
-const requiredTag = yup.string().required('Bắt buộc điền tag')
-const requiredCategory = yup.string().required('Bắt buộc điền category')
-
 export const createPostSchema = yup.object({
-  author: yup.string().required('Bắt buộc điền tên tác giả'),
-  title: yup.string().required('Bắt buộc điền tiêu đề'),
-  content: yup.string().required('Bắt buộc điền nội dung'),
-  tag: yup.array().of(requiredTag).required(),
-  category: yup.array().of(requiredCategory).required(),
+  author: yup.string().required('Bắt buộc có tên tác giả'),
+  title: yup.string().required('Bắt buộc có tiêu đề'),
+  content: yup.string().required('Bắt buộc có nội dung'),
+  tag: yup.array().of(yup.string().required()).required().min(1, 'Cần có ít nhất 1 tag'),
+  category: yup.array().of(yup.string().required()).required().min(1, 'Cần có ít nhất 1 category'),
   image_url: yup.string()
 })
 
 export type CreatePostSchema = yup.InferType<typeof createPostSchema>
 
 export const updatePostSchema = yup.object({
-  post_id: yup.string().required('Điền ID bài viết'),
-  author: yup.string(),
-  title: yup.string(),
-  content: yup.string(),
-  tag: yup.array().of(requiredTag),
-  category: yup.array().of(requiredCategory),
+  post_id: yup.string().required('có ID bài viết'),
+  author: yup.string().required('Bắt buộc có tên tác giả'),
+  title: yup.string().required('Bắt buộc có tiêu đề'),
+  content: yup.string().required('Bắt buộc có nội dung'),
+  tag: yup.array().of(yup.string().required()).required().min(1, 'Cần có ít nhất 1 tag'),
+  category: yup.array().of(yup.string().required()).required().min(1, 'Cần có ít nhất 1 category'),
   image_url: yup.string()
 })
 

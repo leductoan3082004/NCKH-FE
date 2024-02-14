@@ -107,8 +107,21 @@ export default function AdminPostDetail() {
   const deleteImageMutation = useMutation({ mutationFn: imageApi.deleteImage })
 
   const onSubmit = handleSubmit(async (data) => {
-    setExcuting(true)
     setUpdateExcutingDialog(true)
+    setExcuting(true)
+    const validateForm =
+      (data.author != '' && data.author != postDetail?.author) ||
+      (data.title != '' && data.title != postDetail?.title) ||
+      (data.image_url != '' && data.image_url != postDetail?.image_url) ||
+      (data.content != '' && data.content != postDetail?.content) ||
+      (data.tag.length > 0 && data.tag != postDetail?.tag) ||
+      (data.category.length > 0 && data.category != postDetail?.category)
+
+    if (!validateForm) {
+      setExcuting(false)
+      return
+    }
+
     try {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       let newUploadedImageRespone: AxiosResponse<SuccessRespone<Image>, any> | null = null

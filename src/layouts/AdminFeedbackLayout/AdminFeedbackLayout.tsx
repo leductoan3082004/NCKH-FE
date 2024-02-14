@@ -144,7 +144,7 @@ export default function AdminFeedbackLayout({ children }: Props) {
                 className='h-5 w-5 accent-primaryBackground'
                 checked={checkedFeedbacksCount == 0 ? false : isAllChecked}
                 onChange={handleSelectAll}
-                disabled={checkedFeedbacksCount == 0}
+                disabled={extendedFeedbacks.length == 0}
               />
               <span className='italic font-bold'>Chọn tất cả</span>
             </div>
