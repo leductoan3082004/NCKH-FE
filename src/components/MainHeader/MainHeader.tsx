@@ -6,7 +6,8 @@ import { Fragment } from 'react'
 import HeaderPopover from './HeaderPopover'
 import NavigateDocuments from './NavigateDocuments'
 import NavigateDocumentsUsageOrientation from './NavigateDocumentsUsageOrientation'
-import NavigateHome from './NavigateHome'
+import classNames from 'classnames'
+import { NavLink } from 'react-router-dom'
 
 export default function MainHeader() {
   const viewport = useViewport()
@@ -26,19 +27,19 @@ export default function MainHeader() {
           {!isSmall && (
             <Fragment>
               <div className='uppercase tracking-wide text-primaryBlue font-semibold flex items-center space-x-3 desktopLarge:space-x-4'>
-                <HeaderPopover
-                  renderPopover={
-                    <div className={popoverStyle}>
-                      <NavigateHome itemClassNames={itemStyle} wrapperClassNames={wrapperStyle} />
-                    </div>
+                <NavLink
+                  to={path.home}
+                  className={({ isActive }) =>
+                    classNames(
+                      'flex items-center hover:bg-primaryBlueHovering text-sm desktop:text-base duration-200 font-semibold px-3 desktop:px-4 py-1.5 rounded-md space-x-1.5 hover:text-white',
+                      {
+                        'bg-primaryBlueHovering text-white': isActive
+                      }
+                    )
                   }
-                  placement='bottom-start'
-                  backgroundColor='#fff'
-                  offsetValue={2}
-                  path={path.home}
                 >
                   <p className=''>trang chủ</p>
-                </HeaderPopover>
+                </NavLink>
 
                 <HeaderPopover
                   renderPopover={

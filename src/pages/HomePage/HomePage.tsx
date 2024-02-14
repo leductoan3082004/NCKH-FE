@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-import FeaturedPosts from './components/FeaturedPosts'
+import HomePageIntroduction from './components/HomePageIntroduction'
+import HomepageFeedback from './components/HomePageFeedback'
 
 export default function HomePage() {
   //? CHANGE TITLE
@@ -7,8 +8,9 @@ export default function HomePage() {
     document.title = 'Trang chủ'
   })
   return (
-    <div className=' text-darkPrimaryBlue text-2xl justify-center items-center flex '>
-      <FeaturedPosts />
+    <div className='container py-4 tablet:py-6 desktop:py-8'>
+      <HomePageIntroduction />
+      <HomepageFeedback />
     </div>
   )
 }
