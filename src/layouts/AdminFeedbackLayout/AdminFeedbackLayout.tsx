@@ -155,9 +155,7 @@ export default function AdminFeedbackLayout({ children }: Props) {
           </div>
         </div>
 
-        <div className='mt-4 tablet:mt-6 desktop:mt-8 border border-black/40 rounded-lg py-2 tablet:py-4 desktop:py-6 px-2 tablet:px-4'>
-          {children}
-        </div>
+        <div className='mt-4 tablet:mt-6 desktop:mt-8 border border-black/40 rounded-lg p-2 tablet:p-4'>{children}</div>
 
         <DialogPopup
           isOpen={deletingDialog}

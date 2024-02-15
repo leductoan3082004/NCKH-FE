@@ -8,6 +8,7 @@ import useFeedbackListQueryConfig from 'src/hooks/useFeedbackListQueryConfig'
 import { useViewport } from 'src/hooks/useViewport'
 import { ExtendedFeedback, FeedbackContext } from 'src/layouts/AdminFeedbackLayout/AdminFeedbackLayout'
 import { FeedbackListConfig } from 'src/types/feedback.type'
+import { formatDate } from 'src/utils/utils'
 
 interface ItemProps {
   feedback: ExtendedFeedback
@@ -15,39 +16,37 @@ interface ItemProps {
   handleChecking: (feedbackIndex: number) => (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const LargeFeedbackItem = ({ feedback, handleChecking, index }: ItemProps) => {
+const LargeFeedbackItem = ({ feedback, index, handleChecking }: ItemProps) => {
   const { deletingMode } = useContext(FeedbackContext)
 
   return (
-    <div className='w-full relative border border-black/40 rounded-md overflow-hidden'>
-      <div className='grid grid-cols-12 gap-2 desktopLarge:gap-4 py-4 px-4'>
-        <div className='col-span-8 space-y-4'>
-          <p className='font-bold text-lg desktopLarge:text-xl'>{feedback.topic}</p>
-          <div className='w-full h-20 desktopLarge:h-40 overflow-hidden'>{feedback.content}</div>
-        </div>
-        <div className='col-span-4 space-y-4 border-l text-sm md border-black/20 pl-4'>
-          <div className='tablet:flex space-x-1'>
-            <p className=''>Tên:</p>
-            <p className='italic'>{feedback.name}</p>
-          </div>
-          <div className='tablet:flex space-x-1'>
-            <p className=''>Email:</p>
-            <p className='italic'>{feedback.email}</p>
-          </div>
+    <button className='grid w-full hover:bg-mainBlue100 grid-cols-12 gap-2 py-3 px-4 rounded-lg border border-black/20'>
+      <div className='col-span-2'>
+        <p className='font-bold text-left'>{feedback.name}</p>
+      </div>
+      <div className='col-span-7 desktop:col-span-8'>
+        <div className='flex space-x-2 px-1 overflow-hidden'>
+          <p className='font-bold shrink-0'>{feedback.topic}</p>
+          <p className='text-darkText/60 truncate'>{feedback.content}</p>
         </div>
       </div>
-      {deletingMode && (
-        <div className='absolute top-2 right-2'>
-          <input
-            name='is_selected'
-            type='checkbox'
-            className='h-5 w-5 accent-primaryBackground'
-            checked={feedback.checked}
-            onChange={handleChecking(index)}
-          />
-        </div>
-      )}
-    </div>
+      <div className='col-span-2 desktop:col-span-1 text-sm'>
+        <p className='font-bold'>{formatDate(feedback.created_at)}</p>
+      </div>
+      <div className='col-span-1'>
+        {deletingMode && (
+          <div className='flex items-center justify-center'>
+            <input
+              name='is_selected'
+              type='checkbox'
+              className='h-5 w-5 accent-primaryBackground'
+              checked={feedback.checked}
+              onChange={handleChecking(index)}
+            />
+          </div>
+        )}
+      </div>
+    </button>
   )
 }
 
@@ -55,33 +54,27 @@ const SmallFeedbackItem = ({ feedback, index, handleChecking }: ItemProps) => {
   const { deletingMode } = useContext(FeedbackContext)
 
   return (
-    <div className='w-full relative border border-black/40 rounded-md overflow-hidden'>
-      <div className='p-2'>
-        <div className='space-y-2'>
-          <p className='font-bold text-base tabletSmall:text-lg'>{feedback.topic}</p>
-          <p className='h-20 text-sm tabletSmall:h-32 overflow-hidden truncate'>{feedback.content}</p>
-          <div className='flex space-x-1'>
-            <p className=''>Tên:</p>
-            <p className='italic'>{feedback.name}</p>
-          </div>
-          <div className='flex space-x-1'>
-            <p className=''>Email:</p>
-            <p className='italic'>{feedback.email}</p>
+    <button className='w-full relative border overflow-hidden hover:bg-mainBlue100 border-black/20 rounded-md py-3 px-2 mobileLarge:px-4'>
+      <div className='flex justify-between items-center'>
+        <p className='font-bold'>{feedback.name}</p>
+        <div className='flex space-x-4'>
+          <p className=''>{formatDate(feedback.created_at)}</p>
+          <div className='w-6 h-6 flex items-center justify-center'>
+            {deletingMode && (
+              <input
+                name='is_selected'
+                type='checkbox'
+                className='h-5 w-5 accent-primaryBackground'
+                checked={feedback.checked}
+                onChange={handleChecking(index)}
+              />
+            )}
           </div>
         </div>
       </div>
-      {deletingMode && (
-        <div className='absolute top-2 right-2'>
-          <input
-            name='is_selected'
-            type='checkbox'
-            className='h-5 w-5 accent-primaryBackground'
-            checked={feedback.checked}
-            onChange={handleChecking(index)}
-          />
-        </div>
-      )}
-    </div>
+      <p className='font-bold text-left'>{feedback.topic}</p>
+      <p className='text-left truncate text-darkText/60'>{feedback.content}</p>
+    </button>
   )
 }
 
@@ -142,9 +135,10 @@ export default function AdminFeedbackManagement() {
       {extendedFeedbacks.length > 0 && (
         <Fragment>
           {!isMobile && (
-            <div className='flex flex-col space-y-4'>
+            <div className='flex flex-col space-y-2'>
               {extendedFeedbacks.map((feedback, index) => (
                 <div className='' key={feedback._id}>
+                  {/* <LargeFeedbackItem feedback={feedback} index={index} handleChecking={handleChecking} /> */}
                   <LargeFeedbackItem feedback={feedback} index={index} handleChecking={handleChecking} />
                 </div>
               ))}
