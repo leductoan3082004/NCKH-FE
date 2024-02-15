@@ -11,7 +11,6 @@ import AccountInput from 'src/components/AccountInput'
 import { AdminLoginSchema, adminLoginSchema } from 'src/utils/rules'
 import adminApi from 'src/apis/auth.api'
 import { useNavigate } from 'react-router-dom'
-import { getAccessTokenFromLS } from 'src/utils/auth'
 
 type FormData = AdminLoginSchema
 
@@ -35,11 +34,8 @@ export default function AdminLogin() {
   const navigate = useNavigate()
   const onSubmit = handleSubmit((data) => {
     loginAccountMutation.mutate(data, {
-      onSuccess: (succesData) => {
-        console.log(succesData)
+      onSuccess: () => {
         setIsAuthenticated(true)
-        const token = getAccessTokenFromLS()
-        console.log(token)
         navigate(-1)
       },
       onError: (error) => {
