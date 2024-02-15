@@ -36,5 +36,6 @@ export const adminPath = {
   deleteImage: '/admin/images/delete',
 
   //? Feedback
-  feedbackManagement: '/admin/feedbacks'
+  feedbackManagement: '/admin/feedbacks',
+  feedbackDetail: '/admin/feedbacks/:feedbackId'
 }

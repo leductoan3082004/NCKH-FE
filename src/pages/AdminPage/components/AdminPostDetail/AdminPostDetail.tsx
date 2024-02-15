@@ -3,7 +3,7 @@ import { Fragment, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import postApi from 'src/apis/post.api'
 import LoadingRing from 'src/components/LoadingRing'
-import { formatTimeToSeconds, getIdFromPostId, isAxiosBadRequestError } from 'src/utils/utils'
+import { formatTimeToSeconds, getIdFromUrl, isAxiosBadRequestError } from 'src/utils/utils'
 import AdminPostInfor from '../AdminPostInfor'
 import { FloatingOverlay } from '@floating-ui/react'
 import classNames from 'classnames'
@@ -33,7 +33,7 @@ export default function AdminPostDetail() {
 
   //? Get post detail
   const { postId: paramPostId } = useParams()
-  const postId = getIdFromPostId(paramPostId as string)
+  const postId = getIdFromUrl(paramPostId as string)
   const {
     data: postDetailData,
     isLoading,

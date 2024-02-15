@@ -3,24 +3,30 @@ import { produce } from 'immer'
 import { keyBy } from 'lodash'
 import { Fragment, useContext, useEffect } from 'react'
 import { ColorRing } from 'react-loader-spinner'
+import { useNavigate } from 'react-router-dom'
 import { feedbackApi } from 'src/apis/feedback.api'
+import { adminPath } from 'src/constants/path'
 import useFeedbackListQueryConfig from 'src/hooks/useFeedbackListQueryConfig'
 import { useViewport } from 'src/hooks/useViewport'
 import { ExtendedFeedback, FeedbackContext } from 'src/layouts/AdminFeedbackLayout/AdminFeedbackLayout'
-import { FeedbackListConfig } from 'src/types/feedback.type'
-import { formatDate } from 'src/utils/utils'
+import { Feedback, FeedbackListConfig } from 'src/types/feedback.type'
+import { formatDate, generateFeedbackId } from 'src/utils/utils'
 
 interface ItemProps {
   feedback: ExtendedFeedback
   index: number
   handleChecking: (feedbackIndex: number) => (event: React.ChangeEvent<HTMLInputElement>) => void
+  handleClickItem: (feedback: Feedback) => () => void
 }
 
-const LargeFeedbackItem = ({ feedback, index, handleChecking }: ItemProps) => {
+const LargeFeedbackItem = ({ feedback, index, handleChecking, handleClickItem }: ItemProps) => {
   const { deletingMode } = useContext(FeedbackContext)
 
   return (
-    <button className='grid w-full hover:bg-mainBlue100 grid-cols-12 gap-2 py-3 px-4 rounded-lg border border-black/20'>
+    <button
+      onClick={handleClickItem(feedback)}
+      className='grid w-full hover:bg-mainBlue100 grid-cols-12 gap-2 py-3 px-4 rounded-lg border border-black/20'
+    >
       <div className='col-span-2'>
         <p className='font-bold text-left'>{feedback.name}</p>
       </div>
@@ -50,11 +56,14 @@ const LargeFeedbackItem = ({ feedback, index, handleChecking }: ItemProps) => {
   )
 }
 
-const SmallFeedbackItem = ({ feedback, index, handleChecking }: ItemProps) => {
+const SmallFeedbackItem = ({ feedback, index, handleChecking, handleClickItem }: ItemProps) => {
   const { deletingMode } = useContext(FeedbackContext)
 
   return (
-    <button className='w-full relative border overflow-hidden hover:bg-mainBlue100 border-black/20 rounded-md py-3 px-2 mobileLarge:px-4'>
+    <button
+      className='w-full relative border overflow-hidden hover:bg-mainBlue100 border-black/20 rounded-md py-3 px-2 mobileLarge:px-4'
+      onClick={handleClickItem(feedback)}
+    >
       <div className='flex justify-between items-center'>
         <p className='font-bold'>{feedback.name}</p>
         <div className='flex space-x-4'>
@@ -117,6 +126,14 @@ export default function AdminFeedbackManagement() {
     )
   }
 
+  //! HANDLE ENTER FEEDBACK
+  const navigate = useNavigate()
+  const handleClickItem = (feedback: Feedback) => () => {
+    navigate({
+      pathname: `${adminPath.feedbackManagement}/${generateFeedbackId({ topic: feedback.topic, id: feedback._id })}`
+    })
+  }
+
   return (
     <div className=''>
       {isFetching && (
@@ -139,7 +156,12 @@ export default function AdminFeedbackManagement() {
               {extendedFeedbacks.map((feedback, index) => (
                 <div className='' key={feedback._id}>
                   {/* <LargeFeedbackItem feedback={feedback} index={index} handleChecking={handleChecking} /> */}
-                  <LargeFeedbackItem feedback={feedback} index={index} handleChecking={handleChecking} />
+                  <LargeFeedbackItem
+                    feedback={feedback}
+                    index={index}
+                    handleChecking={handleChecking}
+                    handleClickItem={handleClickItem}
+                  />
                 </div>
               ))}
             </div>
@@ -148,7 +170,12 @@ export default function AdminFeedbackManagement() {
             <div className='flex flex-col space-y-2'>
               {extendedFeedbacks.map((feedback, index) => (
                 <div className='' key={feedback._id}>
-                  <SmallFeedbackItem feedback={feedback} index={index} handleChecking={handleChecking} />
+                  <SmallFeedbackItem
+                    feedback={feedback}
+                    index={index}
+                    handleChecking={handleChecking}
+                    handleClickItem={handleClickItem}
+                  />
                 </div>
               ))}
             </div>

@@ -18,6 +18,7 @@ import AdminPostDetail from './pages/AdminPage/components/AdminPostDetail'
 import AdminDeleteImage from './pages/AdminPage/components/AdminDeleteImage'
 import AdminFeedbackManagement from './pages/AdminPage/components/AdminFeedbackManagement'
 import AdminFeedbackLayout from './layouts/AdminFeedbackLayout'
+import AdminFeedbackDetail from './pages/AdminPage/components/AdminFeedbackDetail'
 
 function ProtectedRoute() {
   const { isAuthenticated } = useContext(AppContext)
@@ -120,6 +121,14 @@ export default function useRouteElements() {
           element: (
             <AdminFeedbackLayout>
               <AdminFeedbackManagement />
+            </AdminFeedbackLayout>
+          )
+        },
+        {
+          path: adminPath.feedbackDetail,
+          element: (
+            <AdminFeedbackLayout>
+              <AdminFeedbackDetail />
             </AdminFeedbackLayout>
           )
         }

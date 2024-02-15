@@ -22,8 +22,12 @@ export const generatePostId = ({ title, id }: { title: string; id: string }) => 
   return removeSpecialCharacter(title).replace(/\s/g, '-') + `-id:${id}`
 }
 
-export const getIdFromPostId = (postId: string) => {
-  const arr = postId.split('-id:')
+export const generateFeedbackId = ({ topic, id }: { topic: string; id: string }) => {
+  return removeSpecialCharacter(topic).replace(/\s/g, '-') + `-id:${id}`
+}
+
+export const getIdFromUrl = (idString: string) => {
+  const arr = idString.split('-id:')
   return arr[arr.length - 1]
 }
 
