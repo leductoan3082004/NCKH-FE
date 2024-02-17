@@ -13,8 +13,9 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames'
 import { motion } from 'framer-motion'
-import { ElementType, useRef, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { ElementType, useContext, useRef, useState } from 'react'
+import { AppContext } from 'src/contexts/app.context'
+import usePostListQueryConfig from 'src/hooks/usePostListQueryConfig'
 
 interface Props {
   haveArrow?: boolean
@@ -26,7 +27,7 @@ interface Props {
   placement?: Placement
   offsetValue?: number
   children: React.ReactNode
-  path: string
+  category: string
 }
 
 export default function HeaderPopover({
@@ -38,8 +39,12 @@ export default function HeaderPopover({
   placement,
   offsetValue = 14,
   children,
-  path
+  category
 }: Props) {
+  //? USE CONTEXT
+  const { getPostListByCategory } = useContext(AppContext)
+
+  //? USE STATE
   const [isOpen, setIsOpen] = useState<boolean>(initialOpen || false)
 
   const arrowRef = useRef(null)
@@ -56,21 +61,29 @@ export default function HeaderPopover({
     })
   })
 
+  //? Check if current category is active
+  const postConfig = usePostListQueryConfig()
+  const { category: activeCategory } = postConfig
+  const isActive = activeCategory == category
+
   const { getReferenceProps, getFloatingProps } = useInteractions([hover])
+
+  //! HANDLE CLICK CATEGORY
+  const handleSelect = () => {
+    getPostListByCategory(category)
+  }
 
   return (
     <div>
       <Element ref={refs.setReference} {...getReferenceProps()}>
-        <NavLink
-          to={path}
-          className={({ isActive }) =>
-            classNames(
-              'flex items-center hover:bg-primaryBlueHovering text-sm desktop:text-base duration-200 font-semibold px-3 desktop:px-4 py-1.5 rounded-md space-x-1.5 hover:text-white',
-              {
-                'bg-primaryBlueHovering text-white': isActive || isOpen
-              }
-            )
-          }
+        <button
+          className={classNames(
+            'flex items-center hover:bg-primaryBlueHovering text-sm desktop:text-base duration-200 font-semibold px-3 uppercase desktop:px-4 py-1.5 rounded-md space-x-1.5 hover:text-white',
+            {
+              'bg-primaryBlueHovering text-white': isActive || isOpen
+            }
+          )}
+          onClick={handleSelect}
         >
           {children}
           <motion.div
@@ -81,7 +94,7 @@ export default function HeaderPopover({
           >
             <FontAwesomeIcon icon={faCaretDown} />
           </motion.div>
-        </NavLink>
+        </button>
       </Element>
       {isOpen && (
         <motion.div

@@ -4,10 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import useClickOutside from 'src/hooks/useClickOutside'
 import AnimateChangeInHeight from '../AnimateChangeInHeight'
-import { Categories } from 'src/pages/AdminPage/components/AdminCategories/AdminCategories'
 import { omit } from 'lodash'
 import usePostListQueryConfig from 'src/hooks/usePostListQueryConfig'
 import classNames from 'classnames'
+import { Categories } from 'src/constants/categories'
 
 export default function SortByCategory() {
   //? Hanlde open/close

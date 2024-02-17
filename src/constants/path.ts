@@ -1,14 +1,7 @@
 const mainPath = {
   home: '/',
-  vanBan: '/van-ban',
-  dinhHuongSuDung: '/dinh-huong-su-dung-van-ban',
-  gioiThieu: '/gioi-thieu',
-  gopY: '/gop-y',
-  lienHe: '/lien-he',
-  tieuChiLuaChon: '/tieu-chi-lua-chon',
-  heThongVanBan: '/he-thong-van-ban',
-  thietKeCongCuDanhGia: '/thiet-ke-cong-cu-danh-gia',
-  deMinhHoa: '/de-minh-hoa'
+  posts: '/bai-viet',
+  postDetail: '/bai-viet/:postId'
 } as const
 export default mainPath
 

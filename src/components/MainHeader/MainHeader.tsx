@@ -50,7 +50,7 @@ export default function MainHeader() {
                   placement='bottom-start'
                   backgroundColor='#fff'
                   offsetValue={2}
-                  path={path.vanBan}
+                  category='Văn bản'
                 >
                   <p className=''>văn bản</p>
                 </HeaderPopover>
@@ -64,7 +64,7 @@ export default function MainHeader() {
                   placement='bottom-start'
                   backgroundColor='#fff'
                   offsetValue={2}
-                  path={path.dinhHuongSuDung}
+                  category='Định hướng sử dụng văn bản'
                 >
                   <p className=''>định hướng sử dụng văn bản</p>
                 </HeaderPopover>

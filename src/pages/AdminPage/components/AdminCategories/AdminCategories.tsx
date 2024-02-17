@@ -3,26 +3,11 @@ import { AdminContext } from 'src/contexts/admin.context'
 import classNames from 'classnames'
 import { useLocation } from 'react-router-dom'
 import { adminPath } from 'src/constants/path'
+import { Categories } from 'src/constants/categories'
 
 interface Props {
   errorMessage?: string
 }
-
-export const Categories = [
-  'Tất cả',
-  'Văn bản',
-  'Tiêu chí lựa chọn văn bản',
-  'Hệ thống văn bản',
-  'Truyện thơ',
-  'Thơ',
-  'Truyện ngắn hiện đại',
-  'Bi kịch',
-  'Tùy bút, tản văn',
-  'Đề minh họa',
-  'Định hướng sử dụng văn bản',
-  'Quy trình thiết kế công cụ đánh giá',
-  'Giới thiệu trang web'
-]
 
 export default function AdminCategories({ errorMessage }: Props) {
   const { categories, setCategories, updateCategories, setUpdateCategories } = useContext(AdminContext)
