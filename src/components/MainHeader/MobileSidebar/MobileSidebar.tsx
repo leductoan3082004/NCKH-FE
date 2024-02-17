@@ -41,6 +41,14 @@ export default function MobileSidebar() {
     'tablet:hover:text-white hover:text-black px-7 tablet:px-4 py-3 duration-200 tablet:hover:bg-primaryBlue tablet:rounded-md'
   const wrapperStyles = 'text-unhoverText flex flex-col py-4'
 
+  //? Handle close sidebar
+  const closeAndResetSidebar = () => {
+    closeSidebar()
+    setMainsection(true)
+    setUsageOrientationSection(false)
+    setDocumentsSection(false)
+  }
+
   return (
     <Fragment>
       <button
@@ -62,7 +70,7 @@ export default function MobileSidebar() {
               transition={{ duration: 0.3 }}
             />
             <motion.div
-              className='fixed bottom-0 left-0 z-10 flex h-full mobileSmall:w-[95%] mobileLarge:w-[75%] w-full flex-col justify-start self-center rounded-lg rounded-l-none shadow-sm overflow-hidden'
+              className='fixed bottom-0 left-0 z-10 flex h-full mobileSmall:w-[95%] mobileLarge:w-[80%] w-full flex-col justify-start self-center rounded-lg rounded-l-none shadow-sm overflow-hidden tabletSmall:w-[60%]'
               initial={{ opacity: 0, x: '-100%' }}
               animate={{
                 opacity: 1,
@@ -131,7 +139,11 @@ export default function MobileSidebar() {
                     openMainSection={() => setMainsection(true)}
                     setIsOpen={setDocumentsSection}
                   >
-                    <NavigateDocuments itemClassNames={itemStyles} wrapperClassNames={wrapperStyles} />
+                    <NavigateDocuments
+                      itemClassNames={itemStyles}
+                      wrapperClassNames={wrapperStyles}
+                      handleClose={closeAndResetSidebar}
+                    />
                   </MobileSidebarSection>
 
                   <MobileSidebarSection
@@ -140,7 +152,11 @@ export default function MobileSidebar() {
                     openMainSection={() => setMainsection(true)}
                     setIsOpen={setUsageOrientationSection}
                   >
-                    <NavigateDocumentsUsageOrientation itemClassNames={itemStyles} wrapperClassNames={wrapperStyles} />
+                    <NavigateDocumentsUsageOrientation
+                      itemClassNames={itemStyles}
+                      wrapperClassNames={wrapperStyles}
+                      handleClose={closeAndResetSidebar}
+                    />
                   </MobileSidebarSection>
                 </div>
               </div>

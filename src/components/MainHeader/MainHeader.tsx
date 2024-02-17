@@ -15,7 +15,7 @@ export default function MainHeader() {
 
   //? Style
   const popoverStyle = 'border border-black/20 rounded-lg min-w-52 py-3 px-2 text-sm dekstop:text-base'
-  const wrapperStyle = 'text-unhoverText flex flex-col '
+  const wrapperStyle = 'text-unhoverText flex flex-col space-y-1'
   const itemStyle =
     'tablet:hover:text-white hover:text-black px-4 tablet:px-3 py-1.5 duration-200 tablet:hover:bg-primaryBlueHovering tablet:rounded-md'
 

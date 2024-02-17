@@ -12,29 +12,40 @@ import useClickOutside from 'src/hooks/useClickOutside'
 interface Props {
   itemClassNames?: string
   wrapperClassNames?: string
+  handleClose?: () => void
 }
 
-export default function NavigateDocuments({ itemClassNames, wrapperClassNames }: Props) {
+export default function NavigateDocuments({ itemClassNames, wrapperClassNames, handleClose }: Props) {
   const { getPostListByCategory } = useContext(AppContext)
 
   const { visible, setVisible, ref } = useClickOutside(false)
+
+  const handleClick = (category: string) => () => {
+    handleClose && handleClose()
+    getPostListByCategory(category)
+  }
 
   return (
     <div className={wrapperClassNames}>
       <button
         className={classNames(itemClassNames, 'flex items-center w-full justify-between uppercase')}
-        onClick={() => getPostListByCategory('Tiêu chí lựa chọn văn bản')}
+        onClick={handleClick('Tiêu chí lựa chọn văn bản')}
       >
         Tiêu chí lựa chọn văn bản
       </button>
 
       <div ref={ref}>
-        <div className='flex justify-between w-full '>
+        <div className='flex justify-between space-x-1 w-full pr-4 tablet:pr-0'>
           <button
-            onClick={() => setVisible(!visible)}
+            onClick={handleClick('Hệ thống văn bản')}
             className={classNames(itemClassNames, 'flex items-center w-full justify-between uppercase')}
           >
             <p className=''>Hệ thống văn bản</p>
+          </button>
+          <button
+            onClick={() => setVisible(!visible)}
+            className='py-1 text-black px-2 rounded-md border border-black/20 hover:bg-primaryBlueHovering'
+          >
             <motion.div
               className=''
               animate={{
