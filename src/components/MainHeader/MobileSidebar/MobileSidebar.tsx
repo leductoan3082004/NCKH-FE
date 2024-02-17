@@ -6,12 +6,12 @@ import useClickOutside from 'src/hooks/useClickOutside'
 import MobileSidebarSection from './MobileSidebarSection'
 import NavigateDocuments from '../NavigateDocuments'
 import NavigateDocumentsUsageOrientation from '../NavigateDocumentsUsageOrientation'
-import NavigateHome from '../NavigateHome'
+import { NavLink } from 'react-router-dom'
+import mainPath from 'src/constants/path'
 
 export default function MobileSidebar() {
   //? Use state
   const [mainSection, setMainsection] = useState<boolean>(true)
-  const [homeSection, setHomeSection] = useState<boolean>(false)
   const [usageOrientationSection, setUsageOrientationSection] = useState<boolean>(false)
   const [documentsSection, setDocumentsSection] = useState<boolean>(false)
 
@@ -29,11 +29,6 @@ export default function MobileSidebar() {
   const openUsageOrientationSection = () => {
     setMainsection(false)
     setUsageOrientationSection(true)
-  }
-
-  const openHomeSection = () => {
-    setMainsection(false)
-    setHomeSection(true)
   }
 
   const openDocumentsSection = () => {
@@ -99,15 +94,12 @@ export default function MobileSidebar() {
                       transition={{ duration: 0.3 }}
                     >
                       <div className='font-semibold flex flex-col uppercase'>
-                        <button
-                          onClick={openHomeSection}
+                        <NavLink
+                          to={mainPath.home}
                           className='border-black/5 border-y w-full px-6 py-4 text-grayText hover:bg-black/10 hover:text-darkText duration-200 flex items-center justify-between uppercase'
                         >
                           <p className=''>trang chủ</p>
-                          <span>
-                            <FontAwesomeIcon icon={faChevronRight} className='font-medium' />
-                          </span>
-                        </button>
+                        </NavLink>
 
                         <button
                           onClick={openDocumentsSection}
@@ -133,15 +125,6 @@ export default function MobileSidebar() {
                   )}
                 </AnimatePresence>
                 <div className='absolute top-0 left-0 w-full'>
-                  <MobileSidebarSection
-                    title='trang chủ'
-                    isOpen={homeSection}
-                    openMainSection={() => setMainsection(true)}
-                    setIsOpen={setHomeSection}
-                  >
-                    <NavigateHome itemClassNames={itemStyles} wrapperClassNames={wrapperStyles} />
-                  </MobileSidebarSection>
-
                   <MobileSidebarSection
                     title='văn bản'
                     isOpen={documentsSection}

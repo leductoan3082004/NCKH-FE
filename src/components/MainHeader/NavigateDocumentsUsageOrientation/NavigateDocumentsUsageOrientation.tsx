@@ -1,5 +1,6 @@
-import { NavLink } from 'react-router-dom'
-import path from 'src/constants/path'
+import classNames from 'classnames'
+import { useContext } from 'react'
+import { AppContext } from 'src/contexts/app.context'
 
 interface Props {
   itemClassNames?: string
@@ -7,14 +8,23 @@ interface Props {
 }
 
 export default function NavigateDocumentsUsageOrientation({ itemClassNames, wrapperClassNames }: Props) {
+  const { getPostListByCategory } = useContext(AppContext)
+
   return (
     <div className={wrapperClassNames}>
-      <NavLink to={path.thietKeCongCuDanhGia} className={itemClassNames}>
+      <button
+        className={classNames(itemClassNames, 'flex items-center w-full justify-between uppercase')}
+        onClick={() => getPostListByCategory('Quy trình thiết kế công cụ đánh giá')}
+      >
         Quy trình thiết kế công cụ đánh giá
-      </NavLink>
-      <NavLink to={path.deMinhHoa} className={itemClassNames}>
+      </button>
+
+      <button
+        className={classNames(itemClassNames, 'flex items-center w-full justify-between uppercase')}
+        onClick={() => getPostListByCategory('Đề minh họa')}
+      >
         Đề minh họa
-      </NavLink>
+      </button>
     </div>
   )
 }
