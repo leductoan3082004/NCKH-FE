@@ -11,7 +11,7 @@ function App() {
   const routeElements = useRouteElements()
 
   return (
-    <div className='text-[#101010]'>
+    <div className='text-darkText bg-mainBg'>
       {routeElements}
       <ToastContainer limit={3} />
       {loadingPage && <LoadingPage />}
