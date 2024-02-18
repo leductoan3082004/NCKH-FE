@@ -1,17 +1,12 @@
-import { faHeart, faCheck, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
+import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
 import {} from '@fortawesome/free-regular-svg-icons'
-import { memo, useContext, useEffect, useState } from 'react'
+import { memo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import classNames from 'classnames'
 
-import { AppContext } from 'src/contexts/app.context'
 import { Post as PostType } from 'src/types/post.type'
 import mainPath from 'src/constants/path'
 import { generatePostId } from 'src/utils/utils'
-
-const MAXLENGTH = 3
 
 export const showSuccessDialog = (setIsOpen: React.Dispatch<React.SetStateAction<boolean>>, time?: number) => {
   setIsOpen(true)
@@ -22,13 +17,10 @@ export const showSuccessDialog = (setIsOpen: React.Dispatch<React.SetStateAction
 
 interface Props {
   post: PostType
-  initialLoading?: boolean
   disableClick?: boolean
 }
 
-function Post({ post, initialLoading, disableClick = false }: Props) {
-  const [dialogIsOpen, setDialogIsOpen] = useState<boolean>(false)
-
+function Post({ post, disableClick = false }: Props) {
   const navigate = useNavigate()
 
   //? HANDLE ENTER ITEM

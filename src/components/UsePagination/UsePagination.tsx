@@ -2,16 +2,16 @@ import classNames from 'classnames'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { Link, createSearchParams } from 'react-router-dom'
-import path from 'src/constants/path'
-import { QueryConfig } from 'src/hooks/usePostListQueryConfig'
+import mainPath from 'src/constants/path'
+import { PostListQueryConfig } from 'src/hooks/usePostListQueryConfig'
 
 interface Props {
-  queryConfig: QueryConfig
+  postListQueryConfig: PostListQueryConfig
   totalPage: number
   isMobile?: boolean
 }
-export default function UsePagination({ queryConfig, totalPage, isMobile }: Props) {
-  const currentPage = Number(queryConfig.page)
+export default function UsePagination({ postListQueryConfig, totalPage, isMobile }: Props) {
+  const currentPage = Number(postListQueryConfig.page)
   const RANGE = isMobile ? 1 : 2
 
   const renderPagination = () => {
@@ -63,9 +63,9 @@ export default function UsePagination({ queryConfig, totalPage, isMobile }: Prop
         return (
           <Link
             to={{
-              pathname: path.home,
+              pathname: mainPath.home,
               search: createSearchParams({
-                ...queryConfig,
+                ...postListQueryConfig,
                 page: pageNumber.toString()
               }).toString()
             }}
@@ -90,9 +90,9 @@ export default function UsePagination({ queryConfig, totalPage, isMobile }: Prop
       {currentPage > 1 ? (
         <Link
           to={{
-            pathname: path.home,
+            pathname: mainPath.home,
             search: createSearchParams({
-              ...queryConfig,
+              ...postListQueryConfig,
               page: (currentPage - 1).toString()
             }).toString()
           }}
@@ -114,9 +114,9 @@ export default function UsePagination({ queryConfig, totalPage, isMobile }: Prop
       {currentPage < totalPage ? (
         <Link
           to={{
-            pathname: path.home,
+            pathname: mainPath.home,
             search: createSearchParams({
-              ...queryConfig,
+              ...postListQueryConfig,
               page: (currentPage + 1).toString()
             }).toString()
           }}
