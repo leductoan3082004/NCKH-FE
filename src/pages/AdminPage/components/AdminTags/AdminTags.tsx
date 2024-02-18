@@ -24,19 +24,17 @@ export default function AdminTags({ errorMessage }: Props) {
     setTypedTag(value)
   }
 
-  function containsOnlyWhitespace(str: string) {
-    return / /.test(str)
-  }
-
   const addTag = (tag: string) => {
-    if (tag == '' || containsOnlyWhitespace(tag)) return
+    const testTag = tag.replace(/\s/g, '')
+    tag.replace(/\s/g, '')
+    if (tag == '' || testTag == '') return
     if (isCreating) {
       if (!tags.includes(tag)) {
         setTags([...tags, tag])
       }
       setTypedTag('')
     } else {
-      if (!tags.includes(tag)) {
+      if (!updateTags.includes(tag)) {
         setUpdateTags([...updateTags, tag])
       }
       setTypedTag('')

@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { AxiosResponse } from 'axios'
-import { useContext, useEffect, useMemo, useState } from 'react'
+import { Fragment, useContext, useEffect, useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { imageApi } from 'src/apis/image.api'
 import postApi from 'src/apis/post.api'
@@ -21,6 +21,9 @@ export default function AdminCreatePost() {
   const { tags, setTags, categories, setCategories } = useContext(AdminContext)
 
   const [excutingDialog, setExcutingDialog] = useState<boolean>(false)
+  const [excuting, setExcuting] = useState<boolean>(false)
+  const [error, setError] = useState<boolean>(false)
+  const [errorUploadImage, setErrorUploadImage] = useState<boolean>(false)
 
   //? Handle avatar
   const [file, setFile] = useState<File>()
@@ -43,7 +46,7 @@ export default function AdminCreatePost() {
     },
     resolver: yupResolver(createPostSchema)
   })
-  const { handleSubmit, setError, setValue, reset, clearErrors } = methods
+  const { handleSubmit, setError: setFormError, setValue, reset, clearErrors } = methods
 
   useEffect(() => {
     if (tags.length > 0) {
@@ -71,12 +74,13 @@ export default function AdminCreatePost() {
 
   const onSubmit = async (data: FormData) => {
     setExcutingDialog(true)
+    setExcuting(true)
     if (tags.length == 0) {
-      setError('tag', { message: 'Cần điền ít nhất 1 tag' })
+      setFormError('tag', { message: 'Cần điền ít nhất 1 tag' })
       return
     }
     if (categories.length == 0) {
-      setError('category', { message: 'Cần điền ít nhất 1 category' })
+      setFormError('category', { message: 'Cần điền ít nhất 1 category' })
       return
     }
     try {
@@ -86,7 +90,15 @@ export default function AdminCreatePost() {
         const uploadImageBody = {
           file: file
         }
-        newUploadedImageRespone = await uploadImageMutation.mutateAsync({ ...uploadImageBody })
+        newUploadedImageRespone = await uploadImageMutation.mutateAsync(
+          { ...uploadImageBody },
+          {
+            onError: () => {
+              setError(true)
+              setErrorUploadImage(true)
+            }
+          }
+        )
       }
       const newPostBody: FormData = {
         author: data.author,
@@ -99,6 +111,7 @@ export default function AdminCreatePost() {
       // console.log(data.content)
       createPostMutation.mutate(newPostBody, {
         onSuccess: () => {
+          setExcuting(false)
           reset()
           setTags([])
           setCategories([])
@@ -108,6 +121,7 @@ export default function AdminCreatePost() {
         }
       })
     } catch (error) {
+      setExcuting(false)
       if (isAxiosBadRequestError<ErrorRespone>(error)) {
         const formError = error.response?.data
         if (formError) {
@@ -162,11 +176,24 @@ export default function AdminCreatePost() {
           setExcutingDialog(false)
         }}
       >
-        {(uploadImageMutation.isPending || createPostMutation.isPending) && <LoadingRing />}
-        {createPostMutation.isSuccess && (
-          <p className='text-center text-xl font-medium uppercase leading-6 text-green-500'>
-            Đã tạo bài viết thành công
-          </p>
+        {excuting && <LoadingRing />}
+        {!excuting && (
+          <Fragment>
+            {!error && (
+              <p className='text-center text-xl font-medium uppercase leading-6 text-successGreen'>
+                Đã tạo bài viết thành công
+              </p>
+            )}
+            {error && (
+              <Fragment>
+                {errorUploadImage && (
+                  <p className='text-center text-xl font-medium uppercase leading-6 text-alertRed'>
+                    Không thể tải ảnh lên
+                  </p>
+                )}
+              </Fragment>
+            )}
+          </Fragment>
         )}
       </DialogPopup>
     </div>
