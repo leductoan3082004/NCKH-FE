@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import postApi from 'src/apis/post.api'
 import LoadingRing from 'src/components/LoadingRing'
@@ -18,10 +18,14 @@ import { ErrorRespone, SuccessRespone } from 'src/types/utils.type'
 import { AxiosResponse } from 'axios'
 import { Image, ImageListConfig } from 'src/types/image.type'
 import useImageListQueryConfig, { ImageListQueryConfig } from 'src/hooks/useImageListQueryConfig'
+import { AdminContext } from 'src/contexts/admin.context'
 
 type FormData = UpdatePostSchema
 
 export default function AdminPostDetail() {
+  //? Use context
+  const { updateTags, updateCategories } = useContext(AdminContext)
+
   //? Use state
   const [editingMode, setEditingMode] = useState<boolean>(false)
   const [updateExcutingDialog, setUpdateExcutingDialog] = useState<boolean>(false)
@@ -30,6 +34,9 @@ export default function AdminPostDetail() {
   const [deleteExcutingDialog, setDeleteExcutingDialog] = useState<boolean>(false)
   const [imageFile, setImageFile] = useState<File>()
   const [imageListConfig, setImageListConfig] = useState<ImageListQueryConfig>(useImageListQueryConfig())
+  const [updateSuccess, setUpdateSuccess] = useState<boolean>(false)
+  const [invalidFields, setInvalidFields] = useState<string[]>([])
+  const [undefinedError, setUndefinedError] = useState<boolean>(false)
 
   //? Get post detail
   const { postId: paramPostId } = useParams()
@@ -106,18 +113,51 @@ export default function AdminPostDetail() {
   const uploadImageMutation = useMutation({ mutationFn: imageApi.uploadImage })
   const deleteImageMutation = useMutation({ mutationFn: imageApi.deleteImage })
 
+  //? Validate form
+  const validateForm = (form: FormData) => {
+    const invalidFields = []
+    for (const key in form) {
+      const value: string | string[] = form[key as keyof FormData]
+      if (key == 'tag' || key == 'category') {
+        if (value.length == 0) {
+          invalidFields.push(key)
+        }
+      } else {
+        if (value == '') {
+          invalidFields.push(key)
+        }
+      }
+    }
+    return invalidFields
+  }
+
+  //? Handle submit form
   const onSubmit = handleSubmit(async (data) => {
     setUpdateExcutingDialog(true)
     setExcuting(true)
-    const validateForm =
-      (data.author != '' && data.author != postDetail?.author) ||
-      (data.title != '' && data.title != postDetail?.title) ||
-      (data.image_url != '' && data.image_url != postDetail?.image_url) ||
-      (data.content != '' && data.content != postDetail?.content) ||
-      (data.tag.length > 0 && data.tag != postDetail?.tag) ||
-      (data.category.length > 0 && data.category != postDetail?.category)
+    // const validateForm =
+    //   (data.author != '' && data.author != postDetail?.author) ||
+    //   (data.title != '' && data.title != postDetail?.title) ||
+    //   (data.image_url != '' && data.image_url != postDetail?.image_url) ||
+    //   (data.content != '' && data.content != postDetail?.content) ||
+    //   (data.tag.length > 0 && data.tag != postDetail?.tag) ||
+    //   (data.category.length > 0 && data.category != postDetail?.category)
 
-    if (!validateForm) {
+    // if (!validateForm) {
+    //   setExcuting(false)
+    //   return
+    // }
+
+    data = {
+      ...data,
+      tag: updateTags,
+      category: updateCategories
+    }
+
+    const invalidFields = validateForm(data)
+
+    if (invalidFields.length > 0) {
+      setInvalidFields(invalidFields)
       setExcuting(false)
       return
     }
@@ -134,18 +174,25 @@ export default function AdminPostDetail() {
       }
       const updatePostBody: FormData = {
         ...data,
-        image_url: newUploadedImageRespone ? newUploadedImageRespone.data.data.url : ''
+        image_url: newUploadedImageRespone ? newUploadedImageRespone.data.data.url : data.image_url
       }
-      await updatePostMutation.mutateAsync(updatePostBody)
-
-      //:: On success
-      queryClient.invalidateQueries({ queryKey: ['admin-image-list'] })
-      queryClient.invalidateQueries({ queryKey: ['admin-post-detail'] })
-      queryClient.invalidateQueries({ queryKey: ['admin-post-list'] })
-      window.scrollTo({ top: 0, left: 0 })
-      setEditingMode(false)
-      setImageFile(undefined)
-      setExcuting(false)
+      updatePostMutation.mutate(updatePostBody, {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ['admin-image-list'] })
+          queryClient.invalidateQueries({ queryKey: ['admin-post-detail'] })
+          queryClient.invalidateQueries({ queryKey: ['admin-post-list'] })
+          setUpdateSuccess(true)
+        },
+        onError: () => {
+          setUndefinedError(true)
+        },
+        onSettled: () => {
+          window.scrollTo({ top: 0, left: 0 })
+          setEditingMode(false)
+          setImageFile(undefined)
+          setExcuting(false)
+        }
+      })
     } catch (error) {
       if (isAxiosBadRequestError<ErrorRespone>(error)) {
         const formError = error.response?.data
@@ -255,9 +302,32 @@ export default function AdminPostDetail() {
       >
         {excuting && <LoadingRing />}
         {!excuting && (
-          <p className='text-center text-xl font-bold uppercase leading-6 text-successGreen'>
-            Bài viết đã được cập nhật
-          </p>
+          <Fragment>
+            {updateSuccess && (
+              <p className='text-center text-xl font-bold uppercase leading-6 text-successGreen'>
+                Bài viết đã được cập nhật
+              </p>
+            )}
+            {invalidFields.length > 0 && (
+              <div className='space-y-2'>
+                <p className='text-left text-lg font-bold uppercase leading-6 text-alertRed'>
+                  Chỉnh sửa bài viết không thành công do các nội dung sau không hợp lệ:
+                </p>
+                <div className='flex flex-col space-y-2 items-start'>
+                  {invalidFields.map((field, index) => (
+                    <span key={index} className=''>
+                      - {field}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+            {undefinedError && (
+              <p className='text-center text-xl font-bold uppercase leading-6 text-alertRed'>
+                Đã có lỗi xảy ra, vui lòng thử lại
+              </p>
+            )}
+          </Fragment>
         )}
       </DialogPopup>
 
