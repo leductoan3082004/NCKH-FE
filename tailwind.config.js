@@ -8,7 +8,7 @@ module.exports = {
     extend: {
       colors: {
         headerBg: '#fdfefd',
-        mainBg: '#ddffff',
+        mainBg: '#cdedfd',
         primaryBlue: '#023E8A',
         primaryBackground: '#00B4D8',
         darkPrimaryBlue: '#03045E',
@@ -49,6 +49,13 @@ module.exports = {
       addComponents({
         '.container': {
           maxWidth: theme('columns.7xl'),
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          paddingLeft: theme('spacing.4'),
+          paddingRight: theme('spacing.4')
+        },
+        '.postContainer': {
+          maxWidth: theme('columns.5xl'),
           marginLeft: 'auto',
           marginRight: 'auto',
           paddingLeft: theme('spacing.4'),

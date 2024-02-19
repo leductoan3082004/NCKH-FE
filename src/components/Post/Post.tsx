@@ -28,7 +28,7 @@ function Post({ post, disableClick = false }: Props) {
     if (disableClick) {
       event.preventDefault()
     } else {
-      navigate({ pathname: `${mainPath.home}${generatePostId({ title: post.title, id: post._id })}` })
+      navigate({ pathname: `${mainPath.posts}/${generatePostId({ title: post.title, id: post._id })}` })
     }
   }
 
@@ -53,9 +53,9 @@ function Post({ post, disableClick = false }: Props) {
           </div>
         </div>
       </div>
-      <div className='col-span-3 flex justify-center items-center min-h-full'>
-        <div className='flex flex-col items-center justify-between space-x-1 space-y-1  px-2 pt-2 sm:px-3 lg:px-4 lg:pt-4'>
-          <p className='h-full justify-center truncate text-center text-sm mobileLarge:text-báe font-semibold uppercase text-darkPrimaryBlue duration-200 tablet:text-lg desktop:text-xl'>
+      <div className='col-span-3 flex justify-start items-center min-h-full'>
+        <div className='flex flex-col items-start justify-start space-x-1 space-y-1 px-2 pt-2 sm:px-3 lg:px-4 lg:pt-4'>
+          <p className='h-full justify-start text-left text-base tablet:text-lg font-bold uppercase text-darkPrimaryBlue duration-200  desktop:text-xl'>
             {post.title}
           </p>
         </div>

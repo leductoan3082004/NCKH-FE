@@ -29,7 +29,7 @@ export default function HomePageIntroduction() {
   })
 
   return (
-    <div className='container'>
+    <div className='postContainer'>
       {(isFetchingIntroduction || isFetchingIntroductionPostList) && (
         <div className='min-h-96 flex items-center justify-center'>
           <LoadingRing />

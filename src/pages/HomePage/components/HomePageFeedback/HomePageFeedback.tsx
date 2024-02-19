@@ -38,8 +38,8 @@ export default function HomepageFeedback() {
   })
   const {
     register,
-    setValue,
     handleSubmit,
+    reset,
     formState: { errors }
   } = methods
 
@@ -52,11 +52,7 @@ export default function HomepageFeedback() {
     try {
       sendFeedbackMutation.mutate(data, {
         onSuccess: () => {
-          setValue('topic', '')
-          setValue('content', '')
-          setValue('name', '')
-          setValue('email', '')
-          setValue('phone', '')
+          reset()
         }
       })
     } catch (error) {
