@@ -4,7 +4,7 @@ import MainLayout from './layouts/MainLayout'
 import { Suspense, useContext } from 'react'
 import { AppContext } from './contexts/app.context'
 import AdminPage from './pages/AdminPage'
-import path, { adminPath } from './constants/path'
+import mainPath, { adminPath } from './constants/path'
 import AdminLogin from './pages/AdminPage/components/AdminLogin'
 import AdminLayout from './layouts/AdminLayout'
 import LoadingPage from './components/LoadingPage'
@@ -19,8 +19,8 @@ import AdminDeleteImage from './pages/AdminPage/components/AdminDeleteImage'
 import AdminFeedbackManagement from './pages/AdminPage/components/AdminFeedbackManagement'
 import AdminFeedbackLayout from './layouts/AdminFeedbackLayout'
 import AdminFeedbackDetail from './pages/AdminPage/components/AdminFeedbackDetail'
-import PostList from './components/PostList'
 import PostDetail from './components/PostDetai'
+import CategoryRoute from './routes/categoryRoute'
 
 function ProtectedRoute() {
   const { isAuthenticated } = useContext(AppContext)
@@ -49,7 +49,7 @@ function RejectedRoute() {
 export default function useRouteElements() {
   const routeElements = useRoutes([
     {
-      path: path.home,
+      path: mainPath.home,
       index: true,
       element: (
         <MainLayout>
@@ -58,15 +58,11 @@ export default function useRouteElements() {
       )
     },
     {
-      path: path.posts,
-      element: (
-        <MainLayout>
-          <PostList />
-        </MainLayout>
-      )
+      path: '',
+      children: [CategoryRoute]
     },
     {
-      path: path.postDetail,
+      path: mainPath.postDetail,
       element: (
         <MainLayout>
           <PostDetail />

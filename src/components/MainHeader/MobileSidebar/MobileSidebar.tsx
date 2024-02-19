@@ -37,9 +37,9 @@ export default function MobileSidebar() {
   }
 
   //? Classnames
-  const itemStyles =
-    'tablet:hover:text-white hover:text-black px-7 tablet:px-4 py-3 duration-200 tablet:hover:bg-primaryBlue tablet:rounded-md'
-  const wrapperStyles = 'text-unhoverText flex flex-col py-4'
+  const itemStyle =
+    'rounded-md px-7 tablet:px-4 py-3 duration-200 hover:bg-primaryBlueHovering/80 hover:text-white tablet:rounded-md'
+  const wrapperStyle = 'text-unhoverText flex flex-col py-4 space-y-2'
 
   //? Handle close sidebar
   const closeAndResetSidebar = () => {
@@ -140,8 +140,8 @@ export default function MobileSidebar() {
                     setIsOpen={setDocumentsSection}
                   >
                     <NavigateDocuments
-                      itemClassNames={itemStyles}
-                      wrapperClassNames={wrapperStyles}
+                      itemClassNames={itemStyle}
+                      wrapperClassNames={wrapperStyle}
                       handleClose={closeAndResetSidebar}
                     />
                   </MobileSidebarSection>
@@ -153,8 +153,8 @@ export default function MobileSidebar() {
                     setIsOpen={setUsageOrientationSection}
                   >
                     <NavigateDocumentsUsageOrientation
-                      itemClassNames={itemStyles}
-                      wrapperClassNames={wrapperStyles}
+                      itemClassNames={itemStyle}
+                      wrapperClassNames={wrapperStyle}
                       handleClose={closeAndResetSidebar}
                     />
                   </MobileSidebarSection>

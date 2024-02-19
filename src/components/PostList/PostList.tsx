@@ -7,9 +7,16 @@ import Post from '../Post'
 import EmptySection from 'src/pages/AdminPage/components/EmptySection'
 import { Fragment } from 'react'
 
-export default function PostList() {
+interface Props {
+  category: string
+}
+
+export default function PostList({ category }: Props) {
   //! GET POST LIST
-  const postListConfig = usePostListQueryConfig()
+  const postListConfig = {
+    ...usePostListQueryConfig(),
+    category: category
+  }
   const { data: postListData } = useQuery({
     queryKey: ['post-list', postListConfig],
     queryFn: () => {

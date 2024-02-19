@@ -1,25 +1,24 @@
-import { useContext } from 'react'
-import { AppContext } from 'src/contexts/app.context'
+import classNames from 'classnames'
+import { NavLink } from 'react-router-dom'
 
 interface Props {
   category: string
+  pathName: string
+  onClick?: () => void
 }
 
-export default function CategoryNavigator({ category }: Props) {
-  //? USE CONTEXT
-  const { getPostListByCategory } = useContext(AppContext)
-
+export default function CategoryNavigator({ category, pathName, onClick }: Props) {
   //? STYLES
   const itemStyle =
-    'w-full tablet:hover:text-white hover:text-black px-4 tablet:px-2 py-1.5 duration-200 tablet:hover:bg-primaryBlueHovering tablet:rounded-md text-sm text-left uppercase'
-
-  const handleNagigate = () => {
-    getPostListByCategory(category)
-  }
+    'w-full hover:text-white rounded-md px-4 tablet:px-2 py-1.5 duration-200 hover:bg-primaryBlueHovering/80 tablet:rounded-md text-sm text-left uppercase'
 
   return (
-    <button onClick={handleNagigate} className={itemStyle}>
+    <NavLink
+      to={pathName}
+      onClick={onClick}
+      className={({ isActive }) => classNames(itemStyle, { 'bg-primaryBlueHovering/80 text-white': isActive })}
+    >
       {category}
-    </button>
+    </NavLink>
   )
 }

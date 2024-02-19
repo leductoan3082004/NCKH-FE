@@ -1,6 +1,6 @@
 import classNames from 'classnames'
-import { useContext } from 'react'
-import { AppContext } from 'src/contexts/app.context'
+import { NavLink } from 'react-router-dom'
+import mainPath from 'src/constants/path'
 
 interface Props {
   itemClassNames?: string
@@ -9,28 +9,35 @@ interface Props {
 }
 
 export default function NavigateDocumentsUsageOrientation({ itemClassNames, wrapperClassNames, handleClose }: Props) {
-  const { getPostListByCategory } = useContext(AppContext)
-
-  const handleClick = (category: string) => () => {
+  const onClick = () => {
     handleClose && handleClose()
-    getPostListByCategory(category)
   }
 
   return (
     <div className={wrapperClassNames}>
-      <button
-        className={classNames(itemClassNames, 'flex items-center w-full text-left uppercase overflow-auto')}
-        onClick={handleClick('Quy trình thiết kế công cụ đánh giá')}
+      <NavLink
+        to={mainPath.quyTrinhThietKeCongCuDanhGia}
+        onClick={onClick}
+        className={({ isActive }) =>
+          classNames(itemClassNames, 'flex items-center w-full text-left uppercase overflow-auto', {
+            'bg-primaryBlueHovering/80 text-white': isActive
+          })
+        }
       >
         Quy trình thiết kế công cụ đánh giá
-      </button>
+      </NavLink>
 
-      <button
-        className={classNames(itemClassNames, 'flex items-center w-full text-left uppercase')}
-        onClick={handleClick('Đề minh họa')}
+      <NavLink
+        to={mainPath.deMinhHoa}
+        onClick={onClick}
+        className={({ isActive }) =>
+          classNames(itemClassNames, 'flex items-center w-full text-left uppercase overflow-auto', {
+            'bg-primaryBlueHovering/80 text-white': isActive
+          })
+        }
       >
         Đề minh họa
-      </button>
+      </NavLink>
     </div>
   )
 }

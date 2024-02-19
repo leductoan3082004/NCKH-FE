@@ -1,3 +1,5 @@
+import { documentSystemPath } from './path'
+
 export const Categories = [
   'Tất cả',
   'Văn bản',
@@ -23,3 +25,12 @@ export const DocumentSystemCategories = [
   'Bi kịch',
   'Tùy bút, tản văn'
 ]
+
+export const DocumentSystemCategoriesPathname = new Map<string, string>([
+  ['Thơ', documentSystemPath.tho],
+  ['Truyện thơ', documentSystemPath.truyenTho],
+  ['Truyện kí', documentSystemPath.truyenKi],
+  ['Truyện ngắn hiện đại', documentSystemPath.truyenNganHienDai],
+  ['Bi kịch', documentSystemPath.biKich],
+  ['Tùy bút, tản văn', documentSystemPath.tuyButTanVan]
+])
