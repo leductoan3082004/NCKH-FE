@@ -6,7 +6,8 @@ const mainPath = {
   heThongVanBan: '/van-ban/he-thong-van-ban',
   dinhHuongSuDungVanBan: '/dinh-huong-su-dung-van-ban',
   quyTrinhThietKeCongCuDanhGia: '/quy-trinh-thiet-ke-cong-cu-danh-gia',
-  deMinhHoa: '/de-minh-hoa'
+  deMinhHoa: '/de-minh-hoa',
+  tagSorting: '/tim-kiem-theo-tu-khoa'
 } as const
 export default mainPath
 

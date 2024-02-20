@@ -11,15 +11,19 @@ import { CategoriesPathname, CategoriesURL } from 'src/constants/categories'
 import { PathElement } from '../PathBar/PathBar'
 
 interface Props {
-  category: string
+  category?: string
 }
 
 export default function PostList({ category }: Props) {
   //! GET POST LIST
-  const postListConfig = {
-    ...usePostListQueryConfig(),
-    category: category
-  }
+  const currentPostListConfig = usePostListQueryConfig()
+  const postListConfig =
+    category == ''
+      ? { ...currentPostListConfig }
+      : {
+          ...currentPostListConfig,
+          category: category
+        }
   const { data: postListData } = useQuery({
     queryKey: ['post-list', postListConfig],
     queryFn: () => {
@@ -27,19 +31,24 @@ export default function PostList({ category }: Props) {
     },
     staleTime: 1000 * 60 * 3
   })
-  const { category: currentCategory } = postListConfig
+  const { tag: activeTag } = postListConfig
 
   //! PATH LIST
-  const pathNameList = CategoriesPathname.get(category) as string[]
-  const pathList: PathElement[] = pathNameList.map((pathName) => {
-    return { pathName: pathName, url: CategoriesURL.get(pathName) as string }
-  })
+  let pathList: PathElement[] = []
+  if (category) {
+    const pathNameList = CategoriesPathname.get(category) as string[]
+    pathList = pathNameList.map((pathName) => {
+      return { pathName: pathName, url: CategoriesURL.get(pathName) as string, isNotALink: false }
+    })
+  } else {
+    pathList = [{ pathName: activeTag || '', url: '', isNotALink: true }]
+  }
 
   return (
     <div className='py-2 tablet:py-3 desktop:py-4 container'>
       <PathBar pathList={pathList} />
       <div className='flex items-center justify-center uppercase text-xl tablet:text-2xl desktop:text-3xl text-primaryBlue font-bold py-4'>
-        {currentCategory}
+        {category || activeTag}
       </div>
       {!postListData && <LoadingSection />}
       {postListData && (

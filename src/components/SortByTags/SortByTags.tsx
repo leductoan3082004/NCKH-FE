@@ -21,28 +21,41 @@ export default function SortByTags() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    navigate({
-      pathname: path,
-      search: createSearchParams(
-        omit(
-          {
-            ...queryConfig,
-            tag: typedTag
-          },
-          ['page', 'limit']
-        )
-      ).toString()
-    })
+    if (typedTag == '') {
+      navigate({
+        pathname: path,
+        search: createSearchParams(
+          omit(
+            {
+              ...queryConfig
+            },
+            ['page', 'limit', 'tag']
+          )
+        ).toString()
+      })
+    } else
+      navigate({
+        pathname: path,
+        search: createSearchParams(
+          omit(
+            {
+              ...queryConfig,
+              tag: typedTag
+            },
+            ['page', 'limit']
+          )
+        ).toString()
+      })
   }
 
   const handleRemoveTag = () => {
+    setTypedTag('')
     navigate({
       pathname: path,
       search: createSearchParams(
         omit(
           {
-            ...queryConfig,
-            tag: typedTag
+            ...queryConfig
           },
           ['page', 'limit', 'tag']
         )

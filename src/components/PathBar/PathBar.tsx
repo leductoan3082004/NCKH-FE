@@ -8,6 +8,7 @@ import mainPath from 'src/constants/path'
 export interface PathElement {
   pathName: string
   url: string
+  isNotALink?: boolean
 }
 
 interface Props {
@@ -16,37 +17,48 @@ interface Props {
 
 export default function PathBar({ pathList }: Props) {
   return (
-    <div className='relative mb-2 flex shrink items-center justify-start space-x-2 rounded-lg border border-black/40 bg-mainBlue100 px-3 py-1 text-xs font-bold uppercase duration-200 text-darkText/80 desktop:mb-3 desktop:px-4 desktop:py-2 desktop:text-sm '>
+    <div className='relative mb-2 flex shrink items-center justify-start space-x-2 rounded-lg border border-black/40 px-3 py-1 text-xs font-bold uppercase duration-200 text-darkText/80 desktop:mb-3 desktop:px-4 desktop:py-2 desktop:text-sm '>
       <Fragment>
         <NavLink
           to={mainPath.home}
           className={({ isActive }) =>
             classNames({
-              'text-primaryBlue': isActive,
-              'hover:text-primaryBlue': !isActive
+              'text-mainBlue600': isActive,
+              'hover:text-mainBlue600': !isActive
             })
           }
         >
           Trang chủ
         </NavLink>
       </Fragment>
-      {pathList.map((pathElemnt, index) => (
-        <Fragment key={index}>
-          <FontAwesomeIcon icon={faAngleRight} />
-          <NavLink
-            end
-            to={`${pathElemnt.url}`}
-            className={({ isActive }) =>
-              classNames({
-                'text-primaryBlue': isActive,
-                'hover:text-primaryBlue': !isActive
-              })
-            }
-          >
-            {pathElemnt.pathName}
-          </NavLink>
-        </Fragment>
-      ))}
+      {pathList.map((pathElement, index) => {
+        if (pathElement.isNotALink) {
+          return (
+            <Fragment key={index}>
+              <FontAwesomeIcon icon={faAngleRight} />
+              <button className={classNames('text-mainBlue600')}>{pathElement.pathName}</button>
+            </Fragment>
+          )
+        } else {
+          return (
+            <Fragment key={index}>
+              <FontAwesomeIcon icon={faAngleRight} />
+              <NavLink
+                end
+                to={pathElement.url}
+                className={({ isActive }) =>
+                  classNames({
+                    'text-mainBlue600': isActive,
+                    'hover:text-mainBlue600': !isActive
+                  })
+                }
+              >
+                {pathElement.pathName}
+              </NavLink>
+            </Fragment>
+          )
+        }
+      })}
     </div>
   )
 }

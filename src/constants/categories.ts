@@ -45,7 +45,7 @@ export const CategoriesPathname = new Map<string, string[]>([
   ['Thơ', ['Văn bản', 'Hệ thống văn bản', 'Thơ']],
   ['Truyện thơ', ['Văn bản', 'Hệ thống văn bản', 'Truyện thơ']],
   ['Truyện kí', ['Văn bản', 'Hệ thống văn bản', 'Truyện kí']],
-  ['ruyện ngắn hiện đại', ['Văn bản', 'Hệ thống văn bản', 'Truyện ngắn hiện đại']],
+  ['Truyện ngắn hiện đại', ['Văn bản', 'Hệ thống văn bản', 'Truyện ngắn hiện đại']],
   ['Bi kịch', ['Văn bản', 'Hệ thống văn bản', 'Bi kịch']],
   ['Tùy bút, tản văn', ['Văn bản', 'Hệ thống văn bản', 'Tùy bút, tản văn']]
 ])

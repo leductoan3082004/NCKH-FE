@@ -21,6 +21,7 @@ import AdminFeedbackLayout from './layouts/AdminFeedbackLayout'
 import AdminFeedbackDetail from './pages/AdminPage/components/AdminFeedbackDetail'
 import PostDetail from './components/PostDetai'
 import CategoryRoute from './routes/categoryRoute'
+import PostList from './components/PostList'
 
 function ProtectedRoute() {
   const { isAuthenticated } = useContext(AppContext)
@@ -60,6 +61,14 @@ export default function useRouteElements() {
     {
       path: '',
       children: [CategoryRoute]
+    },
+    {
+      path: mainPath.tagSorting,
+      element: (
+        <MainLayout>
+          <PostList category='' />
+        </MainLayout>
+      )
     },
     {
       path: mainPath.postDetail,
