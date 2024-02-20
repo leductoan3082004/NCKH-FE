@@ -39,7 +39,7 @@ export default function MobileSidebar() {
   //? Classnames
   const itemStyle =
     'rounded-md px-7 tablet:px-4 py-3 duration-200 hover:bg-primaryBlueHovering/80 hover:text-white tablet:rounded-md'
-  const wrapperStyle = 'text-unhoverText flex flex-col py-4 space-y-2'
+  const wrapperStyle = 'text-unhoverText flex flex-col py-4 space-y-2 px-4'
 
   //? Handle close sidebar
   const closeAndResetSidebar = () => {

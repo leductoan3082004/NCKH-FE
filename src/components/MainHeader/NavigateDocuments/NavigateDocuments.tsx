@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { NavLink } from 'react-router-dom'
 import AnimateChangeInHeight from 'src/components/AnimateChangeInHeight'
 import CategoryNavigator from 'src/components/CategoryNavigator'
-import { DocumentSystemCategories, DocumentSystemCategoriesPathname } from 'src/constants/categories'
+import { DocumentSystemCategories, DocumentSystemCategoriesURL } from 'src/constants/categories'
 import mainPath from 'src/constants/path'
 import useClickOutside from 'src/hooks/useClickOutside'
 
@@ -37,7 +37,7 @@ export default function NavigateDocuments({ itemClassNames, wrapperClassNames, h
       </NavLink>
 
       <div ref={ref}>
-        <div className='flex justify-between space-x-1 w-full px-4 tablet:pr-0'>
+        <div className='flex justify-between space-x-1 w-full tablet:pr-0'>
           <NavLink
             to={mainPath.heThongVanBan}
             onClick={onClick}
@@ -66,13 +66,13 @@ export default function NavigateDocuments({ itemClassNames, wrapperClassNames, h
         <AnimateChangeInHeight className='w-full'>
           <AnimatePresence>
             {visible && (
-              <motion.div className='flex w-full flex-col items-start space-y-1 rounded-b-md px-8 tablet:px-2 pt-1'>
+              <motion.div className='flex w-full flex-col items-start space-y-1 rounded-b-md pl-4 pr-8 tablet:pl-2 pt-1'>
                 {DocumentSystemCategories.map((category, index) => {
                   return (
                     <CategoryNavigator
                       key={index}
                       category={category}
-                      pathName={DocumentSystemCategoriesPathname.get(category) as string}
+                      pathName={DocumentSystemCategoriesURL.get(category) as string}
                       onClick={onClick}
                     />
                   )

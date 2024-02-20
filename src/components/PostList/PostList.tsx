@@ -6,6 +6,9 @@ import LoadingSection from '../LoadingSection'
 import Post from '../Post'
 import EmptySection from 'src/pages/AdminPage/components/EmptySection'
 import { Fragment } from 'react'
+import PathBar from '../PathBar'
+import { CategoriesPathname, CategoriesURL } from 'src/constants/categories'
+import { PathElement } from '../PathBar/PathBar'
 
 interface Props {
   category: string
@@ -26,8 +29,15 @@ export default function PostList({ category }: Props) {
   })
   const { category: currentCategory } = postListConfig
 
+  //! PATH LIST
+  const pathNameList = CategoriesPathname.get(category) as string[]
+  const pathList: PathElement[] = pathNameList.map((pathName) => {
+    return { pathName: pathName, url: CategoriesURL.get(pathName) as string }
+  })
+
   return (
     <div className='py-2 tablet:py-3 desktop:py-4 container'>
+      <PathBar pathList={pathList} />
       <div className='flex items-center justify-center uppercase text-xl tablet:text-2xl desktop:text-3xl text-primaryBlue font-bold py-4'>
         {currentCategory}
       </div>
