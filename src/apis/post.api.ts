@@ -38,6 +38,9 @@ const postApi = {
   },
   deletePost(body: { post_id: string }) {
     return http.delete<SuccessRespone<string>>(`${URL}/`, { data: body })
+  },
+  listSuggestions(params: { post_id: string; type: string; limit: number }) {
+    return http.get<SuccessRespone<Post[]>>(`${URL}/suggestion`, { params })
   }
 }
 

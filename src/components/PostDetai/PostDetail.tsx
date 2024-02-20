@@ -10,6 +10,7 @@ import DOMPurify from 'dompurify'
 import mainPath from 'src/constants/path'
 import { omit } from 'lodash'
 import usePostListQueryConfig from 'src/hooks/usePostListQueryConfig'
+import SuggestedPostList from '../SuggestedPostList'
 
 export default function PostDetail() {
   //! GET POST DETAIL
@@ -113,6 +114,11 @@ export default function PostDetail() {
                 </button>
               ))}
             </div>
+
+            <div className='border-t border-black/20 border-1' />
+
+            <SuggestedPostList postId={postDetail._id} type='category' limit={4} />
+            <SuggestedPostList postId={postDetail._id} type='tag' limit={4} />
           </div>
         </div>
       </div>
