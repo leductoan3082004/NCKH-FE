@@ -48,7 +48,7 @@ export default function PostList({ category }: Props) {
   } else if (activeTag) {
     pathList = [{ pathName: activeTag || '', url: '', isNotALink: true }]
   } else {
-    pathList = [{ pathName: `Từ khóa: "${keyWord}"`, url: '', isNotALink: true }]
+    pathList = [{ pathName: `Từ khóa: "${keyWord || 'Tất cả bài viết'}"`, url: '', isNotALink: true }]
   }
 
   return (

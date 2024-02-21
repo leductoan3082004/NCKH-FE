@@ -10,6 +10,7 @@ interface Props {
   type: 'tag' | 'category'
   limit: number
   postId: string
+  showTitle?: boolean
 }
 
 function SuggestedPost({ post, handleEnterPost }: { post: Post; handleEnterPost: () => void }) {
@@ -24,7 +25,7 @@ function SuggestedPost({ post, handleEnterPost }: { post: Post; handleEnterPost:
   )
 }
 
-export default function SuggestedPostList({ type, limit, postId }: Props) {
+export default function SuggestedPostList({ type, limit, postId, showTitle = true }: Props) {
   //! GET POST LIST
   const suggestionsConfig = { post_id: postId, type: type, limit: limit }
   const { data: suggestionsData } = useQuery({
@@ -43,9 +44,11 @@ export default function SuggestedPostList({ type, limit, postId }: Props) {
 
   return (
     <div className='space-y-2 px-4 py-2'>
-      <p className='uppercase font-medium text-darkPrimaryBlue text-lg tablet:text-xl desktop:text-xl'>
-        Các bài viết có cùng {type == 'tag' ? 'Từ khóa' : 'Danh mục'}:
-      </p>
+      {showTitle && (
+        <p className='uppercase font-medium text-darkPrimaryBlue text-lg tablet:text-xl desktop:text-xl'>
+          Các bài viết có cùng {type == 'tag' ? 'Từ khóa' : 'Danh mục'}:
+        </p>
+      )}
       {!suggestionsData && (
         <div className='flex items-center justify-center h-40'>
           <LoadingRing />
