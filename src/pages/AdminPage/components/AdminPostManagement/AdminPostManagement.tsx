@@ -1,15 +1,20 @@
 import { useQuery } from '@tanstack/react-query'
 import postApi from 'src/apis/post.api'
-import LoadingRing from 'src/components/LoadingRing'
 import SearchBar from 'src/components/SearchBar'
 import SortByCategory from 'src/components/SortByCategory'
 import SortByTags from 'src/components/SortByTags'
-import usePostListQueryConfig from 'src/hooks/usePostListQueryConfig'
+import usePostListQueryConfig, { POST_LIMIT } from 'src/hooks/usePostListQueryConfig'
 import { PostListConfig } from 'src/types/post.type'
 import AdminPost from '../AdminPost'
-import { useEffect } from 'react'
+import { Fragment, useEffect } from 'react'
+import LoadingSection from 'src/components/LoadingSection'
+import UsePagination from 'src/components/UsePagination'
+import { useViewport } from 'src/hooks/useViewport'
+import { ceil } from 'lodash'
 
 export default function AdminPostManagement() {
+  const isMobile = useViewport().width < 768
+
   //? After navigated
   useEffect(() => {
     document.title = 'Quản lí bài viết'
@@ -34,22 +39,23 @@ export default function AdminPostManagement() {
           <SortByTags />
         </div>
         <div className='col-span-1'>
-          <SearchBar />
+          <SearchBar administrator />
         </div>
       </div>
-      <div className='grid grid-cols-1 mt-2 gap-2 tablet:grid-cols-2 tablet:gap-3 desktop:gap-4'>
-        {isFetching && (
-          <div className='col-span-1 tablet:col-span-2 h-80 flex items-center justify-center'>
-            <LoadingRing />
-          </div>
-        )}
-        {!isFetching &&
-          postsData &&
-          postsData.data.data.map((post) => (
-            <div className='col-span-1' key={post._id}>
-              <AdminPost post={post} />
+      <div className='w-full'>
+        {isFetching && <LoadingSection />}
+        {postsData && (
+          <Fragment>
+            <div className='grid grid-cols-1 w-full mt-2 gap-2 tablet:grid-cols-2 tablet:gap-3 desktop:gap-4'>
+              {postsData.data.data.map((post) => (
+                <div className='col-span-1' key={post._id}>
+                  <AdminPost post={post} />
+                </div>
+              ))}
             </div>
-          ))}
+            <UsePagination totalPage={ceil(postsData.data.paging.total / POST_LIMIT)} isMobile={isMobile} />
+          </Fragment>
+        )}
       </div>
     </div>
   )

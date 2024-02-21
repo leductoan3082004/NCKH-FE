@@ -7,7 +7,7 @@ export type PostListQueryConfig = {
   [key in keyof PostListConfig]: string
 }
 
-export const POST_LIMIT = 2
+export const POST_LIMIT = 10
 
 export default function usePostListQueryConfig() {
   const queryParams: PostListQueryConfig = useQueryParams()

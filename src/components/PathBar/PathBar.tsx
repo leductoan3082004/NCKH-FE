@@ -23,8 +23,8 @@ export default function PathBar({ pathList }: Props) {
           to={mainPath.home}
           className={({ isActive }) =>
             classNames({
-              'text-mainBlue600': isActive,
-              'hover:text-mainBlue600': !isActive
+              'text-primaryBlue': isActive,
+              'hover:text-primaryBlue': !isActive
             })
           }
         >
@@ -36,7 +36,7 @@ export default function PathBar({ pathList }: Props) {
           return (
             <Fragment key={index}>
               <FontAwesomeIcon icon={faAngleRight} />
-              <button className={classNames('text-mainBlue600')}>{pathElement.pathName}</button>
+              <div className={'text-primaryBlue'}>{pathElement.pathName}</div>
             </Fragment>
           )
         } else {
@@ -48,8 +48,8 @@ export default function PathBar({ pathList }: Props) {
                 to={pathElement.url}
                 className={({ isActive }) =>
                   classNames('truncate', {
-                    'text-mainBlue600': isActive,
-                    'hover:text-mainBlue600': !isActive
+                    'text-primaryBlue': isActive,
+                    'hover:text-primaryBlue': !isActive
                   })
                 }
               >

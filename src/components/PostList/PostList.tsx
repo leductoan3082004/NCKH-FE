@@ -36,7 +36,7 @@ export default function PostList({ category }: Props) {
     },
     staleTime: 1000 * 60 * 3
   })
-  const { tag: activeTag } = postListConfig
+  const { tag: activeTag, content: keyWord } = postListConfig
 
   //! PATH LIST
   let pathList: PathElement[] = []
@@ -45,14 +45,16 @@ export default function PostList({ category }: Props) {
     pathList = pathNameList.map((pathName) => {
       return { pathName: pathName, url: CategoriesURL.get(pathName) as string, isNotALink: false }
     })
-  } else {
+  } else if (activeTag) {
     pathList = [{ pathName: activeTag || '', url: '', isNotALink: true }]
+  } else {
+    pathList = [{ pathName: `Từ khóa: "${keyWord}"`, url: '', isNotALink: true }]
   }
 
   return (
     <div className='py-2 tablet:py-3 desktop:py-4 container'>
       <PathBar pathList={pathList} />
-      <div className='flex items-center justify-center uppercase text-xl tablet:text-2xl desktop:text-3xl text-primaryBlue font-bold py-4'>
+      <div className='flex items-center justify-center uppercase text-xl tablet:text-2xl desktop:text-3xl text-primaryBlue font-medium py-4'>
         {category || activeTag}
       </div>
       {!postListData && <LoadingSection />}

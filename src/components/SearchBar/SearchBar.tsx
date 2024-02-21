@@ -4,13 +4,18 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { omit } from 'lodash'
 import { useForm } from 'react-hook-form'
 import { createSearchParams, useLocation, useNavigate } from 'react-router-dom'
+import mainPath from 'src/constants/path'
 import usePostListQueryConfig from 'src/hooks/usePostListQueryConfig'
 import { FindPostSchema, findPostSchema } from 'src/utils/rules'
 
 type FormData = FindPostSchema
 
-export default function SearchBar() {
-  const path = useLocation().pathname
+interface Props {
+  administrator?: boolean
+}
+
+export default function SearchBar({ administrator = false }: Props) {
+  const currentPathname = useLocation().pathname
   const queryConfig = usePostListQueryConfig()
   const navigate = useNavigate()
   const { register, handleSubmit } = useForm<FormData>({
@@ -37,7 +42,7 @@ export default function SearchBar() {
             ['tag', 'category', 'page', 'limit']
           )
     navigate({
-      pathname: path,
+      pathname: administrator ? currentPathname : mainPath.tagSorting,
       search: createSearchParams(config).toString()
     })
   })
