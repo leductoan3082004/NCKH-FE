@@ -14,12 +14,12 @@ interface Props {
 
 function SuggestedPost({ post, handleEnterPost }: { post: Post; handleEnterPost: () => void }) {
   return (
-    <button className='w-full space-y-2 p-2 rounded-lg hover:text-mainBlue600' onClick={handleEnterPost}>
+    <button className='w-full space-y-2 p-2 rounded-lg group' onClick={handleEnterPost}>
       <div className='w-full pt-[100%] overflow-hidden relative'>
         <img src={post.image_url} alt={post.title} className='absolute top-0 left-0   object-cover' />
       </div>
       <div className='border-t border-black/10'></div>
-      <p className='flex items-start justify-center'>{post.title}</p>
+      <p className='flex items-start justify-center font-medium group-hover:text-primaryBlue'>{post.title}</p>
     </button>
   )
 }
@@ -43,7 +43,7 @@ export default function SuggestedPostList({ type, limit, postId }: Props) {
 
   return (
     <div className='space-y-2 px-4 py-2'>
-      <p className='uppercase font-bold text-darkPrimaryBlue text-lg tablet:text-xl desktop:text-xl'>
+      <p className='uppercase font-medium text-darkPrimaryBlue text-lg tablet:text-xl desktop:text-xl'>
         Các bài viết có cùng {type == 'tag' ? 'Từ khóa' : 'Danh mục'}:
       </p>
       {!suggestionsData && (

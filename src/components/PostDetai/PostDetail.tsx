@@ -90,11 +90,11 @@ export default function PostDetail() {
             <div className='border-t border-black/20 border-1' />
 
             <div className='flex space-x-2 items-center text-xs desktop:text-sm'>
-              <span className='py-0.5 px-2 rounded-md  bg-primaryBackground'>Danh mục:</span>
+              <span className='py-1 px-3 rounded-md  bg-primaryBackground'>Danh mục:</span>
               {postDetail.category.map((category, index) => (
                 <NavLink
                   to={CategoriesURL.get(category) as string}
-                  className='py-0.5 px-2 rounded-md bg-white text-darkText hover:bg-primaryBackground/60'
+                  className='py-1 px-3 rounded-md bg-white text-darkText hover:bg-primaryBackground/60'
                   key={index}
                 >
                   {category}
@@ -103,11 +103,11 @@ export default function PostDetail() {
             </div>
 
             <div className='flex space-x-2 items-center text-xs desktop:text-sm'>
-              <span className='py-0.5 px-2 rounded-md  bg-primaryBackground'>Từ khóa:</span>
+              <span className='py-1 px-3 rounded-md  bg-primaryBackground'>Từ khóa:</span>
               {postDetail.tag.map((tag, index) => (
                 <button
                   onClick={handleChoostTag(tag)}
-                  className='py-0.5 px-2 rounded-md bg-white text-darkText hover:bg-primaryBackground/60'
+                  className='py-1 px-3 rounded-md bg-white text-darkText hover:bg-primaryBackground/60'
                   key={index}
                 >
                   {tag}

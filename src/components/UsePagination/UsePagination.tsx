@@ -1,18 +1,29 @@
 import classNames from 'classnames'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
-import { Link, createSearchParams } from 'react-router-dom'
-import mainPath from 'src/constants/path'
-import { PostListQueryConfig } from 'src/hooks/usePostListQueryConfig'
+import { Link, NavLink, createSearchParams, useLocation } from 'react-router-dom'
+import usePostListQueryConfig from 'src/hooks/usePostListQueryConfig'
 
 interface Props {
-  postListQueryConfig: PostListQueryConfig
   totalPage: number
   isMobile?: boolean
 }
-export default function UsePagination({ postListQueryConfig, totalPage, isMobile }: Props) {
+export default function UsePagination({ totalPage, isMobile }: Props) {
+  const postListQueryConfig = usePostListQueryConfig()
+
   const currentPage = Number(postListQueryConfig.page)
   const RANGE = isMobile ? 1 : 2
+
+  //! GET LOCATION
+  const pathname = useLocation().pathname
+
+  //? STYLES
+  const indexNumberStyle =
+    'mx-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border px-2 py-2 text-sm shadow-sm  desktop:mx-2 desktop:h-8 desktop:w-8 desktop:text-base'
+  const activeArrowStyle =
+    'group mx-2 flex cursor-pointer items-center space-x-1 rounded-xl border border-darkText px-3  py-1 text-sm text-darkText shadow-sm hover:border-primaryBlue desktop:text-base'
+  const inactiveArrowStyle =
+    'group mx-2 flex cursor-not-allowed items-center space-x-1 rounded-xl border border-darkText px-3 py-1 text-sm text-darkText opacity-40 shadow-sm desktop:text-base'
 
   const renderPagination = () => {
     let dotAfter = false
@@ -21,10 +32,7 @@ export default function UsePagination({ postListQueryConfig, totalPage, isMobile
       if (!dotBefore) {
         dotBefore = true
         return (
-          <span
-            className='mx-1 rounded bg-transparent px-2 py-2 tracking-[4px] text-textDark shadow-sm dark:text-textLight '
-            key={index}
-          >
+          <span className='mx-1 rounded bg-transparent px-2 py-2 tracking-[4px] text-darkText shadow-sm' key={index}>
             ...
           </span>
         )
@@ -35,10 +43,7 @@ export default function UsePagination({ postListQueryConfig, totalPage, isMobile
       if (!dotAfter) {
         dotAfter = true
         return (
-          <span
-            className='mx-1 rounded bg-transparent px-2 py-2 tracking-[4px] text-textDark shadow-sm dark:text-textLight '
-            key={index}
-          >
+          <span className='mx-1 rounded bg-transparent px-2 py-2 tracking-[4px] text-darkText shadow-sm' key={index}>
             ...
           </span>
         )
@@ -59,27 +64,32 @@ export default function UsePagination({ postListQueryConfig, totalPage, isMobile
           }
         } else if (currentPage >= totalPage - RANGE * 2 && pageNumber > RANGE && pageNumber < currentPage - RANGE) {
           return renderDotBefore(index)
-        }
+        } else if (pageNumber == currentPage)
+          return (
+            <div
+              className={classNames(indexNumberStyle, 'border-transparent bg-primaryBackground text-darkText')}
+              key={index}
+            >
+              {pageNumber}
+            </div>
+          )
         return (
-          <Link
+          <NavLink
             to={{
-              pathname: mainPath.home,
+              pathname: pathname,
               search: createSearchParams({
                 ...postListQueryConfig,
                 page: pageNumber.toString()
               }).toString()
             }}
             className={classNames(
-              'mx-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border px-2 py-2 text-sm shadow-sm hover:border-primaryColor dark:hover:border-primaryColor lg:mx-2 lg:h-8 lg:w-8 lg:text-base',
-              {
-                'border-transparent bg-haretaColor text-textDark dark:text-textDark': pageNumber === currentPage,
-                'border-textDark text-textDark dark:border-textLight dark:text-textLight ': pageNumber !== currentPage
-              }
+              indexNumberStyle,
+              'border-darkText text-darkText hover:border-primaryBlue hover:text-primaryBlue'
             )}
             key={index}
           >
             {pageNumber}
-          </Link>
+          </NavLink>
         )
       })
   }
@@ -90,22 +100,19 @@ export default function UsePagination({ postListQueryConfig, totalPage, isMobile
       {currentPage > 1 ? (
         <Link
           to={{
-            pathname: mainPath.home,
+            pathname: pathname,
             search: createSearchParams({
               ...postListQueryConfig,
               page: (currentPage - 1).toString()
             }).toString()
           }}
-          className='group mx-2 flex cursor-pointer items-center space-x-1 rounded-xl border border-textDark px-3  py-1 text-sm text-textDark shadow-sm hover:border-primaryColor hover:text-primaryColor dark:border-textLight dark:text-textLight dark:hover:border-primaryColor dark:hover:text-primaryColor lg:text-base'
+          className={activeArrowStyle}
         >
-          <FontAwesomeIcon
-            icon={faAngleLeft}
-            className='py-1 text-textDark group-hover:text-primaryColor dark:text-textLight dark:group-hover:text-primaryColor'
-          />
+          <FontAwesomeIcon icon={faAngleLeft} className='py-1 text-darkText group-hover:text-primaryBlue' />
         </Link>
       ) : (
-        <span className='group mx-2 flex cursor-not-allowed items-center space-x-1 rounded-xl border border-textDark px-3  py-1 text-sm text-textDark opacity-40 shadow-sm dark:border-textLight dark:text-textLight lg:text-base '>
-          <FontAwesomeIcon icon={faAngleLeft} className='py-1 text-textDark dark:text-textLight' />
+        <span className={inactiveArrowStyle}>
+          <FontAwesomeIcon icon={faAngleLeft} className='py-1 text-darkText ' />
         </span>
       )}
 
@@ -114,22 +121,19 @@ export default function UsePagination({ postListQueryConfig, totalPage, isMobile
       {currentPage < totalPage ? (
         <Link
           to={{
-            pathname: mainPath.home,
+            pathname: pathname,
             search: createSearchParams({
               ...postListQueryConfig,
               page: (currentPage + 1).toString()
             }).toString()
           }}
-          className='group mx-2 flex cursor-pointer items-center space-x-1 rounded-xl border border-textDark px-3  py-1 text-sm text-textDark shadow-sm hover:border-primaryColor  hover:text-primaryColor dark:border-textLight dark:text-textLight dark:hover:border-primaryColor dark:hover:text-primaryColor lg:text-base'
+          className={activeArrowStyle}
         >
-          <FontAwesomeIcon
-            icon={faAngleRight}
-            className='py-1 text-textDark group-hover:text-primaryColor dark:text-textLight dark:group-hover:text-primaryColor'
-          />
+          <FontAwesomeIcon icon={faAngleRight} className='py-1 text-darkText group-hover:text-primaryBlue' />
         </Link>
       ) : (
-        <span className='group mx-2 flex cursor-not-allowed items-center space-x-1 rounded-xl border border-textDark px-3  py-1 text-sm text-textDark opacity-40  shadow-sm dark:border-textLight dark:text-textLight lg:text-base'>
-          <FontAwesomeIcon icon={faAngleRight} className='py-1 text-textDark dark:text-textLight' />
+        <span className={inactiveArrowStyle}>
+          <FontAwesomeIcon icon={faAngleRight} className='py-1 text-darkText ' />
         </span>
       )}
     </div>

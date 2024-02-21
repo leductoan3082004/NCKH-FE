@@ -26,7 +26,7 @@ export default function MainHeader() {
           {isSmall && <MobileSidebar />}
           {!isSmall && (
             <Fragment>
-              <div className='uppercase tracking-wide text-primaryBlue font-semibold flex items-center space-x-3 desktopLarge:space-x-4'>
+              <div className='uppercase tracking-wide text-darkText font-semibold flex items-center space-x-3 desktopLarge:space-x-4'>
                 <NavLink
                   to={mainPath.home}
                   className={({ isActive }) =>

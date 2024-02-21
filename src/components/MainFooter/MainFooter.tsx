@@ -14,7 +14,7 @@ export default function MainFooter() {
     <div className='py-8 bg-mainBlue300'>
       <div className='container flex items-center justify-center'>
         <div className='w-full items-center flex flex-col justify-between space-y-8'>
-          <p className='w-full uppercase text-primaryBlue text-center font-bold text-2xl desktop:text-4xl'>
+          <p className='w-full uppercase text-primaryBlue text-center font-medium text-2xl desktop:text-4xl'>
             Nghiên cứu khoa học
           </p>
           <div className='grid tablet:grid-cols-3 gap-4 grid-cols-1 w-full mobileLarge:w-9/12'>
