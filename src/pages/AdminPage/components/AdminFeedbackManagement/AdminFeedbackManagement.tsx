@@ -24,28 +24,28 @@ const LargeFeedbackItem = ({ feedback, index, handleChecking, handleClickItem }:
   const { deletingMode } = useContext(FeedbackContext)
 
   return (
-    <div className='flex w-full hover:bg-mainBlue100 grid-cols-12 gap-2 py-3 px-4  rounded-lg border border-black/20'>
+    <div className='flex w-full hover:bg-mainBlue100 grid-cols-12 gap-2 py-4 px-4 border-b cursor-pointer hover:shadow-md border-black/20'>
       <div className={classNames('flex items-center visible', { invisible: !deletingMode })}>
         <input
           name='is_selected'
           type='checkbox'
-          className='h-5 w-5 accent-primaryBackground'
+          className='h-4 w-4 accent-primaryBackground'
           checked={feedback.checked}
           onChange={handleChecking(index)}
         />
       </div>
-      <button className='w-full grid grid-cols-12 gap-2 ' onClick={handleClickItem(feedback)}>
+      <button className='w-full grid grid-cols-12 gap-2' onClick={handleClickItem(feedback)}>
         <div className='col-span-2'>
           <p className='font-bold text-left'>{feedback.name}</p>
         </div>
-        <div className='col-span-8 desktop:col-span-9'>
+        <div className='col-span-8 desktopLarge:col-span-9'>
           <div className='flex space-x-2 px-1 overflow-hidden'>
             <p className='font-bold shrink-0'>{feedback.topic}</p>
-            <p className='text-darkText/60 truncate'>{feedback.content}</p>
+            <p className='text-darkText/40 truncate'>{feedback.content}</p>
           </div>
         </div>
-        <div className='col-span-2 desktop:col-span-1 text-sm flex items-center justify-end'>
-          <p className='font-bold'>{formatDate(feedback.created_at)}</p>
+        <div className='col-span-2 desktopLarge:col-span-1 text-sm flex items-center justify-end'>
+          <p className='font-medium'>{formatDate(feedback.created_at)}</p>
         </div>
       </button>
     </div>
@@ -56,7 +56,7 @@ const SmallFeedbackItem = ({ feedback, index, handleChecking, handleClickItem }:
   const { deletingMode } = useContext(FeedbackContext)
 
   return (
-    <div className='w-full border border-black/20 rounded-lg hover:bg-mainBlue100 flex  py-3 px-1 mobileLarge:px-2 space-x-2'>
+    <div className='w-full border-b hover:shadow-md hover:cursor-pointer hover:bg-mainBlue100 border-black/20 mainBlue100 flex  py-3 px-1 mobileLarge:px-2 space-x-2'>
       <div className={classNames('min-h-full flex items-center justify-center visible', { invisible: !deletingMode })}>
         <input
           name='is_selected'
@@ -66,15 +66,15 @@ const SmallFeedbackItem = ({ feedback, index, handleChecking, handleClickItem }:
           onChange={handleChecking(index)}
         />
       </div>
-      <button className='w-full relative overflow-hidden' onClick={handleClickItem(feedback)}>
+      <button className='w-full relative overflow-hidden space-y-1' onClick={handleClickItem(feedback)}>
         <div className='flex justify-between items-center'>
           <p className='font-bold'>{feedback.name}</p>
           <div className='flex space-x-4 items-center'>
-            <p className=''>{formatDate(feedback.created_at)}</p>
+            <p className='font-medium'>{formatDate(feedback.created_at)}</p>
           </div>
         </div>
         <p className='font-bold text-left'>{feedback.topic}</p>
-        <p className='text-left truncate text-darkText/60'>{feedback.content}</p>
+        <p className='text-left truncate text-darkText/40'>{feedback.content}</p>
       </button>
     </div>
   )
@@ -152,7 +152,7 @@ export default function AdminFeedbackManagement() {
       {extendedFeedbacks.length > 0 && (
         <Fragment>
           {!isMobile && (
-            <div className='flex flex-col space-y-2'>
+            <div className='flex flex-col'>
               {extendedFeedbacks.map((feedback, index) => (
                 <div className='' key={feedback._id}>
                   {/* <LargeFeedbackItem feedback={feedback} index={index} handleChecking={handleChecking} /> */}
@@ -167,7 +167,7 @@ export default function AdminFeedbackManagement() {
             </div>
           )}
           {isMobile && (
-            <div className='flex flex-col space-y-2'>
+            <div className='flex flex-col'>
               {extendedFeedbacks.map((feedback, index) => (
                 <div className='' key={feedback._id}>
                   <SmallFeedbackItem
