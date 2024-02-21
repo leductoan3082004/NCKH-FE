@@ -53,7 +53,7 @@ export default function MobileSidebar() {
     <Fragment>
       <button
         onClick={openSidebar}
-        className='bg-primaryBlue p-2 rounded-md text-white hover:bg-primaryBlueHovering duration-200 text-center flex items-center'
+        className='bg-primaryBackground/80 p-2 rounded-md text-white hover:bg-primaryBackground duration-200 text-center flex items-center'
       >
         <FontAwesomeIcon icon={faBars} className='h-4 w-5 sm:h-5 sm:w-6' />
       </button>
@@ -134,7 +134,8 @@ export default function MobileSidebar() {
                 </AnimatePresence>
                 <div className='absolute top-0 left-0 w-full'>
                   <MobileSidebarSection
-                    title='văn bản'
+                    title='Văn bản'
+                    handleOnClick={closeAndResetSidebar}
                     isOpen={documentsSection}
                     openMainSection={() => setMainsection(true)}
                     setIsOpen={setDocumentsSection}
@@ -147,7 +148,8 @@ export default function MobileSidebar() {
                   </MobileSidebarSection>
 
                   <MobileSidebarSection
-                    title='định hướng sử dụng văn bản'
+                    title='Định hướng sử dụng văn bản'
+                    handleOnClick={closeAndResetSidebar}
                     isOpen={usageOrientationSection}
                     openMainSection={() => setMainsection(true)}
                     setIsOpen={setUsageOrientationSection}

@@ -1,6 +1,8 @@
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { AnimatePresence, motion } from 'framer-motion'
+import { NavLink } from 'react-router-dom'
+import { CategoriesURL } from 'src/constants/categories'
 
 interface Props {
   title: string
@@ -8,9 +10,17 @@ interface Props {
   isOpen: boolean
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
   openMainSection: () => void
+  handleOnClick?: () => void
 }
 
-export default function MobileSidebarSection({ title, children, openMainSection, isOpen, setIsOpen }: Props) {
+export default function MobileSidebarSection({
+  title,
+  children,
+  openMainSection,
+  isOpen,
+  setIsOpen,
+  handleOnClick
+}: Props) {
   const closeSection = () => {
     setIsOpen(false)
     openMainSection()
@@ -36,7 +46,13 @@ export default function MobileSidebarSection({ title, children, openMainSection,
             >
               <FontAwesomeIcon icon={faChevronLeft} className='h-5' />
             </button>
-            <p className='uppercase font-semibold text-center text-lg px-6'>{title}</p>
+            <NavLink
+              onClick={handleOnClick}
+              to={CategoriesURL.get(title) as string}
+              className='uppercase font-bold hover:text-primaryBlue text-center text-lg px-6'
+            >
+              {title}
+            </NavLink>
           </div>
           {children}
         </motion.div>

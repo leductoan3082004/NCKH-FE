@@ -26,12 +26,12 @@ export default function MainHeader() {
           {isSmall && <MobileSidebar />}
           {!isSmall && (
             <Fragment>
-              <div className='uppercase tracking-wide text-darkText font-semibold flex items-center space-x-3 desktopLarge:space-x-4'>
+              <div className='uppercase tracking-wide  text-darkText font-bold flex items-center space-x-3 desktopLarge:space-x-4'>
                 <NavLink
                   to={mainPath.home}
                   className={({ isActive }) =>
                     classNames(
-                      'flex items-center hover:bg-primaryBlueHovering text-sm desktop:text-base duration-200 font-semibold px-3 desktop:px-4 py-1.5 rounded-md space-x-1.5 hover:text-white',
+                      'flex items-center hover:bg-primaryBlueHovering text-sm desktop:text-base duration-200 font-semibold px-2 desktop:px-4 py-1.5 rounded-md space-x-1.5 hover:text-white',
                       {
                         'bg-primaryBlueHovering text-white': isActive
                       }

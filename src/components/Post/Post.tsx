@@ -53,9 +53,9 @@ function Post({ post, disableClick = false }: Props) {
           </div>
         </div>
       </div>
-      <div className='col-span-3 flex justify-start items-center min-h-full'>
+      <div className='col-span-3 flex justify-start items-center min-h-full overflow-hidden'>
         <div className='flex flex-col items-start justify-start space-x-1 space-y-1 px-2 pt-2 sm:px-3 lg:px-4 lg:pt-4'>
-          <p className='h-full justify-start text-left text-base tablet:text-lg font-bold uppercase text-darkPrimaryBlue duration-200  desktop:text-xl'>
+          <p className='h-full text-left text-sm tablet:text-base font-medium uppercase line-clamp-3 text-primaryBlue duration-200 desktop:text-lg'>
             {post.title}
           </p>
         </div>

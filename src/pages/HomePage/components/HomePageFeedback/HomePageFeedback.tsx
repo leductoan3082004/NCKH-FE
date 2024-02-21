@@ -67,9 +67,14 @@ export default function HomepageFeedback() {
     }
   })
 
+  //? Handle clear form
+  const clearForm = () => {
+    reset()
+  }
+
   //! STYLES
   const wrapperStyle = 'grid grid-cols-4 tablet:col-span-4 items-center gap-1 py-1'
-  const titleStyle = 'col-span-1 space-x-0.5 uppercase text-sm tablet:text-base'
+  const titleStyle = 'col-span-1 space-x-0.5 uppercase text-sm desktop:text-base'
   const inputStyle =
     'text-darkText col-span-3 bg-white py-1 px-2 text-sm tablet:text-base rounded-lg outline-none focus:outline-primaryBlue'
 
@@ -168,7 +173,7 @@ export default function HomepageFeedback() {
             </Input>
 
             <div className='tablet:grid tablet:grid-cols-6 grid grid-cols-4 tablet:col-span-4 gap-1 py-1 '>
-              <div className='col-span-1 space-x-0.5 uppercase text-sm tablet:text-base flex text-start'>
+              <div className={titleStyle}>
                 <span className=''>Nội dung</span>
                 <span className='text-alertRed'>*</span>
               </div>
@@ -188,8 +193,18 @@ export default function HomepageFeedback() {
             </div>
           </div>
 
-          <div className='w-full mt-4 tablet:col-span-12 flex justify-end'>
-            <button className='rounded-md py-1 px-3 tablet:px-4 bg-primaryBackground/80 hover:bg-primaryBackground'>
+          <div className='w-full mt-4 tablet:col-span-12 flex justify-end space-x-6'>
+            <button
+              type='button'
+              onClick={clearForm}
+              className='rounded-md py-1 px-3 tablet:px-4 bg-alertRed/80 hover:bg-alertRed'
+            >
+              Hủy
+            </button>
+            <button
+              type='submit'
+              className='rounded-md py-1 px-3 tablet:px-4 bg-primaryBackground/80 hover:bg-primaryBackground'
+            >
               Gửi
             </button>
           </div>
