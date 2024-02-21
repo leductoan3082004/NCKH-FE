@@ -5,7 +5,6 @@ import postApi from 'src/apis/post.api'
 import LoadingRing from 'src/components/LoadingRing'
 import { formatTimeToSeconds, getIdFromUrl, isAxiosBadRequestError } from 'src/utils/utils'
 import AdminPostInfor from '../AdminPostInfor'
-import { FloatingOverlay } from '@floating-ui/react'
 import classNames from 'classnames'
 import AdminUpdatePostForm from '../AdminUpdatePostForm'
 import { FormProvider, useForm } from 'react-hook-form'
@@ -240,37 +239,13 @@ export default function AdminPostDetail() {
 
   return (
     <Fragment>
-      {(isLoading || !postDetail) && (
-        <div className='w-full h-[600px] flex items-center justify-center'>
-          <LoadingRing />
-        </div>
-      )}
-      {isFetched && (
-        <Fragment>
-          {postDetail && !editingMode && <AdminPostInfor postDetail={postDetail} />}
-          {postDetail && editingMode && (
-            <FormProvider {...methods}>
-              <form className='py-2 space-y-2' onSubmit={onSubmit}>
-                <AdminUpdatePostForm postDetail={postDetail} imageFile={imageFile} setImageFile={setImageFile} />
-                <div className='w-full flex justify-between items-center'>
-                  <button
-                    type='button'
-                    className={classNames('bg-alertRed/80 hover:bg-alertRed py-1 h-min px-4 rounded-md', {})}
-                    onClick={openDeleteDialog}
-                  >
-                    Xóa bài viết
-                  </button>
-                  <button
-                    type='submit'
-                    className='bg-primaryBackground/80 hover:bg-primaryBackground py-1 px-4 rounded-md'
-                  >
-                    Lưu
-                  </button>
-                </div>
-              </form>
-            </FormProvider>
+      <FormProvider {...methods}>
+        <form className='space-y-4 relative' onSubmit={onSubmit}>
+          {(isLoading || !postDetail) && (
+            <div className='w-full h-[600px] flex items-center justify-center'>
+              <LoadingRing />
+            </div>
           )}
-
           {!editingMode && (
             <div className='flex items-center justify-end'>
               <button
@@ -284,20 +259,54 @@ export default function AdminPostDetail() {
           )}
 
           {editingMode && (
-            <FloatingOverlay className='w-full h-min flex justify-center pt-1 items-center space-x-2 desktop:space-x-6'>
-              <div className='bg-primaryBackground p-2 rounded-lg desktop:text-lg font-bold'>Chế độ chỉnh sửa</div>
-              <button
-                type='button'
-                className='bg-alertRed/80 hover:bg-alertRed py-1 px-2 rounded-md'
-                onClick={turnOffEditingMode}
-              >
-                Hủy
-              </button>
-            </FloatingOverlay>
+            <div className='fixed z-10 bottom-2 w-full h-min px-4 flex justify-between py-2 rounded-lg items-center space-x-2 desktop:space-x-6 bg-black/60'>
+              <div className='bg-primaryBackground p-2 rounded-lg desktop:text-base font-medium shrink-0'>
+                Chế độ chỉnh sửa
+              </div>
+              <div className='w-full grid grid-cols-3 gap-1'>
+                <div className='col-span-1 flex items-center justify-center'>
+                  <button
+                    type='button'
+                    className='border border-white/40 text-white hover:bg-primaryBackground/80 py-1 px-4 text-sm rounded-md'
+                    onClick={turnOffEditingMode}
+                  >
+                    Hủy chỉnh sửa
+                  </button>
+                </div>
+                <div className='col-span-1 flex items-center justify-center'>
+                  <button
+                    type='button'
+                    className={classNames('bg-alertRed/80 hover:bg-alertRed  text-sm py-1 px-4 rounded-md', {})}
+                    onClick={openDeleteDialog}
+                  >
+                    Xóa bài viết
+                  </button>
+                </div>
+                <div className='col-span-1 flex items-center justify-center'>
+                  <button
+                    type='submit'
+                    className='bg-primaryBackground/80 hover:bg-primaryBackground py-1 text-sm px-4 rounded-md'
+                  >
+                    Lưu
+                  </button>
+                </div>
+              </div>
+            </div>
           )}
-        </Fragment>
-      )}
+          {isFetched && (
+            <Fragment>
+              {postDetail && !editingMode && <AdminPostInfor postDetail={postDetail} />}
+              {postDetail && editingMode && (
+                <div className='py-2 space-y-2'>
+                  <AdminUpdatePostForm postDetail={postDetail} imageFile={imageFile} setImageFile={setImageFile} />
+                </div>
+              )}
+            </Fragment>
+          )}
+        </form>
+      </FormProvider>
 
+      {/* //! FIELDS FOR DIALOG */}
       <DialogPopup
         isOpen={updateExcutingDialog}
         handleClose={() => {
@@ -308,13 +317,13 @@ export default function AdminPostDetail() {
         {!excuting && (
           <Fragment>
             {updateSuccess && (
-              <p className='text-center text-xl font-bold uppercase leading-6 text-successGreen'>
+              <p className='text-center text-xl font-medium uppercase leading-6 text-successGreen'>
                 Bài viết đã được cập nhật
               </p>
             )}
             {invalidFields.length > 0 && (
               <div className='space-y-2'>
-                <p className='text-left text-lg font-bold uppercase leading-6 text-alertRed'>
+                <p className='text-left text-lg font-medium uppercase leading-6 text-alertRed'>
                   Chỉnh sửa bài viết không thành công do các nội dung sau không hợp lệ:
                 </p>
                 <div className='flex flex-col space-y-2 items-start'>
@@ -327,7 +336,7 @@ export default function AdminPostDetail() {
               </div>
             )}
             {undefinedError && (
-              <p className='text-center text-xl font-bold uppercase leading-6 text-alertRed'>
+              <p className='text-center text-xl font-medium uppercase leading-6 text-alertRed'>
                 Đã có lỗi xảy ra, vui lòng thử lại
               </p>
             )}
@@ -342,7 +351,7 @@ export default function AdminPostDetail() {
         }}
       >
         <div className='flex flex-col justify-between h-full py-4'>
-          <p className='text-center text-xl font-bold uppercase leading-6 text-alertRed'>Xác nhận xóa bài viết</p>
+          <p className='text-center text-xl font-medium uppercase leading-6 text-alertRed'>Xác nhận xóa bài viết</p>
           <div className='flex justify-between items-center text-sm'>
             <button
               type='button'
