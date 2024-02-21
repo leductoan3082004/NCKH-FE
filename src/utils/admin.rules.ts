@@ -18,7 +18,7 @@ export const updatePostSchema = yup.object({
   content: yup.string().required('Bắt buộc có nội dung'),
   tag: yup.array().of(yup.string().required()).required().min(1, 'Cần có ít nhất 1 tag'),
   category: yup.array().of(yup.string().required()).required().min(1, 'Cần có ít nhất 1 category'),
-  image_url: yup.string().required()
+  image_url: yup.string().default('')
 })
 
 export type UpdatePostSchema = yup.InferType<typeof updatePostSchema>

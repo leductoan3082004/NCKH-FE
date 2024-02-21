@@ -103,7 +103,7 @@ export default function AdminPostDetail() {
       content: postDetail?.content || '',
       tag: postDetail?.tag || [],
       category: postDetail?.category || [],
-      image_url: postDetail?.image_url || ''
+      image_url: postDetail?.image_url || 'emptyUrl'
     },
     resolver: yupResolver(updatePostSchema)
   })
@@ -124,7 +124,9 @@ export default function AdminPostDetail() {
         }
       } else {
         if (value == '') {
-          invalidFields.push(key)
+          if (key == 'image_url') {
+            continue
+          } else invalidFields.push(key)
         }
       }
     }
@@ -133,6 +135,7 @@ export default function AdminPostDetail() {
 
   //? Handle submit form
   const onSubmit = handleSubmit(async (data) => {
+    console.log(1)
     setUpdateExcutingDialog(true)
     setExcuting(true)
     // const validateForm =
@@ -188,6 +191,7 @@ export default function AdminPostDetail() {
         },
         onSettled: () => {
           window.scrollTo({ top: 0, left: 0 })
+          setInvalidFields([])
           setEditingMode(false)
           setImageFile(undefined)
           setExcuting(false)

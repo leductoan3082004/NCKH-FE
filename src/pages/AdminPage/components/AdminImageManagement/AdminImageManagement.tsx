@@ -5,8 +5,9 @@ import { imageApi } from 'src/apis/image.api'
 import { Image, ImageListConfig } from 'src/types/image.type'
 import AdminImageFilter from '../AdminImageFilter'
 import useImageListQueryConfig from 'src/hooks/useImageListQueryConfig'
+import { useCopyToClipboard } from 'src/hooks/useCopyToClipboard'
 
-const ImageItem = ({ image }: { image: Image }) => {
+const ImageItem = ({ image, handleCopy }: { image: Image; handleCopy: (url: string) => () => void }) => {
   const [hovering, setHovering] = useState<boolean>(false)
 
   return (
@@ -21,12 +22,18 @@ const ImageItem = ({ image }: { image: Image }) => {
           <p className='overflow-hidden'>{image.url}</p>
         </div>
       )}
+      <button
+        onClick={handleCopy(image.url)}
+        className='absolute top-1 right-1 rounded-md py-0.5 text-xs bg-primaryBackground/80 hover:bg-primaryBackground px-2'
+      >
+        Copy URL
+      </button>
     </div>
   )
 }
 
 export default function AdminImageManagement() {
-  //? GET IMAGE LIST
+  //! GET IMAGE LIST
   const imagesConfig = useImageListQueryConfig()
 
   const { data: imagesData, isFetching } = useQuery({
@@ -36,6 +43,13 @@ export default function AdminImageManagement() {
     },
     staleTime: 3 * 60 * 1000
   })
+
+  //! HANDLE COPY IMAGE URL TO CLIPBOARD
+  const [, copy] = useCopyToClipboard()
+
+  const handleCopyUrl = (url: string) => () => {
+    copy(url)
+  }
 
   return (
     <>
@@ -58,7 +72,7 @@ export default function AdminImageManagement() {
           <div className='grid grid-cols-2 tablet:grid-cols-3 desktop:grid-cols-4 gap-2'>
             {imagesData?.data.data.map((image) => (
               <div className='col-span-1' key={image._id}>
-                <ImageItem image={image} />
+                <ImageItem image={image} handleCopy={handleCopyUrl} />
               </div>
             ))}
           </div>
