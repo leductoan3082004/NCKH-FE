@@ -31,7 +31,9 @@ export default function AdminFeedbackDetail() {
               <p className='text-darkText/60 desktop:text-lg'>{formatDate(feedback.created_at)}</p>
             </div>
           </div>
-          <div className='text-base desktop:text-lg'>{feedback.content}</div>
+          <div className='flex items-center justify-center'>
+            <p className='w-11/12 desktop:w-10/12 text-lg'>{feedback.content}</p>
+          </div>
           <div className='desktop:text-lg overflow-hidden flex flex-col items-end'>
             <p className='truncate font-bold'>{feedback.name}</p>
             <p className='truncate text-darkText/60'>{feedback.email}</p>

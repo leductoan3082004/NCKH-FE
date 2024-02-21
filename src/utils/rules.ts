@@ -21,7 +21,7 @@ export const feedbackSchema = yup.object({
   phone: yup
     .string()
     // .test('Digits only', 'The field should have digits only', digitsOnly)
-    .matches(/^[0-9]+$/, 'Must be only digits')
+    .matches(/^[0-9\s]*$/, 'Số điện thoại không hợp lệ')
     .max(10, 'Số điện thoại không hợp lệ')
 })
 
