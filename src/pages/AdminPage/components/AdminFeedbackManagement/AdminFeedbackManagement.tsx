@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import classNames from 'classnames'
+import DOMPurify from 'dompurify'
 import { produce } from 'immer'
 import { keyBy } from 'lodash'
 import { Fragment, useContext, useEffect } from 'react'
@@ -24,7 +25,7 @@ const LargeFeedbackItem = ({ feedback, index, handleChecking, handleClickItem }:
   const { deletingMode } = useContext(FeedbackContext)
 
   return (
-    <div className='flex w-full hover:bg-mainBlue100 grid-cols-12 gap-2 py-4 px-4 border-b cursor-pointer hover:shadow-md border-black/20'>
+    <div className='flex w-full hover:bg-mainBlue100 grid-cols-12 gap-2 px-4 border-b cursor-pointer hover:shadow-md border-black/20'>
       <div className={classNames('flex items-center visible', { invisible: !deletingMode })}>
         <input
           name='is_selected'
@@ -34,14 +35,20 @@ const LargeFeedbackItem = ({ feedback, index, handleChecking, handleClickItem }:
           onChange={handleChecking(index)}
         />
       </div>
-      <button className='w-full grid grid-cols-12 gap-2' onClick={handleClickItem(feedback)}>
+      <button className='w-full grid grid-cols-12 gap-2 py-4' onClick={handleClickItem(feedback)}>
         <div className='col-span-2'>
           <p className='font-bold text-left'>{feedback.name}</p>
         </div>
         <div className='col-span-8 desktopLarge:col-span-9'>
           <div className='flex space-x-2 px-1 overflow-hidden'>
             <p className='font-bold shrink-0'>{feedback.topic}</p>
-            <p className='text-darkText/40 truncate'>{feedback.content}</p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(feedback.content)
+              }}
+              className='line-clamp-1 opacity-50 text-left'
+            />
+            {/* <p className='text-darkText/40 truncate'>{feedback.content}</p> */}
           </div>
         </div>
         <div className='col-span-2 desktopLarge:col-span-1 text-sm flex items-center justify-end'>
@@ -56,7 +63,7 @@ const SmallFeedbackItem = ({ feedback, index, handleChecking, handleClickItem }:
   const { deletingMode } = useContext(FeedbackContext)
 
   return (
-    <div className='w-full border-b hover:shadow-md hover:cursor-pointer hover:bg-mainBlue100 border-black/20 mainBlue100 flex  py-3 px-1 mobileLarge:px-2 space-x-2'>
+    <div className='w-full border-b hover:shadow-md hover:cursor-pointer hover:bg-mainBlue100 border-black/20 mainBlue100 flex px-1 mobileLarge:px-2 space-x-2'>
       <div className={classNames('min-h-full flex items-center justify-center visible', { invisible: !deletingMode })}>
         <input
           name='is_selected'
@@ -66,7 +73,7 @@ const SmallFeedbackItem = ({ feedback, index, handleChecking, handleClickItem }:
           onChange={handleChecking(index)}
         />
       </div>
-      <button className='w-full relative overflow-hidden space-y-1' onClick={handleClickItem(feedback)}>
+      <button className='w-full relative overflow-hidden space-y-1 py-3' onClick={handleClickItem(feedback)}>
         <div className='flex justify-between items-center'>
           <p className='font-bold'>{feedback.name}</p>
           <div className='flex space-x-4 items-center'>
@@ -74,7 +81,12 @@ const SmallFeedbackItem = ({ feedback, index, handleChecking, handleClickItem }:
           </div>
         </div>
         <p className='font-bold text-left'>{feedback.topic}</p>
-        <p className='text-left truncate text-darkText/40'>{feedback.content}</p>
+        <p
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(feedback.content)
+          }}
+          className='line-clamp-1 opacity-50 text-left'
+        />
       </button>
     </div>
   )

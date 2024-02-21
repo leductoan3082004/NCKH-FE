@@ -26,8 +26,10 @@ export default function AdminTags({ errorMessage }: Props) {
 
   const addTag = (tag: string) => {
     const testTag = tag.replace(/\s/g, '')
-    tag.replace(/\s/g, '')
-    if (tag == '' || testTag == '') return
+    if (tag == '' || testTag == '') {
+      setTypedTag('')
+      return
+    }
     if (isCreating) {
       if (!tags.includes(tag)) {
         setTags([...tags, tag])

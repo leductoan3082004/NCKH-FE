@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+import DOMPurify from 'dompurify'
 import { useParams } from 'react-router-dom'
 import { feedbackApi } from 'src/apis/feedback.api'
 import LoadingRing from 'src/components/LoadingRing'
@@ -32,7 +33,13 @@ export default function AdminFeedbackDetail() {
             </div>
           </div>
           <div className='flex items-center justify-center'>
-            <p className='w-11/12 desktop:w-10/12 text-lg'>{feedback.content}</p>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(feedback.content)
+              }}
+              className='overflow-visible'
+            />
+            {/* <p className='w-11/12 desktop:w-10/12 text-lg'>{feedback.content}</p> */}
           </div>
           <div className='desktop:text-lg overflow-hidden flex flex-col items-end'>
             <p className='truncate font-bold'>{feedback.name}</p>
