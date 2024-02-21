@@ -78,9 +78,9 @@ export default function AdminTags({ errorMessage }: Props) {
         <button
           type='button'
           onClick={handleMouseClick}
-          className='p-1 rounded-md bg-white hover:bg-primaryBackground border  border-black/20'
+          className='py-1 px-3 rounded-md bg-white hover:bg-primaryBackground border  border-black/20'
         >
-          Thêm nhãn
+          Thêm từ khóa
         </button>
         <div className='text-sm flex items-center text-alertRed'>{errorMessage}</div>
       </div>

@@ -39,7 +39,7 @@ export default function AdminUploadImage() {
 
   //? Styles
   const buttonStyle =
-    'flex py-1 px-6 tablet:px-8 desktop:px-10 hover:bg-primaryBackground cursor-pointer items-center justify-center rounded-md bg-white text-sm font-semibold tablet:text-base desktop:text-lg'
+    'flex py-1 px-6 tablet:px-8 desktop:px-10 hover:bg-primaryBackground cursor-pointer items-center justify-center rounded-md bg-white text-sm desktop:text-base border border-black/40'
 
   return (
     <div className='flex justify-center'>

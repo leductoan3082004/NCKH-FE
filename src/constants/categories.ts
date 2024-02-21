@@ -1,5 +1,20 @@
 import mainPath, { documentSystemPath } from './path'
 
+export const MainCategories = ['Văn bản', 'Định hướng sử dụng văn bản', 'Giới thiệu trang web']
+
+export const DocumentCategories = ['Tiêu chí lựa chọn văn bản', 'Hệ thống văn bản']
+
+export const DocumentSystemCatgories = [
+  'Thơ',
+  'Truyện thơ',
+  'Truyện kí',
+  'Truyện ngắn hiện đại',
+  'Bi kịch',
+  'Tùy bút, tản văn'
+]
+
+export const DocumentUsageCategories = ['Quy trình thiết kế công cụ đánh giá', 'Giới thiệu trang web']
+
 export const Categories = [
   'Tất cả',
   'Văn bản',

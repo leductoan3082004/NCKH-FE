@@ -25,7 +25,7 @@ function ImageItem({ image, handleDelete }: { image: Image; handleDelete: (image
             <p className=''>{formatDate(image.created_at)}</p>
           </div>
           <button
-            className='py-0.5 tablet:py-1 rounded-md px-2 text-sm tablet:text-base tablet:px-4 bg-red-600 hover:bg-red-500'
+            className='py-0.5 tablet:py-1 rounded-md px-2 text-sm tablet:text-base tablet:px-4 bg-alertRed/80 hover:bg-alertRed'
             onClick={handleDelete(image._id)}
           >
             Xóa

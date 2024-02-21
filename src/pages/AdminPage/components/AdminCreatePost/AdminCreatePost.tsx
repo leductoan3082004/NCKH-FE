@@ -14,6 +14,7 @@ import { isAxiosBadRequestError } from 'src/utils/utils'
 import AdminCreatePostForm from './AdminCreatePostForm'
 import { AdminContext } from 'src/contexts/admin.context'
 import InputFile from 'src/components/InputFile'
+import { reject } from 'lodash'
 
 type FormData = CreatePostSchema
 
@@ -63,7 +64,9 @@ export default function AdminCreatePost() {
   }, [setValue, categories, clearErrors])
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onInvalid = (errors: any) => console.error(errors)
+  const onInvalid = (errors: any) => {
+    reject(errors)
+  }
   const queryClient = useQueryClient()
   const createPostMutation = useMutation({
     mutationFn: postApi.createPost
@@ -134,13 +137,13 @@ export default function AdminCreatePost() {
 
   //? Styles
   const buttonStyle =
-    'flex py-1 px-6 tablet:px-8 desktop:px-10 hover:bg-primaryBackground cursor-pointer items-center justify-center rounded-md text-sm font-semibold tablet:text-base bg-black/60 text-white hover:text-darkText'
+    'flex py-1 px-6 tablet:px-8 desktop:px-10 hover:bg-primaryBackground cursor-pointer items-center justify-center rounded-md text-sm font-medium  bg-black/60 text-white hover:text-darkText'
 
   return (
     <div>
       <div className='grid grid-cols-4 items-center gap-2 border border-black/20 py-1 px-2 rounded-md'>
         <div className='col-span-1'>
-          <p className='text-xs tablet:text-sm font-semibold uppercase text-primaryBlue lg:text-base'>Ảnh đại diện</p>
+          <p className='text-xs tablet:text-sm font-semibold uppercase lg:text-base'>Ảnh đại diện</p>
         </div>
         <div className='col-span-3'>
           <div className='w-full tabletSmall:w-8/12 tablet:w-6/12 desktop:w-4/12 flex flex-col space-y-4 items-center py-4'>

@@ -58,12 +58,12 @@ export default function SortByCategory() {
       ref={ref}
     >
       <button
-        className='flex px-1 text-xs tablet:text-sm desktop:text-base hover:text-primaryBlue font-semibold space-x-1 py-1 w-full justify-center items-center'
+        className='flex px-1 text-xs desktop:text-sm hover:text-primaryBlue font-medium space-x-1 py-1 w-full justify-center items-center'
         onClick={toggleOpenClose}
       >
         <p className=''>Lọc theo danh mục</p>
         {queryConfig.category && (
-          <div className='flex p-1 rounded-md text-darkText hover:text-darkText bg-primaryBackground items-center justify-center'>
+          <div className='flex py-1 px-2 rounded-md text-darkText font-normal hover:text-darkText bg-primaryBackground items-center justify-center'>
             <span className=''>{queryConfig.category}</span>
           </div>
         )}

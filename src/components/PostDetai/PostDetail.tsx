@@ -3,7 +3,14 @@ import { NavLink, createSearchParams, useLocation, useNavigate, useParams } from
 import postApi from 'src/apis/post.api'
 import { getIdFromUrl } from 'src/utils/utils'
 import PathBar from '../PathBar'
-import { CategoriesPathname, CategoriesURL } from 'src/constants/categories'
+import {
+  CategoriesPathname,
+  CategoriesURL,
+  DocumentCategories,
+  DocumentSystemCategories,
+  DocumentUsageCategories,
+  MainCategories
+} from 'src/constants/categories'
 import { PathElement } from '../PathBar/PathBar'
 import LoadingRing from '../LoadingRing'
 import DOMPurify from 'dompurify'
@@ -36,8 +43,26 @@ export default function PostDetail() {
     )
 
   //! GET PATH LIST
-  const category = postDetail.category[0]
-  const pathNameList = CategoriesPathname.get(category as string) as string[]
+  const categories = postDetail.category
+  const firstCategoryIndex = categories.findIndex((cate) => {
+    return MainCategories.includes(cate)
+  })
+  const secondCategoryIndex = categories.findIndex((cate) => {
+    return DocumentCategories.includes(cate) || DocumentUsageCategories.includes(cate)
+  })
+  const thirdCategoryIndex = categories.findIndex((cate) => {
+    return DocumentSystemCategories.includes(cate)
+  })
+  const lowestCategory =
+    thirdCategoryIndex != -1
+      ? categories[thirdCategoryIndex]
+      : secondCategoryIndex != -1
+        ? categories[secondCategoryIndex]
+        : firstCategoryIndex != -1
+          ? categories[firstCategoryIndex]
+          : categories[0]
+
+  const pathNameList = CategoriesPathname.get(lowestCategory as string) as string[]
   const pathList: PathElement[] = pathNameList?.map((pathName) => {
     return { pathName: pathName, url: CategoriesURL.get(pathName) as string, isNotALink: false }
   })

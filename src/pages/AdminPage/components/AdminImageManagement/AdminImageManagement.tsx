@@ -24,7 +24,7 @@ const ImageItem = ({ image, handleCopy }: { image: Image; handleCopy: (url: stri
       )}
       <button
         onClick={handleCopy(image.url)}
-        className='absolute top-1 right-1 rounded-md py-0.5 text-xs bg-primaryBackground/80 hover:bg-primaryBackground px-2'
+        className='absolute top-1 right-1 rounded-md py-1 text-sm bg-primaryBackground/80 hover:bg-primaryBackground px-3'
       >
         Copy URL
       </button>
