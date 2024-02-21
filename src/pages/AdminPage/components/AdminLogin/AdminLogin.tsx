@@ -65,11 +65,11 @@ export default function AdminLogin() {
       <div className='flex justify-center mt-6 tablet:mt-8 desktop:mt-10'>
         <div className='tablet:w-8/12 desktop:w-6/12'>
           <form
-            className='rounded-xl bg-mainBlue100 py-4 px-3 tablet:px-4 desktop:px-6 shadow-sm duration-200'
+            className='rounded-xl bg-sectionBlue py-4 px-3 tablet:px-4 desktop:px-6 shadow-sm duration-200'
             onSubmit={onSubmit}
             noValidate
           >
-            <div className='text-center text-2xl font-semibold uppercase text-mainBlue900'>
+            <div className='text-center text-2xl font-semibold uppercase text-primaryBlue'>
               đăng nhập dành cho quản trị viên
             </div>
 
