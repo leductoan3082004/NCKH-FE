@@ -1,63 +1,25 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook } from '@fortawesome/free-brands-svg-icons'
-import { Link } from 'react-router-dom'
-import { faPhone, faUser } from '@fortawesome/free-solid-svg-icons'
+/* eslint-disable prettier/prettier */
 
 export default function MainFooter() {
-  //? Style
-  const wrapperStyle =
-    'flex items-center text-lg justify-start tablet:justify-center space-x-2 tablet:space-x-3 desktop:space-x-4'
-  const iconStyle = 'h-4 tablet:h-5 desktop:h-6'
-  const contentStyle = 'text-left flex items-center justify-start'
-
   return (
-    <div className='py-8 bg-mainBlue300'>
-      <div className='container flex items-center justify-center'>
-        <div className='w-full items-center flex flex-col justify-between space-y-8'>
-          <p className='w-full uppercase text-primaryBlue text-center font-medium text-2xl desktop:text-4xl'>
-            Nghiên cứu khoa học
-          </p>
-          <div className='grid tablet:grid-cols-3 gap-4 grid-cols-1 w-full mobileLarge:w-9/12'>
-            <div className='col-span-1'>
-              <div className={wrapperStyle}>
-                <FontAwesomeIcon icon={faFacebook} className={iconStyle} />
-                <Link to='https://www.facebook.com/biottttttttt' target='_blank' className='hover:text-primaryBlue'>
-                  facebook.com/biottttttttt
-                </Link>
-              </div>
-            </div>
-            <div className='col-span-1'>
-              <div className={wrapperStyle}>
-                <FontAwesomeIcon icon={faPhone} className={iconStyle} />
-                <p className={contentStyle}>0394030604</p>
-              </div>
-            </div>
-            <div className='col-span-1'>
-              <div className='flex items-start text-lg justify-start tablet:justify-center space-x-2 tablet:space-x-3 desktop:space-x-4'>
-                <FontAwesomeIcon icon={faUser} className={iconStyle} />
 
-                <div className='flex flex-col w-auto space-y-2'>
-                  <span>
-                    <Link to='' target='_blank' className='hover:text-primaryBlue py-1'>
-                      Le Duc Toan
-                    </Link>
-                  </span>
-                  <span>
-                    <Link to='' target='_blank' className='hover:text-primaryBlue py-1'>
-                      Le Duc Toan
-                    </Link>
-                  </span>
-                  <span>
-                    <Link to='' target='_blank' className='hover:text-primaryBlue py-1'>
-                      Le Duc Toan
-                    </Link>
-                  </span>
-                </div>
-              </div>
-            </div>
+    <div className='bg-mainBlue300 border-t-[0.1px] border-y-black'>
+      <div className='py-2 w-full items-center flex flex-col justify-between space-y-2'>
+        <p className='w-full text-primaryBlue text-center font-medium text-sm desktop:text-base'>
+          <div className="flex-row justify-between">
+            <p className='text-base font-extrabold desktop:text-lg'>Liên hệ:</p>
+            <p> SĐT: 0937742620</p>
+            <p>Email: leductoan3082004@gmail.com</p>
+            {/* generate facebook link for me */}
+            <p>
+              Facebook: <a href="https://www.facebook.com/biottttttttt/" className="hover:opacity-50 underline">
+                Lê Đức Toàn
+              </a>
+            </p>
           </div>
-        </div>
+        </p>
       </div>
+      <div className="text-xs w-full text-center bg-slate-700 py-2 text-gray-400">Copyright 2024 © NCKH</div>
     </div>
   )
 }
