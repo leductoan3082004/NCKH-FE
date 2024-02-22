@@ -112,6 +112,11 @@ export default function PostDetail() {
               className='overflow-visible'
             />
 
+            <div className='flex space-x-1 italic'>
+              <span className='font-medium'>Tác giả: </span>
+              <span className=''>{postDetail.author}</span>
+            </div>
+
             <div className='border-t border-black/20 border-1' />
 
             <div className='flex space-x-2 items-center text-xs desktop:text-sm'>

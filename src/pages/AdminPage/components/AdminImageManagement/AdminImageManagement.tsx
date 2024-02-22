@@ -6,6 +6,7 @@ import { Image, ImageListConfig } from 'src/types/image.type'
 import AdminImageFilter from '../AdminImageFilter'
 import useImageListQueryConfig from 'src/hooks/useImageListQueryConfig'
 import { useCopyToClipboard } from 'src/hooks/useCopyToClipboard'
+import { Slide, toast } from 'react-toastify'
 
 const ImageItem = ({ image, handleCopy }: { image: Image; handleCopy: (url: string) => () => void }) => {
   const [hovering, setHovering] = useState<boolean>(false)
@@ -49,6 +50,17 @@ export default function AdminImageManagement() {
 
   const handleCopyUrl = (url: string) => () => {
     copy(url)
+    toast('Đã sao chép', {
+      position: 'top-right',
+      autoClose: 500,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+      transition: Slide
+    })
   }
 
   return (
