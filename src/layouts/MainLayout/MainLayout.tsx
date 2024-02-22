@@ -7,7 +7,10 @@ interface Props {
 
 export default function MainLayout({ children }: Props) {
   return (
-    <div className='bg-mainBg'>
+    <div className='bg-mainBg flex flex-col h-full justify-between shrink-0 min-h-full'
+      style={{
+        minHeight: 'inherit'
+      }}>
       <div className='fixed z-10 w-full'>
         <MainHeader />
       </div>
