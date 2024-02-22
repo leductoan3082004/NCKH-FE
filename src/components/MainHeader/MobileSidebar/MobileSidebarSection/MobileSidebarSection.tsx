@@ -39,7 +39,7 @@ export default function MobileSidebarSection({
           exit={{ opacity: 0, x: '100%' }}
           transition={{ duration: 0.3 }}
         >
-          <div className='relative w-full text-center py-2 text-sectionTitle'>
+          <div className='relative w-full text-center py-2 text-darkText'>
             <button
               onClick={closeSection}
               className='absolute top-1/2 -translate-y-1/2 left-1 hover:text-black p-2 duration-200'

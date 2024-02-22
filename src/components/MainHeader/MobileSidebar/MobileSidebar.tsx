@@ -36,11 +36,6 @@ export default function MobileSidebar() {
     setDocumentsSection(true)
   }
 
-  //? Classnames
-  const itemStyle =
-    'rounded-md px-7 tablet:px-4 py-3 duration-200 hover:bg-primaryBlueHovering/80 hover:text-white tablet:rounded-md'
-  const wrapperStyle = 'text-unhoverText flex flex-col py-4 space-y-2 px-4'
-
   //? Handle close sidebar
   const closeAndResetSidebar = () => {
     closeSidebar()
@@ -48,6 +43,13 @@ export default function MobileSidebar() {
     setUsageOrientationSection(false)
     setDocumentsSection(false)
   }
+
+  //? STYLES
+  const itemStyle =
+    'rounded-md px-7 tablet:px-4 py-3 duration-200 hover:bg-primaryBlueHovering/80 text-darkText hover:text-white tablet:rounded-md'
+  const wrapperStyle = 'text-darkText flex flex-col py-4 space-y-2 px-4'
+  const titleStyle =
+    'border-black/5 border-y w-full px-6 py-4 text-darkText font-medium hover:bg-black/10 hover:text-darkText duration-200 flex items-center justify-between uppercase'
 
   return (
     <Fragment>
@@ -102,36 +104,28 @@ export default function MobileSidebar() {
                       transition={{ duration: 0.3 }}
                     >
                       <div className='font-semibold flex flex-col uppercase'>
-                        <NavLink
-                          to={mainPath.home}
-                          className='border-black/5 border-y w-full px-6 py-4 text-grayText hover:bg-black/10 hover:text-darkText duration-200 flex items-center justify-between uppercase'
-                        >
+                        <NavLink to={mainPath.home} className={titleStyle} onClick={closeSidebar}>
                           <p className=''>trang chủ</p>
                         </NavLink>
 
-                        <button
-                          onClick={openDocumentsSection}
-                          className='border-black/5 border-y w-full px-6 py-4 text-grayText hover:bg-black/10 hover:text-darkText duration-200 flex items-center justify-between uppercase'
-                        >
+                        <button onClick={openDocumentsSection} className={titleStyle}>
                           <p className=''>văn bản</p>
                           <span>
-                            <FontAwesomeIcon icon={faChevronRight} className='font-medium' />
+                            <FontAwesomeIcon icon={faChevronRight} className='' />
                           </span>
                         </button>
 
-                        <button
-                          onClick={openUsageOrientationSection}
-                          className='border-black/5 border-y w-full px-6 py-4 text-grayText hover:bg-black/10 hover:text-darkText duration-200 flex items-center justify-between uppercase'
-                        >
+                        <button onClick={openUsageOrientationSection} className={titleStyle}>
                           <p className=''>định hướng sử dụng văn bản</p>
                           <span>
-                            <FontAwesomeIcon icon={faChevronRight} className='font-medium' />
+                            <FontAwesomeIcon icon={faChevronRight} className='' />
                           </span>
                         </button>
                       </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
+
                 <div className='absolute top-0 left-0 w-full'>
                   <MobileSidebarSection
                     title='Văn bản'
