@@ -39,7 +39,7 @@ function ImageItem({ image, handleDelete }: { image: Image; handleDelete: (image
 export default function AdminDeleteImage() {
   const [excutingDialog, setExcutingDialog] = useState<boolean>(false)
 
-  //? GET IMAGE LIST
+  //! GET IMAGE LIST
   const imagesConfig = useImageListQueryConfig()
 
   const {
@@ -47,7 +47,7 @@ export default function AdminDeleteImage() {
     isFetching,
     isFetched
   } = useQuery({
-    queryKey: ['ImageItemList', imagesConfig],
+    queryKey: ['admin-image-list', imagesConfig],
     queryFn: () => {
       return imageApi.getImageList(imagesConfig as ImageListConfig)
     },
@@ -66,7 +66,7 @@ export default function AdminDeleteImage() {
       { image_id: imageId as string },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: ['ImageItemList'] })
+          queryClient.invalidateQueries({ queryKey: ['admin-image-list'] })
         }
       }
     )

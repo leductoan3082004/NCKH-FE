@@ -11,9 +11,12 @@ function App() {
   const routeElements = useRouteElements()
 
   return (
-    <div className='text-darkText bg-mainBg flex flex-col justify-between h-full min-h-full' style={{
-      minHeight: 'inherit'
-    }}>
+    <div
+      className='text-darkText bg-mainBg flex flex-col justify-between h-full min-h-full'
+      style={{
+        minHeight: 'inherit'
+      }}
+    >
       {routeElements}
       <ToastContainer limit={3} />
       {loadingPage && <LoadingPage />}
