@@ -1,4 +1,5 @@
 import classNames from 'classnames'
+import { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { adminPath } from 'src/constants/path'
 
@@ -7,6 +8,11 @@ interface Props {
 }
 
 export default function AdminPostManagementLayout({ children }: Props) {
+  //! SET TITLE
+  useEffect(() => {
+    document.title = 'Quản trị viên | Bài viết'
+  })
+
   return (
     <div className=''>
       <div className='relative bg-white rounded-xl border border-primaryBlue grid grid-cols-2 desktopLarge:text-xl text-xs tablet:text-sm desktop:text-base overflow-hidden'>

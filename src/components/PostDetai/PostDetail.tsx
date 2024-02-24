@@ -18,6 +18,7 @@ import mainPath from 'src/constants/path'
 import { omit } from 'lodash'
 import usePostListQueryConfig from 'src/hooks/usePostListQueryConfig'
 import SuggestedPostList from '../SuggestedPostList'
+import { useEffect } from 'react'
 
 export default function PostDetail() {
   //! GET POST DETAIL
@@ -34,6 +35,12 @@ export default function PostDetail() {
   const navigate = useNavigate()
   const postListQueryConfig = usePostListQueryConfig()
   const currentUrl = location.pathname
+
+  //! SET TITLE
+  const title = 'NCKH | '.concat(postDetail?.title || 'Untitled')
+  useEffect(() => {
+    document.title = title
+  }, [title])
 
   if (!postDetail)
     return (

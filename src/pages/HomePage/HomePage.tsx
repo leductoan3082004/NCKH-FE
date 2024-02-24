@@ -5,7 +5,7 @@ import HomepageFeedback from './components/HomePageFeedback'
 export default function HomePage() {
   //? CHANGE TITLE
   useEffect(() => {
-    document.title = 'Trang chủ'
+    document.title = 'NCKH'
   })
   return (
     <div className='space-y-2'>

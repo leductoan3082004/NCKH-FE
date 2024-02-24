@@ -5,7 +5,7 @@ import { PostListConfig } from 'src/types/post.type'
 import LoadingSection from '../LoadingSection'
 import Post from '../Post'
 import EmptySection from 'src/pages/AdminPage/components/EmptySection'
-import { Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
 import PathBar from '../PathBar'
 import { CategoriesPathname, CategoriesURL } from 'src/constants/categories'
 import { PathElement } from '../PathBar/PathBar'
@@ -38,6 +38,12 @@ export default function PostList({ category }: Props) {
   })
   const { tag: activeTag, content: keyWord } = postListConfig
 
+  //! SET TITLE
+  const title = 'NCKH | '.concat(keyWord ? keyWord : ((activeTag ? activeTag : category) as string))
+  useEffect(() => {
+    document.title = title
+  }, [title])
+
   //! PATH LIST
   let pathList: PathElement[] = []
   if (category) {
@@ -48,7 +54,7 @@ export default function PostList({ category }: Props) {
   } else if (activeTag) {
     pathList = [{ pathName: activeTag || '', url: '', isNotALink: true }]
   } else {
-    pathList = [{ pathName: `Từ khóa: "${keyWord || 'Tất cả bài viết'}"`, url: '', isNotALink: true }]
+    pathList = [{ pathName: keyWord ? `Từ khóa: "${keyWord}"` : 'Tất cả bài viết', url: '', isNotALink: true }]
   }
 
   return (
@@ -64,11 +70,14 @@ export default function PostList({ category }: Props) {
           {postListData.data.data.length > 0 && (
             <Fragment>
               <div className='grid grid-cols-1 gap-2 tablet:grid-cols-2 tablet:gap-3 desktop:gap-4'>
-                {postListData.data.data.map((post) => (
-                  <div key={post._id} className=''>
-                    <Post post={post} />
-                  </div>
-                ))}
+                {postListData.data.data.map((post) => {
+                  if (post.category[0] == 'Giới thiệu trang web') return
+                  return (
+                    <div key={post._id} className=''>
+                      <Post post={post} />
+                    </div>
+                  )
+                })}
               </div>
 
               <UsePagination totalPage={ceil(postListData.data.paging.total / POST_LIMIT)} isMobile={isMobile} />

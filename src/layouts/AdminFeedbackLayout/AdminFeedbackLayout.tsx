@@ -2,7 +2,7 @@ import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import classNames from 'classnames'
-import React, { Fragment, createContext, useState } from 'react'
+import React, { Fragment, createContext, useEffect, useState } from 'react'
 import { NavLink, useNavigate, useParams } from 'react-router-dom'
 import { feedbackApi } from 'src/apis/feedback.api'
 import DialogPopup from 'src/components/DialogPopup'
@@ -41,6 +41,11 @@ export default function AdminFeedbackLayout({ children }: Props) {
   const [extendedFeedbacks, setExtendedFeedbacks] = useState<ExtendedFeedback[]>(
     initialFeedbackContext.extendedFeedbacks
   )
+
+  //! SET TITLE
+  useEffect(() => {
+    document.title = 'Quản trị viên | Feedbacks'
+  })
 
   //? use state
   const [deletingDialog, setDeletingDialog] = useState<boolean>(false)

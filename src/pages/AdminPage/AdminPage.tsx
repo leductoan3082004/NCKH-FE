@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { AppContext } from 'src/contexts/app.context'
 import { clearLS } from 'src/utils/auth'
 
@@ -9,6 +9,11 @@ export default function AdminPage() {
     clearLS()
     setIsAuthenticated(false)
   }
+
+  //! SET TITLE
+  useEffect(() => {
+    document.title = 'NCKH | Quản trị viên'
+  })
 
   return (
     <div className='w-full'>
