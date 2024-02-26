@@ -1,6 +1,7 @@
 import PostList from 'src/components/PostList'
 import mainPath, { documentSystemPath } from 'src/constants/path'
 import MainLayout from 'src/layouts/MainLayout'
+import NotFound from 'src/pages/NotFound'
 
 const CategoryRoute = {
   path: '',
@@ -98,6 +99,14 @@ const CategoryRoute = {
       element: (
         <MainLayout>
           <PostList category='Tùy bút, tản văn' />
+        </MainLayout>
+      )
+    },
+    {
+      path: '*',
+      element: (
+        <MainLayout>
+          <NotFound />
         </MainLayout>
       )
     }

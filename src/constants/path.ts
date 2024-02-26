@@ -1,6 +1,7 @@
 const mainPath = {
   home: '/',
-  postDetail: '/:postId',
+  post: '/bai-viet',
+  postDetail: '/bai-viet/:postId',
   vanBan: '/van-ban',
   tieuChiLuaChonVanBan: '/van-ban/tieu-chi-lua-chon-van-ban',
   heThongVanBan: '/van-ban/he-thong-van-ban',
@@ -21,7 +22,7 @@ export const documentSystemPath = {
 } as const
 
 export const adminPath = {
-  login: '/admin-login',
+  login: '/admin/login',
   mainPage: '/admin',
 
   //? Post

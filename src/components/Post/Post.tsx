@@ -28,7 +28,7 @@ function Post({ post, disableClick = false }: Props) {
     if (disableClick) {
       event.preventDefault()
     } else {
-      navigate({ pathname: `${mainPath.home}${generatePostId({ title: post.title, id: post._id })}` })
+      navigate({ pathname: `${mainPath.post}/${generatePostId({ title: post.title, id: post._id })}` })
     }
   }
 

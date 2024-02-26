@@ -12,7 +12,7 @@ module.exports = {
         primaryBlue: '#0077B6',
         primaryBackground: '#00B4D8',
         darkPrimaryBlue: '#03045E',
-        primaryBlueHovering: '#0077B6',
+        primaryBlueHovering: '#0096C7',
         sectionBlue: '#ADE8F4',
         footerBg: '#3FC1C0',
         darkText: '#101010',

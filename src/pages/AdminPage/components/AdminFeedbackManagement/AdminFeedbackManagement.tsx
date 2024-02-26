@@ -4,9 +4,9 @@ import DOMPurify from 'dompurify'
 import { produce } from 'immer'
 import { keyBy } from 'lodash'
 import { Fragment, useContext, useEffect } from 'react'
-import { ColorRing } from 'react-loader-spinner'
 import { useNavigate } from 'react-router-dom'
 import { feedbackApi } from 'src/apis/feedback.api'
+import LoadingRing from 'src/components/LoadingRing'
 import { adminPath } from 'src/constants/path'
 import useFeedbackListQueryConfig from 'src/hooks/useFeedbackListQueryConfig'
 import { useViewport } from 'src/hooks/useViewport'
@@ -63,7 +63,7 @@ const SmallFeedbackItem = ({ feedback, index, handleChecking, handleClickItem }:
   const { deletingMode } = useContext(FeedbackContext)
 
   return (
-    <div className='w-full border-b hover:shadow-md hover:cursor-pointer hover:bg-mainBlue100 border-black/20 mainBlue100 flex px-1 mobileLarge:px-2 space-x-2'>
+    <div className='w-full border-b hover:shadow-md hover:cursor-pointer hover:bg-mainBlue100 border-black/20 flex px-1 mobileLarge:px-2 space-x-2'>
       <div className={classNames('min-h-full flex items-center justify-center visible', { invisible: !deletingMode })}>
         <input
           name='is_selected'
@@ -147,18 +147,10 @@ export default function AdminFeedbackManagement() {
   }
 
   return (
-    <div className=''>
+    <div className='min-h-80'>
       {isFetching && (
-        <div className='w-full h-80 flex items-center justify-center'>
-          <ColorRing
-            visible={true}
-            height='80'
-            width='80'
-            ariaLabel='blocks-loading'
-            wrapperStyle={{}}
-            wrapperClass='blocks-wrapper'
-            colors={['#0096C7', '#0096C7', '#0096C7', '#0096C7', '#0096C7']}
-          />
+        <div className='w-full flex items-center justify-center'>
+          <LoadingRing />
         </div>
       )}
       {extendedFeedbacks.length > 0 && (
