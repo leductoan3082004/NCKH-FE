@@ -13,17 +13,6 @@ import PostList from './components/PostList'
 import NotFound from './pages/NotFound'
 import AdminRoute from './routes/adminRoute'
 
-function ProtectedRoute() {
-  const { isAuthenticated } = useContext(AppContext)
-  return isAuthenticated ? (
-    <AdminLayout>
-      <Outlet />
-    </AdminLayout>
-  ) : (
-    <Navigate to={adminPath.login} />
-  )
-}
-
 function RejectedRoute() {
   const { isAuthenticated } = useContext(AppContext)
   return !isAuthenticated ? (

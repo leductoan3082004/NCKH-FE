@@ -3,7 +3,9 @@ import { clearLS, getAccessTokenFromLS, setAccessTokenToLS } from './auth'
 import { toast } from 'react-toastify'
 import { ErrorRespone } from 'src/types/utils.type'
 
-export const BASE_API_URL = 'https://nckh.hareta.me/v1/'
+const API = 'https://nckh.hareta.online/'
+const VERSION = 'v1/'
+export const BASE_API_URL = API.concat(VERSION)
 
 class Http {
   instance: AxiosInstance
