@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-
 export default function MainFooter() {
   return (
     <div className='bg-mainBlue300 border-t-[0.1px] border-y-black shrink-0 flex flex-col justify-between'>
