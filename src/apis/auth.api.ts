@@ -2,7 +2,7 @@ import { AuthRespone } from 'src/types/auth.type'
 import { clearLS } from 'src/utils/auth'
 import http from 'src/utils/http'
 
-const url = ''
+const url = 'user'
 
 const adminApi = {
   adminLogin(body: { username: string; password: string }) {
