@@ -77,7 +77,7 @@ export default function AdminLogin() {
               name='username'
               register={register}
               type='text'
-              className='mt-8 autofill:text-textDark autofill:dark:text-textLight'
+              className='mt-8 autofill:text-darkText autofill:dark:text-textLight'
               errorMessage={errors.username?.message}
               labelName='Tài khoản'
               required

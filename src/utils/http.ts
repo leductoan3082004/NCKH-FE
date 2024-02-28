@@ -2,6 +2,7 @@ import axios, { AxiosError, AxiosInstance, HttpStatusCode } from 'axios'
 import { clearLS, getAccessTokenFromLS, setAccessTokenToLS } from './auth'
 import { toast } from 'react-toastify'
 import { ErrorRespone } from 'src/types/utils.type'
+import { authUrl } from 'src/apis/auth.api'
 
 const API = 'https://nckh.hareta.online/'
 const VERSION = 'v1/'
@@ -35,7 +36,7 @@ class Http {
     this.instance.interceptors.response.use(
       (response) => {
         const { url } = response.config
-        if (url === '/login') {
+        if (url === authUrl.login) {
           const accessToken = response.data.data.token
           if (accessToken !== undefined) {
             this.accessToken = accessToken
