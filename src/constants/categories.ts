@@ -4,7 +4,7 @@ export const MainCategories = ['Văn bản', 'Định hướng sử dụng văn 
 
 export const DocumentCategories = ['Tiêu chí lựa chọn văn bản', 'Hệ thống văn bản']
 
-export const DocumentSystemCatgories = [
+export const DocumentSystemCategories = [
   'Thơ',
   'Truyện thơ',
   'Truyện kí',
@@ -13,7 +13,7 @@ export const DocumentSystemCatgories = [
   'Tùy bút, tản văn'
 ]
 
-export const DocumentUsageCategories = ['Quy trình thiết kế công cụ đánh giá', 'Giới thiệu trang web']
+export const DocumentUsageCategories = ['Quy trình thiết kế công cụ đánh giá', 'Đề minh Họa']
 
 export const Categories = [
   'Tất cả',
@@ -30,15 +30,6 @@ export const Categories = [
   'Định hướng sử dụng văn bản',
   'Quy trình thiết kế công cụ đánh giá',
   'Giới thiệu trang web'
-]
-
-export const DocumentSystemCategories = [
-  'Thơ',
-  'Truyện thơ',
-  'Truyện kí',
-  'Truyện ngắn hiện đại',
-  'Bi kịch',
-  'Tùy bút, tản văn'
 ]
 
 export const DocumentSystemCategoriesURL = new Map<string, string>([

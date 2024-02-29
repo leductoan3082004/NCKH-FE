@@ -103,6 +103,7 @@ export default function AdminCreatePost() {
           }
         )
       }
+
       const newPostBody: FormData = {
         author: data.author,
         title: data.title,

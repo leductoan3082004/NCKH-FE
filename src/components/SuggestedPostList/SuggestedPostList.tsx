@@ -39,7 +39,7 @@ export default function SuggestedPostList({ type, limit, postId, showTitle = tru
   //! HANDLE ENTER POST
   const navigate = useNavigate()
   const handleEnterItem = (post: Post) => () => {
-    navigate({ pathname: `${mainPath.home}${generatePostId({ title: post.title, id: post._id })}` })
+    navigate({ pathname: `${mainPath.post}/${generatePostId({ title: post.title, id: post._id })}` })
   }
 
   return (

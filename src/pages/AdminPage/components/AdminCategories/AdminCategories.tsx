@@ -23,34 +23,65 @@ export default function AdminCategories({ errorMessage }: Props) {
   const pathName = useLocation().pathname
   const isCreating = pathName == adminPath.createPost
 
-  //? HANDLE CHOOSE CATEGORY
-  const handleChooseCategory = (category: string) => {
-    const categoryIndex = categories.indexOf(category)
-    if (categoryIndex > -1) {
-      setCategories((prev) => prev.filter((_, index) => index != categoryIndex))
-    } else {
-      setCategories((prev) => [category, ...prev])
+  //! HANDLE CHOOSE CATEGORY
+  const sameLevelCategories = (newCate: string, categoryList: string[]) => {
+    for (const cate of categoryList) {
+      if (
+        (MainCategories.includes(cate) && MainCategories.includes(newCate) && cate != newCate) ||
+        (DocumentCategories.includes(cate) && DocumentCategories.includes(newCate) && cate != newCate) ||
+        (DocumentUsageCategories.includes(cate) && DocumentUsageCategories.includes(newCate) && cate != newCate)
+      ) {
+        return cate
+      }
     }
+    return null
   }
 
-  const handleChooseUpdateCategory = (category: string) => {
-    const categoryIndex = updateCategories.indexOf(category)
-    if (categoryIndex > -1) {
-      setUpdateCategories((prev) => prev.filter((_, index) => index != categoryIndex))
+  const handleChooseCategory = (
+    newCate: string,
+    categoryList: string[],
+    handleChange: (value: React.SetStateAction<string[]>) => void
+  ) => {
+    if (categoryList.includes(newCate)) return
+
+    const oldCate = sameLevelCategories(newCate, categoryList)
+    if (oldCate) {
+      handleChange((prev) =>
+        prev.map((cate) => {
+          if (cate == oldCate) {
+            return newCate
+          } else return cate
+        })
+      )
+      removeNestedCategory(oldCate, handleChange)
     } else {
-      setUpdateCategories((prev) => [category, ...prev])
+      handleChange((prev) => [newCate, ...prev])
     }
   }
 
   const handleCategory = (category: string) => () => {
-    if (isCreating) handleChooseCategory(category)
-    else handleChooseUpdateCategory(category)
+    if (isCreating) handleChooseCategory(category, categories, setCategories)
+    else handleChooseCategory(category, updateCategories, setUpdateCategories)
   }
 
-  const removeCategory = (categoryIndex: number) => () => {
-    isCreating
-      ? setCategories((prev) => prev.filter((_, index) => index != categoryIndex))
-      : setUpdateCategories((prev) => prev.filter((_, index) => index != categoryIndex))
+  const removeNestedCategory = (root: string, handleChange: (value: React.SetStateAction<string[]>) => void) => {
+    if (MainCategories.includes(root)) {
+      //? removed category is main category
+      handleChange((prev) => prev.filter((cate) => MainCategories.includes(cate)))
+    } else if (DocumentCategories.includes(root)) {
+      //? removed category is 'văn bản'
+      handleChange((prev) => prev.filter((cate) => !DocumentSystemCategories.includes(cate)))
+    }
+  }
+
+  const removeCategory = (categoryIndex: number, category: string) => () => {
+    if (isCreating) {
+      setCategories((prev) => prev.filter((_, index) => index != categoryIndex))
+      removeNestedCategory(category, setCategories)
+    } else {
+      setUpdateCategories((prev) => prev.filter((_, index) => index != categoryIndex))
+      removeNestedCategory(category, setUpdateCategories)
+    }
   }
 
   const activeCategories = isCreating ? categories : updateCategories
@@ -82,7 +113,7 @@ export default function AdminCategories({ errorMessage }: Props) {
 
             <button
               type='button'
-              onClick={removeCategory(index)}
+              onClick={removeCategory(index, cate)}
               className='absolute top-1 right-1 p-0.5 hover:text-alertRed border border-black/20 rounded-md'
             >
               <FontAwesomeIcon icon={faXmark} />

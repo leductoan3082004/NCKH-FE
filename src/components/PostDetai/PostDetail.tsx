@@ -70,7 +70,7 @@ export default function PostDetail() {
           : categories[0]
 
   const pathNameList = CategoriesPathname.get(lowestCategory as string) as string[]
-  const pathList: PathElement[] = pathNameList?.map((pathName) => {
+  const pathList: PathElement[] = pathNameList.map((pathName) => {
     return { pathName: pathName, url: CategoriesURL.get(pathName) as string, isNotALink: false }
   })
 

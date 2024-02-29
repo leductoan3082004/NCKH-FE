@@ -22,10 +22,12 @@ class Http {
     })
     this.instance.interceptors.request.use(
       (config) => {
+        // config.url += '/'
+
         if (this.accessToken && config.headers) {
           config.headers.Authorization = 'Bearer ' + this.accessToken
-          return config
         }
+
         return config
       },
       (error) => {
