@@ -59,10 +59,6 @@ export default function useRouteElements() {
     },
     { path: '', element: <RejectedRoute />, children: [{ path: adminPath.login, element: <AdminLogin /> }] },
     {
-      path: adminPath.login,
-      element: <AdminLogin />
-    },
-    {
       path: adminPath.mainPage,
       children: [AdminRoute]
     },

@@ -4,7 +4,7 @@ import usePostListQueryConfig, { POST_LIMIT } from 'src/hooks/usePostListQueryCo
 import { PostListConfig } from 'src/types/post.type'
 import LoadingSection from '../LoadingSection'
 import Post from '../Post'
-import EmptySection from 'src/pages/AdminPage/components/EmptySection'
+import EmptySection from 'src/components/EmptySection'
 import { Fragment, useEffect } from 'react'
 import PathBar from '../PathBar'
 import { CategoriesPathname, CategoriesURL } from 'src/constants/categories'

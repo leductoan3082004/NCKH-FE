@@ -18,18 +18,6 @@ export default function AdminLayout({ children }: Props) {
         {isAuthenticated && (
           <div className='relative flex bg-white items-center justify-around rounded-xl border border-primaryBlue py-2 text-xs tablet:text-sm desktop:text-base font-bold text-textLight/80 desktopLarge:text-xl'>
             {/* <div className='absolute left-1/2 top-0 h-full border-l border-white/40'></div> */}
-            <NavLink
-              to={adminPath.mainPage}
-              end
-              className={({ isActive }) =>
-                classNames('px-4 py-1 uppercase ', {
-                  'text-primaryBlue': isActive,
-                  'hover:text-primaryBlue': !isActive
-                })
-              }
-            >
-              Trang chính
-            </NavLink>
 
             <NavLink
               to={adminPath.postManagement}

@@ -27,7 +27,7 @@ export default function AdminPage() {
       </div>
       <div className=''>
         <p className='uppercase font-bold text-xl desktop:text-2xl text-center text-primaryBlue'>
-          Hướng dẫn cho quản trị viên
+          Trang dành cho quản trị viên
         </p>
       </div>
     </div>

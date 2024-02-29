@@ -6,7 +6,7 @@ import DialogPopup from 'src/components/DialogPopup'
 import useImageListQueryConfig from 'src/hooks/useImageListQueryConfig'
 import { Image, ImageListConfig } from 'src/types/image.type'
 import { formatDate } from 'src/utils/utils'
-import AdminImageFilter from '../AdminImageFilter'
+import AdminImageFilter from '../../components/AdminImageFilter'
 
 function ImageItem({ image, handleDelete }: { image: Image; handleDelete: (imageId: string) => () => void }) {
   const [hoveringImage, setHoveringImage] = useState<boolean>(false)

@@ -1,34 +1,22 @@
 import { adminPath } from 'src/constants/path'
 import AdminLayout from 'src/layouts/AdminLayout'
-// import AdminPage from 'src/pages/AdminPage'
-// import AdminFeedbackLayout from 'src/layouts/AdminFeedbackLayout'
-// import AdminImagesLayout from 'src/layouts/AdminImagesLayout'
-// import AdminPostManagementLayout from 'src/layouts/AdminPostManagementLayout'
-// import AdminCreatePost from 'src/pages/AdminPage/components/AdminCreatePost'
-// import AdminDeleteImage from 'src/pages/AdminPage/components/AdminDeleteImage'
-// import AdminFeedbackDetail from 'src/pages/AdminPage/components/AdminFeedbackDetail'
-// import AdminFeedbackManagement from 'src/pages/AdminPage/components/AdminFeedbackManagement'
-// import AdminImageManagement from 'src/pages/AdminPage/components/AdminImageManagement'
-// import AdminPostDetail from 'src/pages/AdminPage/components/AdminPostDetail'
-// import AdminPostManagement from 'src/pages/AdminPage/components/AdminPostManagement'
-// import AdminUploadImage from 'src/pages/AdminPage/components/AdminUploadImage'
 import { Navigate, Outlet } from 'react-router-dom'
 import { Suspense, lazy, useContext } from 'react'
 import { AppContext } from 'src/contexts/app.context'
 import LoadingPage from 'src/components/LoadingPage'
+import AdminPage from 'src/pages/AdminPage'
 
-const AdminPage = lazy(() => import('src/pages/AdminPage'))
-const AdminFeedbackLayout = lazy(() => import('src/layouts/AdminFeedbackLayout'))
-const AdminPostManagementLayout = lazy(() => import('src/layouts/AdminPostManagementLayout'))
-const AdminImagesLayout = lazy(() => import('src/layouts/AdminImagesLayout'))
-const AdminDeleteImage = lazy(() => import('src/pages/AdminPage/components/AdminDeleteImage'))
-const AdminCreatePost = lazy(() => import('src/pages/AdminPage/components/AdminCreatePost'))
-const AdminFeedbackDetail = lazy(() => import('src/pages/AdminPage/components/AdminFeedbackDetail'))
-const AdminFeedbackManagement = lazy(() => import('src/pages/AdminPage/components/AdminFeedbackManagement'))
-const AdminImageManagement = lazy(() => import('src/pages/AdminPage/components/AdminImageManagement'))
-const AdminPostDetail = lazy(() => import('src/pages/AdminPage/components/AdminPostDetail'))
-const AdminPostManagement = lazy(() => import('src/pages/AdminPage/components/AdminPostManagement'))
-const AdminUploadImage = lazy(() => import('src/pages/AdminPage/components/AdminUploadImage'))
+const AdminFeedbackLayout = lazy(() => import('src/pages/AdminPage/layouts/AdminFeedbackLayout'))
+const AdminPostManagementLayout = lazy(() => import('src/pages/AdminPage/layouts/AdminPostManagementLayout'))
+const AdminImagesLayout = lazy(() => import('src/pages/AdminPage/layouts/AdminImagesLayout'))
+const AdminDeleteImage = lazy(() => import('src/pages/AdminPage/pages/AdminDeleteImage'))
+const AdminCreatePost = lazy(() => import('src/pages/AdminPage/pages/AdminCreatePost'))
+const AdminFeedbackDetail = lazy(() => import('src/pages/AdminPage/pages/AdminFeedbackDetail'))
+const AdminFeedbackManagement = lazy(() => import('src/pages/AdminPage/pages/AdminFeedbackManagement'))
+const AdminImageManagement = lazy(() => import('src/pages/AdminPage/pages/AdminImageManagement'))
+const AdminPostDetail = lazy(() => import('src/pages/AdminPage/pages/AdminPostDetail'))
+const AdminPostManagement = lazy(() => import('src/pages/AdminPage/pages/AdminPostManagement'))
+const AdminUploadImage = lazy(() => import('src/pages/AdminPage/pages/AdminUploadImage'))
 
 function ProtectedAdminRoute() {
   const { isAuthenticated } = useContext(AppContext)
@@ -47,10 +35,7 @@ const AdminRoute = {
   path: '',
   element: <ProtectedAdminRoute />,
   children: [
-    {
-      path: '',
-      element: <AdminPage />
-    },
+    { path: '', element: <AdminPage /> },
     {
       path: adminPath.postManagement,
       element: (

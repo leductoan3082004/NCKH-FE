@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { ColorRing } from 'react-loader-spinner'
 import { imageApi } from 'src/apis/image.api'
 import DialogPopup from 'src/components/DialogPopup'
-import MultipleFilesInput from '../MultipleFilesInput'
+import MultipleFilesInput from '../../components/MultipleFilesInput'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 

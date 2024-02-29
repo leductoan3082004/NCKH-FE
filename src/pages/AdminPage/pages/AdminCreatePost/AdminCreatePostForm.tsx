@@ -3,8 +3,8 @@ import { Fragment } from 'react'
 import { useFormContext } from 'react-hook-form'
 import Input from 'src/components/Input'
 import { CreatePostSchema } from 'src/utils/admin.rules'
-import AdminCategories from '../AdminCategories'
-import AdminTags from '../AdminTags'
+import AdminCategories from '../../components/AdminCategories'
+import AdminTags from '../../components/AdminTags'
 import CustomJoditEditor from 'src/components/CustomJoditEditor'
 
 type FormData = CreatePostSchema

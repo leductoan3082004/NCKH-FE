@@ -10,7 +10,7 @@ import LoadingRing from 'src/components/LoadingRing'
 import { adminPath } from 'src/constants/path'
 import useFeedbackListQueryConfig from 'src/hooks/useFeedbackListQueryConfig'
 import { useViewport } from 'src/hooks/useViewport'
-import { ExtendedFeedback, FeedbackContext } from 'src/layouts/AdminFeedbackLayout/AdminFeedbackLayout'
+import { ExtendedFeedback, FeedbackContext } from 'src/pages/AdminPage/layouts/AdminFeedbackLayout/AdminFeedbackLayout'
 import { Feedback, FeedbackListConfig } from 'src/types/feedback.type'
 import { formatDate, generateFeedbackId } from 'src/utils/utils'
 
