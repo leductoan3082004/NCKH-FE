@@ -1,3 +1,5 @@
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation } from '@tanstack/react-query'
 import classNames from 'classnames'
@@ -102,8 +104,11 @@ export default function HomepageFeedback() {
   return (
     <div className='container'>
       <div className='border-2 rounded-xl relative py-2 px-2 tablet:px-4 border-black/40'>
-        <div className='uppercase absolute top-0 -translate-y-1/2 bg-sectionBlue px-2 text font-bold tablet:text-lg desktop:text-xl desktopLarge:text-2xl text-primaryBlue'>
-          Bạn có góp ý cho chúng mình?
+        <div className='uppercase flex items-center space-x-1 desktop:space-x-2 absolute top-0 -translate-y-1/2 bg-sectionBlue px-2 text font-bold tablet:text-lg desktop:text-xl desktopLarge:text-2xl text-primaryBlue'>
+          <span>
+            <FontAwesomeIcon icon={faEnvelope} />
+          </span>
+          <span>Hộp thư góp ý</span>
         </div>
         <form className='py-4 px-2 tablet:grid tablet:grid-cols-12 tablet:gap-2' onSubmit={onSubmit}>
           <div className='tablet:col-span-4 tablet:pr-4'>
