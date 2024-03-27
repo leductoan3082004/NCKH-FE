@@ -134,7 +134,6 @@ export default function AdminPostDetail() {
 
   //? Handle submit form
   const onSubmit = handleSubmit(async (data) => {
-    console.log(1)
     setUpdateExcutingDialog(true)
     setExcuting(true)
     // const validateForm =
@@ -258,8 +257,18 @@ export default function AdminPostDetail() {
             </div>
           )}
 
+          {isFetched && (
+            <Fragment>
+              {postDetail && !editingMode && <AdminPostInfor postDetail={postDetail} />}
+              {postDetail && editingMode && (
+                <div className='py-2 space-y-2'>
+                  <AdminUpdatePostForm postDetail={postDetail} imageFile={imageFile} setImageFile={setImageFile} />
+                </div>
+              )}
+            </Fragment>
+          )}
           {editingMode && (
-            <div className='fixed z-10 bottom-2 w-full h-min px-4 flex justify-between py-2 rounded-lg items-center space-x-2 desktop:space-x-6 bg-black/60'>
+            <div className='sticky z-10 bottom-2 w-full h-min px-4 flex justify-between py-2 rounded-lg items-center space-x-2 desktop:space-x-6 bg-black/60'>
               <div className='bg-primaryBackground p-2 rounded-lg desktop:text-base font-medium shrink-0'>
                 Chế độ chỉnh sửa
               </div>
@@ -292,16 +301,6 @@ export default function AdminPostDetail() {
                 </div>
               </div>
             </div>
-          )}
-          {isFetched && (
-            <Fragment>
-              {postDetail && !editingMode && <AdminPostInfor postDetail={postDetail} />}
-              {postDetail && editingMode && (
-                <div className='py-2 space-y-2'>
-                  <AdminUpdatePostForm postDetail={postDetail} imageFile={imageFile} setImageFile={setImageFile} />
-                </div>
-              )}
-            </Fragment>
           )}
         </form>
       </FormProvider>

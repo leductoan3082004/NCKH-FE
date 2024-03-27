@@ -23,8 +23,12 @@ export default function MainFooter() {
       <div className='px-4 tablet:px-8 desktop:px-16 space-y-6 py-6 desktop:py-12'>
         <div className='tablet:flex-row flex flex-col justify-between tablet:space-y-0 space-y-4 items-center'>
           <div className='flex space-x-2 desktop:space-x-4'>
-            <img src='/images/Logo HCMUE.png' alt='HCMUE' className='object-scale-down w-auto h-10 tablet:h-16' />
-            <div className='flex flex-col justify-between h-10 tablet:h-16'>
+            <img
+              src='/images/Logo HCMUE.png'
+              alt='HCMUE'
+              className='object-scale-down w-auto h-10 tablet:h-16 desktop:h-24'
+            />
+            <div className='flex flex-col justify-between h-10 tablet:h-16 desktop:h-24'>
               <div className='uppercase desktop:text-lg font-bold tracking-wide '>
                 <p className=''>trường đại học sư phạm</p>
                 <p className=''>thành phố hồ chí minh</p>
@@ -32,7 +36,11 @@ export default function MainFooter() {
               <div className='border-t w-full border-[0,5px] border-black/20' />
               <p className='font-semibold text-red-800'>Ho Chi Minh University of Education</p>
             </div>
-            <img src='/images/van.png' alt='Văn' className='w-auto object-scale-down h-10 tablet:h-16' />
+            <img
+              src='/images/KhoaNguVan.png'
+              alt='Khoa Ngữ Văn'
+              className='w-auto object-scale-down h-10 tablet:h-16 desktop:h-24'
+            />
           </div>
 
           <div className='flex flex-col justify-between items-center tablet:items-start space-y-2'>

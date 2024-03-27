@@ -147,7 +147,7 @@ export default function PostDetail() {
               {postDetail.tag.map((tag, index) => (
                 <button
                   onClick={handleChoostTag(tag)}
-                  className='py-1 px-3 rounded-md bg-white text-darkText hover:bg-primaryBackground/60'
+                  className='py-1 px-3 rounded-md bg-white text-darkText hover:bg-primaryBackground/60 capitalize'
                   key={index}
                 >
                   {tag}

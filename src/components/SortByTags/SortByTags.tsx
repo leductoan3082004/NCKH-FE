@@ -8,7 +8,7 @@ import usePostListQueryConfig from 'src/hooks/usePostListQueryConfig'
 export default function SortByTags() {
   const [typedTag, setTypedTag] = useState<string>('')
 
-  //? Handle sort by tags
+  //! Handle sort by tags
   const handleTypedTag = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target
     setTypedTag(value)
