@@ -30,7 +30,7 @@ export default function PostDetail() {
   })
   const postDetail = postDetailData?.data.data
 
-  //? Use hooks
+  //! Use hooks
   const location = useLocation()
   const navigate = useNavigate()
   const postListQueryConfig = usePostListQueryConfig()
@@ -50,6 +50,9 @@ export default function PostDetail() {
     )
 
   //! GET PATH LIST
+
+  console.log(postDetail)
+
   const categories = postDetail.category
   const firstCategoryIndex = categories.findIndex((cate) => {
     return MainCategories.includes(cate)
