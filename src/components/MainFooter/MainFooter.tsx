@@ -51,7 +51,7 @@ export default function MainFooter() {
 
         <div className='tracking-wide text-center tablet:text-start'>
           <p className=''>Website này nằm trong khuôn khổ của đề tài:</p>
-          <p className='uppercase font-semibold'>Đề xuất sử dụng hệ thống văn bản văn học trên nền tảng website</p>
+          <p className='uppercase font-semibold'>Đề xuất hệ thống văn bản văn học trên nền tảng website</p>
           <p className='uppercase font-semibold  tracking-wide'>
             Sử dụng trong kiểm tra đánh giá kĩ năng đọc lớp 11 theo chương trình ngữ văn 2018
           </p>
