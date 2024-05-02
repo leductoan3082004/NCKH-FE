@@ -121,6 +121,10 @@ export default function MobileSidebar() {
                             <FontAwesomeIcon icon={faChevronRight} className='' />
                           </span>
                         </button>
+
+                        <NavLink to={mainPath.contact} className={titleStyle} onClick={closeSidebar}>
+                          <p className=''>liên hệ</p>
+                        </NavLink>
                       </div>
                     </motion.div>
                   )}
