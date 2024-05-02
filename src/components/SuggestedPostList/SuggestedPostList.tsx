@@ -16,10 +16,10 @@ interface Props {
 function SuggestedPost({ post, handleEnterPost }: { post: Post; handleEnterPost: () => void }) {
   return (
     <button className='w-full space-y-2 p-2 rounded-lg group' onClick={handleEnterPost}>
-      <div className='w-full pt-[100%] overflow-hidden relative'>
-        <img src={post.image_url} alt={post.title} className='absolute top-0 left-0   object-cover' />
+      <div className='w-full pt-[75%] overflow-hidden relative'>
+        <img src={post.image_url} alt={post.title} className='absolute top-0 left-0 object-cover' />
       </div>
-      <div className='border-t border-black/10'></div>
+      <div className='border-t border-black/20'></div>
       <p className='flex items-start justify-center font-medium group-hover:text-primaryBlue'>{post.title}</p>
     </button>
   )
@@ -55,9 +55,9 @@ export default function SuggestedPostList({ type, limit, postId, showTitle = tru
         </div>
       )}
       {suggestionsData && (
-        <div className='grid grid-cols-2 tablet:grid-cols-3 desktop:grid-cols-4 gap-2 desktop:gap-3'>
+        <div className='grid grid-cols-2 tablet:grid-cols-3 desktop:grid-cols-4'>
           {suggestionsData.data.data.map((post) => (
-            <div key={post._id} className='col-span-1'>
+            <div key={post._id} className='col-span-1 relative px-1 desktop:px-2'>
               <SuggestedPost post={post} handleEnterPost={handleEnterItem(post)} />
             </div>
           ))}

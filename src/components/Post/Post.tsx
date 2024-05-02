@@ -37,7 +37,7 @@ function Post({ post, disableClick = false }: Props) {
 
   return (
     <button
-      className='relative w-full grid grid-cols-5 gap-2 tablet:gap-4 desktop:gap-6 overflow-hidden rounded-xl p-2 tablet:p-3 desktop:p-4 duration-200 bg-primaryBlue/10 hover:bg-primaryBlueHovering/20 border border-black/20'
+      className='relative w-full grid grid-cols-5 gap-2 tablet:gap-4 desktop:gap-6 overflow-hidden rounded-xl p-2 tablet:p-3 desktop:p-4 duration-200 bg-mainBlue100/60 hover:bg-mainBlue100 border border-black/20'
       onClick={handleClickItem}
     >
       <div className='col-span-2'>

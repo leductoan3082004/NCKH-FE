@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { NavLink } from 'react-router-dom'
 import AnimateChangeInHeight from 'src/components/AnimateChangeInHeight'
 import CategoryNavigator from 'src/components/CategoryNavigator'
-import { DocumentSystemCategories, DocumentSystemCategoriesURL } from 'src/constants/categories'
+import { DocumentSystemCategoriesURL } from 'src/constants/categories'
 import mainPath from 'src/constants/path'
 import useClickOutside from 'src/hooks/useClickOutside'
 
@@ -67,12 +67,12 @@ export default function NavigateDocuments({ itemClassNames, wrapperClassNames, h
           <AnimatePresence>
             {visible && (
               <motion.div className='flex w-full flex-col items-start space-y-1 rounded-b-md pl-4 pr-8 tablet:pl-2 pt-1'>
-                {DocumentSystemCategories.map((category, index) => {
+                {DocumentSystemCategoriesURL.map((category, index) => {
                   return (
                     <CategoryNavigator
                       key={index}
-                      category={category}
-                      pathName={DocumentSystemCategoriesURL.get(category) as string}
+                      category={category.title}
+                      pathName={category.pathname}
                       onClick={onClick}
                     />
                   )

@@ -2,22 +2,21 @@ import { useQuery } from '@tanstack/react-query'
 import postApi from 'src/apis/post.api'
 import usePostListQueryConfig, { POST_LIMIT } from 'src/hooks/usePostListQueryConfig'
 import { PostListConfig } from 'src/types/post.type'
-import LoadingSection from '../LoadingSection'
-import Post from '../Post'
 import EmptySection from 'src/components/EmptySection'
 import { Fragment, useEffect } from 'react'
-import PathBar from '../PathBar'
 import { CategoriesPathname, CategoriesURL } from 'src/constants/categories'
-import { PathElement } from '../PathBar/PathBar'
-import UsePagination from '../UsePagination'
 import { ceil } from 'lodash'
 import { useViewport } from 'src/hooks/useViewport'
+import PathBar, { PathElement } from 'src/components/PathBar/PathBar'
+import LoadingSection from 'src/components/LoadingSection'
+import Post from 'src/components/Post'
+import UsePagination from 'src/components/UsePagination'
 
 interface Props {
   category?: string
 }
 
-export default function PostList({ category }: Props) {
+export default function PostListPage({ category }: Props) {
   const isMobile = useViewport().width < 768
 
   //! GET POST LIST

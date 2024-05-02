@@ -1,7 +1,7 @@
-import PostList from 'src/components/PostList'
-import mainPath, { documentSystemPath } from 'src/constants/path'
+import mainPath, { documentSystemPath, documentUsageOrientationPath } from 'src/constants/path'
 import MainLayout from 'src/layouts/MainLayout'
 import NotFound from 'src/pages/NotFound'
+import PostListPage from 'src/pages/PostListPage'
 
 const CategoryRoute = {
   path: '',
@@ -10,7 +10,7 @@ const CategoryRoute = {
       path: mainPath.vanBan,
       element: (
         <MainLayout>
-          <PostList category='Văn bản' />
+          <PostListPage category='Văn bản' />
         </MainLayout>
       )
     },
@@ -18,7 +18,7 @@ const CategoryRoute = {
       path: mainPath.tieuChiLuaChonVanBan,
       element: (
         <MainLayout>
-          <PostList category='Tiêu chí lựa chọn văn bản' />
+          <PostListPage category='Tiêu chí lựa chọn văn bản' />
         </MainLayout>
       )
     },
@@ -26,7 +26,7 @@ const CategoryRoute = {
       path: mainPath.heThongVanBan,
       element: (
         <MainLayout>
-          <PostList category='Hệ thống văn bản' />
+          <PostListPage category='Hệ thống văn bản' />
         </MainLayout>
       )
     },
@@ -34,31 +34,41 @@ const CategoryRoute = {
       path: mainPath.dinhHuongSuDungVanBan,
       element: (
         <MainLayout>
-          <PostList category='Định hướng sử dụng văn bản' />
+          <PostListPage category='Định hướng sử dụng văn bản' />
+        </MainLayout>
+      )
+    },
+    // Dinh huong su dung van ban
+    {
+      path: documentUsageOrientationPath.quyTrinhThietKeCongCuDanhGia,
+      element: (
+        <MainLayout>
+          <PostListPage category='Quy trình thiết kế công cụ đánh giá' />
         </MainLayout>
       )
     },
     {
-      path: mainPath.quyTrinhThietKeCongCuDanhGia,
+      path: documentUsageOrientationPath.deMinhHoa,
       element: (
         <MainLayout>
-          <PostList category='Quy trình thiết kế công cụ đánh giá' />
+          <PostListPage category='Đề minh họa' />
         </MainLayout>
       )
     },
     {
-      path: mainPath.deMinhHoa,
+      path: documentUsageOrientationPath.deMinhHoaXemNhieu,
       element: (
         <MainLayout>
-          <PostList category='Đề minh họa' />
+          <PostListPage category='Đề minh họa xem nhiều' />
         </MainLayout>
       )
     },
+    // He thong van ban
     {
       path: documentSystemPath.tho,
       element: (
         <MainLayout>
-          <PostList category='Thơ' />
+          <PostListPage category='Thơ' />
         </MainLayout>
       )
     },
@@ -66,7 +76,7 @@ const CategoryRoute = {
       path: documentSystemPath.truyenTho,
       element: (
         <MainLayout>
-          <PostList category='Truyện thơ' />
+          <PostListPage category='Truyện thơ' />
         </MainLayout>
       )
     },
@@ -74,7 +84,7 @@ const CategoryRoute = {
       path: documentSystemPath.truyenKi,
       element: (
         <MainLayout>
-          <PostList category='Truyện kí' />
+          <PostListPage category='Truyện kí' />
         </MainLayout>
       )
     },
@@ -82,7 +92,7 @@ const CategoryRoute = {
       path: documentSystemPath.truyenNganHienDai,
       element: (
         <MainLayout>
-          <PostList category='Truyện ngắn hiện đại' />
+          <PostListPage category='Truyện ngắn hiện đại' />
         </MainLayout>
       )
     },
@@ -90,7 +100,7 @@ const CategoryRoute = {
       path: documentSystemPath.biKich,
       element: (
         <MainLayout>
-          <PostList category='Bi kịch' />
+          <PostListPage category='Bi kịch' />
         </MainLayout>
       )
     },
@@ -98,7 +108,15 @@ const CategoryRoute = {
       path: documentSystemPath.tuyButTanVan,
       element: (
         <MainLayout>
-          <PostList category='Tùy bút, tản văn' />
+          <PostListPage category='Tùy bút, tản văn' />
+        </MainLayout>
+      )
+    },
+    {
+      path: documentSystemPath.vanBanTieuBieu,
+      element: (
+        <MainLayout>
+          <PostListPage category='Văn bản tiêu biểu' />
         </MainLayout>
       )
     },

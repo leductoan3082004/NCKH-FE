@@ -68,6 +68,20 @@ export default function MainHeader() {
                 >
                   <p className=''>định hướng sử dụng văn bản</p>
                 </HeaderPopover>
+
+                <NavLink
+                  to={mainPath.contact}
+                  className={({ isActive }) =>
+                    classNames(
+                      'flex items-center hover:bg-primaryBlueHovering text-sm desktop:text-base duration-200 font-medium px-2 desktop:px-4 py-1.5 rounded-md hover:text-white',
+                      {
+                        'bg-primaryBlueHovering text-white': isActive
+                      }
+                    )
+                  }
+                >
+                  <p className=''>liên hệ</p>
+                </NavLink>
               </div>
             </Fragment>
           )}

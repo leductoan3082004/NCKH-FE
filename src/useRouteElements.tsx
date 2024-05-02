@@ -9,9 +9,10 @@ import AdminLayout from './layouts/AdminLayout'
 import LoadingPage from './components/LoadingPage'
 import PostDetail from './components/PostDetai'
 import CategoryRoute from './routes/categoryRoute'
-import PostList from './components/PostList'
 import NotFound from './pages/NotFound'
 import AdminRoute from './routes/adminRoute'
+import ContactPage from './pages/ContactPage'
+import PostListPage from './pages/PostListPage'
 
 function RejectedRoute() {
   const { isAuthenticated } = useContext(AppContext)
@@ -38,6 +39,15 @@ export default function useRouteElements() {
       )
     },
     {
+      path: mainPath.contact,
+      index: true,
+      element: (
+        <MainLayout>
+          <ContactPage />
+        </MainLayout>
+      )
+    },
+    {
       path: '',
       children: [CategoryRoute]
     },
@@ -45,7 +55,7 @@ export default function useRouteElements() {
       path: mainPath.tagSorting,
       element: (
         <MainLayout>
-          <PostList category='' />
+          <PostListPage category='' />
         </MainLayout>
       )
     },

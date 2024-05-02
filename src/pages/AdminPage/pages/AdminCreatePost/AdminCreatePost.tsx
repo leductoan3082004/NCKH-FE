@@ -148,7 +148,7 @@ export default function AdminCreatePost() {
         </div>
         <div className='col-span-3'>
           <div className='w-full tabletSmall:w-8/12 tablet:w-6/12 desktop:w-4/12 flex flex-col space-y-4 items-center py-4'>
-            <div className='relative pt-[100%] w-full overflow-hidden rounded-md border-2 border-white'>
+            <div className='relative pt-[100%] w-full overflow-hidden rounded-md border-2'>
               {previewImage && (
                 <img src={previewImage} alt='ảnh' className='absolute left-0 top-0 h-full w-full object-cover ' />
               )}

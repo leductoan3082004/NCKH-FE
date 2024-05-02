@@ -24,7 +24,7 @@ function ErrorSection({ errorMessage }: { errorMessage?: string }) {
   )
 }
 
-export default function HomepageFeedback() {
+export default function ContactPage() {
   //? Use state
   const [isSending, setIsSending] = useState<boolean>(false)
 
@@ -61,7 +61,7 @@ export default function HomepageFeedback() {
     mutationFn: feedbackApi.sendFeedback
   })
   const onSubmit = handleSubmit(async (data: FormData) => {
-    //? check content of message
+    //! check content of message
     let content = data.content.replace(/\s/g, '')
     content = content.replace(/&nbsp;/g, '')
     content = content.replace(/<br>/g, '')
@@ -90,27 +90,27 @@ export default function HomepageFeedback() {
     }
   })
 
-  //? Handle clear form
+  //! Handle clear form
   const clearForm = () => {
     reset()
   }
 
   //! STYLES
-  const wrapperStyle = 'grid grid-cols-4 tablet:col-span-4 items-center gap-1 py-1'
+  const wrapperStyle = 'grid grid-cols-4 tablet:col-span-4 items-center gap-1 rounded-md'
   const titleStyle = 'col-span-1 space-x-0.5 uppercase font-medium text-sm desktop:text-base'
   const inputStyle =
-    'text-darkText col-span-3 bg-white py-1 px-2 text-sm tablet:text-base rounded-lg outline-none focus:outline-primaryBlue'
+    'text-darkText col-span-3 py-1 px-2 text-sm tablet:text-base rounded-lg outline outline-1 focus:outline-2 outline-primaryBlue/80 focus:outline-primaryBlue'
 
   return (
-    <div className='container'>
-      <div className='border-2 rounded-xl relative py-2 px-2 tablet:px-4 border-black/40'>
-        <div className='uppercase flex items-center space-x-1 desktop:space-x-2 absolute top-0 -translate-y-1/2 bg-sectionBlue px-2 text font-bold tablet:text-lg desktop:text-xl desktopLarge:text-2xl text-primaryBlue'>
+    <div className='container py-4 desktop:py-8 '>
+      <div className='border-2 rounded-xl relative py-2 px-2 tablet:px-4 border-black/40 '>
+        <div className='uppercase flex items-center space-x-1 desktop:space-x-2 absolute top-0 -translate-y-1/2 bg-mainBg px-2 text font-bold tablet:text-xl desktop:text-2xl desktopLarge:text-4xl text-primaryBlue left-1/2 -translate-x-1/2'>
           <span>
             <FontAwesomeIcon icon={faEnvelope} />
           </span>
           <span>Hộp thư góp ý</span>
         </div>
-        <form className='py-4 px-2 tablet:grid tablet:grid-cols-12 tablet:gap-2' onSubmit={onSubmit}>
+        <form className='py-4 px-2 desktop:py-8 tablet:grid tablet:grid-cols-12 tablet:gap-2' onSubmit={onSubmit}>
           <div className='tablet:col-span-4 tablet:pr-4'>
             <div className='tablet:grid flex flex-col tablet:grid-cols-4 space-y-2'>
               <div className='col-span-4'>
@@ -203,7 +203,7 @@ export default function HomepageFeedback() {
                 <span className=''>Nội dung</span>
                 <span className='text-alertRed'>*</span>
               </div>
-              <div className='col-span-3 outline outline-transparent rounded-md overflow-hidden tablet:col-span-5'>
+              <div className='col-span-3 outline outline-primaryBlue/80 outline-1 rounded-md overflow-hidden tablet:col-span-5'>
                 <NoToolbarJoditEditor content={editorContent} setContent={onEditorStateChange} />
               </div>
               {/* <textarea

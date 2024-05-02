@@ -30,6 +30,7 @@ export default function AdminTags({ errorMessage }: Props) {
       setTypedTag('')
       return
     }
+    tag = tag.toLowerCase()
     if (isCreating) {
       if (!tags.includes(tag)) {
         setTags([...tags, tag])
@@ -72,7 +73,7 @@ export default function AdminTags({ errorMessage }: Props) {
           value={typedTag}
           onChange={handleTypedTag}
           className={classNames(
-            'text-darkText bg-white py-1 px-2 text-base lg:text-lg rounded-lg outline-none focus:outline-primaryBlue',
+            'text-darkText bg-white py-1 px-2 text-base lg:text-lg rounded-lg outline outline-1 outline-primaryBlue/80 focus:outline-primaryBlue',
             { 'outline-alertRed': errorMessage }
           )}
           onKeyDown={handlePressEnter}
@@ -86,7 +87,7 @@ export default function AdminTags({ errorMessage }: Props) {
         </button>
         <div className='text-sm flex items-center text-alertRed'>{errorMessage}</div>
       </div>
-      <div className='h-20 bg-white mt-2 rounded-lg overflow-auto grid gap-2 grid-cols-1 tablet:grid-cols-2 tabletLarge:grid-cols-3 desktop:grid-cols-4 desktopLarge:grid-cols-5 p-1 text-sm'>
+      <div className='h-20 border border-black/60 mt-2 rounded-lg overflow-auto grid gap-2 grid-cols-1 tablet:grid-cols-2 tabletLarge:grid-cols-3 desktop:grid-cols-4 desktopLarge:grid-cols-5 p-1 text-sm'>
         {activeTags.map((tag, index) => (
           <div key={index} className='col-span-1 '>
             <div className='flex items-center h-10 line-clamp-2 justify-center rounded-md px-0.5 bg-primaryBackground/50 relative'>

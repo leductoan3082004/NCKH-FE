@@ -104,7 +104,7 @@ export default function AdminUpdatePostForm({ postDetail, imageFile, setImageFil
           </div>
           <div className='col-span-4 flex justify-center items-center'>
             <div className='w-full tablet:w-10/12 desktop:w-8/12 space-y-4 py-4'>
-              <div className='relative pt-[100%] w-full overflow-hidden rounded-md border-2 border-white'>
+              <div className='relative pt-[100%] w-full overflow-hidden rounded-md border-2'>
                 {previewImage && (
                   <img src={previewImage} alt='ảnh' className='absolute left-0 top-0 h-full w-full object-cover ' />
                 )}

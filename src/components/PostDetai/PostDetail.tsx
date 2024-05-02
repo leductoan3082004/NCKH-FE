@@ -50,9 +50,6 @@ export default function PostDetail() {
     )
 
   //! GET PATH LIST
-
-  console.log(postDetail)
-
   const categories = postDetail.category
   const firstCategoryIndex = categories.findIndex((cate) => {
     return MainCategories.includes(cate)
@@ -134,7 +131,7 @@ export default function PostDetail() {
               {postDetail.category.map((category, index) => (
                 <NavLink
                   to={CategoriesURL.get(category) as string}
-                  className='py-1 px-3 rounded-md bg-white text-darkText hover:bg-primaryBackground/60'
+                  className='py-1 px-3 rounded-md bg-white border border-black/40 text-darkText hover:bg-primaryBackground/60'
                   key={index}
                 >
                   {category}
@@ -147,7 +144,7 @@ export default function PostDetail() {
               {postDetail.tag.map((tag, index) => (
                 <button
                   onClick={handleChoostTag(tag)}
-                  className='py-1 px-3 rounded-md bg-white text-darkText hover:bg-primaryBackground/60 capitalize'
+                  className='py-1 px-3 rounded-md bg-white border border-black/40 text-darkText hover:bg-primaryBackground/60 capitalize'
                   key={index}
                 >
                   {tag}

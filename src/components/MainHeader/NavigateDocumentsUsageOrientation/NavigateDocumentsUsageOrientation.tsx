@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { NavLink } from 'react-router-dom'
-import mainPath from 'src/constants/path'
+import { documentUsageOrientationPath } from 'src/constants/path'
 
 interface Props {
   itemClassNames?: string
@@ -16,7 +16,7 @@ export default function NavigateDocumentsUsageOrientation({ itemClassNames, wrap
   return (
     <div className={wrapperClassNames}>
       <NavLink
-        to={mainPath.quyTrinhThietKeCongCuDanhGia}
+        to={documentUsageOrientationPath.quyTrinhThietKeCongCuDanhGia}
         onClick={onClick}
         className={({ isActive }) =>
           classNames(itemClassNames, 'flex items-center w-full text-left uppercase overflow-auto', {
@@ -28,7 +28,7 @@ export default function NavigateDocumentsUsageOrientation({ itemClassNames, wrap
       </NavLink>
 
       <NavLink
-        to={mainPath.deMinhHoa}
+        to={documentUsageOrientationPath.deMinhHoa}
         onClick={onClick}
         className={({ isActive }) =>
           classNames(itemClassNames, 'flex items-center w-full text-left uppercase overflow-auto', {
@@ -37,6 +37,18 @@ export default function NavigateDocumentsUsageOrientation({ itemClassNames, wrap
         }
       >
         Đề minh họa
+      </NavLink>
+
+      <NavLink
+        to={documentUsageOrientationPath.deMinhHoaXemNhieu}
+        onClick={onClick}
+        className={({ isActive }) =>
+          classNames(itemClassNames, 'flex items-center w-full text-left uppercase overflow-auto', {
+            'bg-primaryBlueHovering/80 text-white': isActive
+          })
+        }
+      >
+        Đề minh họa xem nhiều
       </NavLink>
     </div>
   )

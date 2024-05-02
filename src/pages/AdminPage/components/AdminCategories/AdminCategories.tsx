@@ -28,8 +28,8 @@ export default function AdminCategories({ errorMessage }: Props) {
     for (const cate of categoryList) {
       if (
         (MainCategories.includes(cate) && MainCategories.includes(newCate) && cate != newCate) ||
-        (DocumentCategories.includes(cate) && DocumentCategories.includes(newCate) && cate != newCate) ||
-        (DocumentUsageCategories.includes(cate) && DocumentUsageCategories.includes(newCate) && cate != newCate)
+        (DocumentCategories.includes(cate) && DocumentCategories.includes(newCate) && cate != newCate)
+        // (DocumentUsageCategories.includes(cate) && DocumentUsageCategories.includes(newCate) && cate != newCate)
       ) {
         return cate
       }

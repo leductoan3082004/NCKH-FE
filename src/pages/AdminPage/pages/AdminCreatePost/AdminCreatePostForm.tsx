@@ -36,7 +36,7 @@ export default function AdminCreatePostForm() {
   const inputFieldStyle = 'grid grid-cols-4 items-center gap-2 py-1 px-2'
   const titleStyle = 'text-xs col-span-1 tablet:text-sm font-bold space-x-0.5 uppercase lg:text-base '
   const inputStyle =
-    'text-darkText bg-white py-1 px-2 col-span-3 text-base lg:text-lg rounded-lg outline-none focus:outline-primaryBlue'
+    'text-darkText py-1 px-2 outline col-span-3 text-base lg:text-lg rounded-lg outline-1 outline-primaryBlue/80 focus:outline-primaryBlue'
 
   return (
     <Fragment>
