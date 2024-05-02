@@ -12,7 +12,7 @@ export default function AdminPage() {
 
   //! SET TITLE
   useEffect(() => {
-    document.title = 'NCKH | Quản trị viên'
+    document.title = 'Ngữ Liệu Số | Quản trị viên'
   })
 
   return (

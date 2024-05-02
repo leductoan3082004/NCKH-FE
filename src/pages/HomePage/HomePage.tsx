@@ -6,7 +6,7 @@ import { documentSystemPath, documentUsageOrientationPath } from 'src/constants/
 export default function HomePage() {
   //? CHANGE TITLE
   useEffect(() => {
-    document.title = 'NCKH'
+    document.title = 'Ngữ Liệu Số'
   })
   return (
     <div className='space-y-4 py-4'>

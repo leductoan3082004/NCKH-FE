@@ -37,7 +37,7 @@ export default function PostDetail() {
   const currentUrl = location.pathname
 
   //! SET TITLE
-  const title = 'NCKH | '.concat(postDetail?.title || 'Untitled')
+  const title = 'Ngữ Liệu Số | '.concat(postDetail?.title || 'Untitled')
   useEffect(() => {
     document.title = title
   }, [title])

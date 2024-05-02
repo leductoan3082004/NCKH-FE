@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation } from '@tanstack/react-query'
 import classNames from 'classnames'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { feedbackApi } from 'src/apis/feedback.api'
 import DialogPopup from 'src/components/DialogPopup'
@@ -27,6 +27,11 @@ function ErrorSection({ errorMessage }: { errorMessage?: string }) {
 export default function ContactPage() {
   //? Use state
   const [isSending, setIsSending] = useState<boolean>(false)
+
+  //! SET TITLE
+  useEffect(() => {
+    document.title = 'Ngữ Liệu Số | Liên hệ'
+  })
 
   //! SEND FEEDBACK
   const methods = useForm<FormData>({

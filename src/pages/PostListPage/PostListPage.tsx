@@ -38,7 +38,7 @@ export default function PostListPage({ category }: Props) {
   const { tag: activeTag, content: keyWord } = postListConfig
 
   //! SET TITLE
-  const title = 'NCKH | '.concat(keyWord ? keyWord : ((activeTag ? activeTag : category) as string))
+  const title = 'Ngữ Liệu Số | '.concat(keyWord ? keyWord : ((activeTag ? activeTag : category) as string))
   useEffect(() => {
     document.title = title
   }, [title])
